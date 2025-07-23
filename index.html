@@ -5,7 +5,6 @@
   <title>Bảng Giá Dịch Vụ</title>
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <style>
-    /* Font đẹp */
     @import url('https://fonts.googleapis.com/css2?family=Roboto:wght@400;700&display=swap');
 
     * {
@@ -16,24 +15,56 @@
 
     body {
       font-family: 'Roboto', sans-serif;
-      background: radial-gradient(circle at top, #1a1a1a, #0d0d0d);
+      background: radial-gradient(circle at top, #1a001f, #0a0010);
       color: #fff;
       padding: 30px 15px;
     }
 
     h1 {
       text-align: center;
-      color: #ff6600;
+      color: #ff4dd2;
       margin-bottom: 10px;
-      font-size: 30px;
-      text-shadow: 0 0 10px #ff6600;
+      font-size: 34px;
+      text-shadow: 0 0 15px #ff4dd2, 0 0 25px #ff99dd;
+      animation: pulseGlow 2s infinite alternate;
+    }
+
+    @keyframes pulseGlow {
+      from { text-shadow: 0 0 10px #ff4dd2; }
+      to { text-shadow: 0 0 25px #ff4dd2, 0 0 35px #ff99dd; }
     }
 
     p {
       text-align: center;
-      margin-bottom: 25px;
-      color: #ccc;
-      font-size: 14px;
+      margin-bottom: 15px;
+      color: #eee;
+      font-size: 15px;
+    }
+
+    .top-link {
+      text-align: center;
+      margin-bottom: 30px;
+    }
+
+    .top-link a {
+      display: inline-block;
+      background-color: transparent;
+      border: 2px solid #ff4dd2;
+      padding: 10px 22px;
+      font-weight: bold;
+      font-size: 16px;
+      border-radius: 8px;
+      color: #ff4dd2;
+      text-decoration: none;
+      transition: all 0.3s ease;
+      box-shadow: 0 0 12px #ff4dd2;
+    }
+
+    .top-link a:hover {
+      background-color: #ff4dd2;
+      color: #fff;
+      transform: scale(1.05);
+      box-shadow: 0 0 20px #ff4dd2;
     }
 
     .container {
@@ -44,75 +75,99 @@
     }
 
     .card {
-      background: linear-gradient(145deg, #1f1f1f, #111);
-      border: 1px solid #333;
-      border-radius: 12px;
+      background: linear-gradient(145deg, #2c002c, #110011);
+      border: 2px solid transparent;
+      border-radius: 16px;
       padding: 20px;
       width: 320px;
-      box-shadow: 0 0 20px rgba(255, 102, 0, 0.15);
-      transition: transform 0.3s ease, box-shadow 0.3s ease;
+      box-shadow:
+        0 0 10px #ff4dd255,
+        0 0 20px #ff4dd222,
+        0 0 30px #ff4dd211;
+      transition: transform 0.3s ease, box-shadow 0.3s ease, border 0.3s ease;
+      opacity: 0;
+      transform: translateY(20px);
+      animation: fadeInUp 0.6s ease forwards;
     }
 
     .card:hover {
-      transform: translateY(-5px);
-      box-shadow: 0 0 25px rgba(255, 102, 0, 0.4);
+      transform: translateY(-6px);
+      box-shadow: 0 0 35px #ff4dd2cc;
+      border: 2px solid #ff4dd2;
+    }
+
+    @keyframes fadeInUp {
+      to {
+        opacity: 1;
+        transform: translateY(0);
+      }
     }
 
     .card h3 {
-      color: #00ffff;
+      color: #ff99dd;
       margin-bottom: 12px;
       font-size: 20px;
-      text-shadow: 0 0 5px #00ffff88;
+      text-shadow: 0 0 5px #ff99dd88;
     }
 
     ul {
-      list-style-type: "🔥 ";
+      list-style-type: "💖 ";
       padding-left: 20px;
     }
 
     li {
       margin-bottom: 8px;
-      line-height: 1.4;
+      line-height: 1.5;
     }
 
     .section-title {
-      color: #ffff66;
+      color: #ffccff;
       font-weight: bold;
-      margin: 12px 0 5px;
-    }
-
-    .button-link {
-      display: inline-block;
-      background-color: #ff6600;
-      color: white;
-      padding: 14px 28px;
-      margin-top: 40px;
-      border: none;
-      border-radius: 8px;
-      font-size: 18px;
-      font-weight: bold;
-      text-decoration: none;
-      text-align: center;
-      box-shadow: 0 0 15px rgba(255, 102, 0, 0.6);
-      transition: background 0.3s ease, transform 0.3s ease;
-    }
-
-    .button-link:hover {
-      background-color: #ff3300;
-      transform: scale(1.05);
+      margin: 14px 0 6px;
     }
 
     .footer {
       text-align: center;
+      margin-top: 40px;
     }
+
+    .button-link {
+      display: inline-block;
+      background-color: #ff4dd2;
+      color: white;
+      padding: 14px 28px;
+      border: none;
+      border-radius: 10px;
+      font-size: 18px;
+      font-weight: bold;
+      text-decoration: none;
+      text-align: center;
+      box-shadow: 0 0 18px rgba(255, 77, 210, 0.6);
+      transition: background 0.3s ease, transform 0.3s ease;
+    }
+
+    .button-link:hover {
+      background-color: #ff1ab8;
+      transform: scale(1.05);
+    }
+
+    /* Animation delay */
+    .card:nth-child(1) { animation-delay: 0.1s; }
+    .card:nth-child(2) { animation-delay: 0.2s; }
+    .card:nth-child(3) { animation-delay: 0.3s; }
+    .card:nth-child(4) { animation-delay: 0.4s; }
+    .card:nth-child(5) { animation-delay: 0.5s; }
+
   </style>
 </head>
 <body>
-  <h1>🌚 Đàm Trọng Nghĩa 🌚</h1>
+  <h1>🌸 Đàm Trọng Nghĩa 🌸</h1>
   <p>Dịch Vụ Uy Tín – Lên Đơn Rõ Ràng</p>
+  <div class="top-link">
+    <a href="https://www.facebook.com/profile.php?id=61576009787673" target="_blank">🌐 Liên Hệ Lên Đơn 🌐</a>
+  </div>
 
   <div class="container">
-    <!-- Kim Cương Free Fire -->
     <div class="card">
       <h3>💎 Kim Cương Free Fire</h3>
       <ul>
@@ -127,9 +182,8 @@
       </ul>
     </div>
 
-    <!-- Quân Huy Liên Quân -->
     <div class="card">
-      <h3>🔷 Quân Huy Liên Quân</h3>
+      <h3>🎯 Quân Huy Liên Quân</h3>
       <ul>
         <li>20 QH – 10.000đ</li>
         <li>40 QH – 20.000đ</li>
@@ -142,16 +196,15 @@
       </ul>
     </div>
 
-    <!-- Dịch Vụ MXH -->
     <div class="card">
-      <h3>🍏 Dịch Vụ MXH & APP VIP</h3>
+      <h3>📱 Dịch Vụ MXH & APP VIP</h3>
       <p class="section-title">❤️ Tim, Like, Cảm Xúc</p>
       <ul>
         <li>10k/500 cảm xúc Facebook</li>
         <li>10k/1.000 tim TikTok</li>
         <li>10k/1.500 like Instagram</li>
       </ul>
-      <p class="section-title">👀 View (Tạm Thời Không Chạy)</p>
+      <p class="section-title">👁️ View (Tạm Thời Không Chạy)</p>
       <ul>
         <li>1k/500 view Facebook</li>
         <li>1k/10.000 view TikTok</li>
@@ -161,16 +214,15 @@
       <ul>
         <li>APK & IPA – 10k/Full App Nào Cũng Được</li>
         <li>Locket Gold IOS: 20k / 1 thiết bị</li>
-         <li>Locket Gold ADR: 10k / 1 thiết bị</li>
+        <li>Locket Gold ADR: 10k / 1 thiết bị</li>
         <li>ID Apple Shadow: 5k/lần thuê</li>
         <li>Prem App iOS: 10k – Android: 7k</li>
       </ul>
     </div>
 
-    <!-- Đồ Ăn -->
     <div class="card">
       <h3>🍱 MENU ĐỒ ĂN - ĐỒ UỐNG</h3>
-      <p class="section-title">☀️ Buổi Sáng</p>
+      <p class="section-title">🌞 Buổi Sáng</p>
       <ul>
         <li>Bún bò, giò, riêu: 20k–25k</li>
         <li>Phở bò: 20k–25k</li>
@@ -195,7 +247,6 @@
       </ul>
     </div>
 
-    <!-- Lưu ý -->
     <div class="card">
       <h3>📌 Lưu Ý Cho Khách Hàng</h3>
       <ul>
@@ -209,11 +260,10 @@
     </div>
   </div>
 
-  <!-- Nút liên hệ -->
   <div class="footer">
     <a href="https://sites.google.com/view/trongnghia1078/trang-ch%E1%BB%A7?authuser=0" class="button-link" target="_blank">
       🔗 Một Số Thứ Bạn Sẽ Cần
     </a>
   </div>
 </body>
-  </html>
+</html>
