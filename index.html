@@ -2,189 +2,218 @@
 <html lang="vi">
 <head>
   <meta charset="UTF-8">
-  <title>Máy Tính Tiếng Việt</title>
+  <title>Bảng Giá Dịch Vụ</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <style>
-    body {
+    /* Font đẹp */
+    @import url('https://fonts.googleapis.com/css2?family=Roboto:wght@400;700&display=swap');
+
+    * {
+      box-sizing: border-box;
       margin: 0;
-      padding: 40px;
-      font-family: Arial, sans-serif;
-      text-align: center;
-      background: linear-gradient(-45deg, red, orange, yellow, green, blue, indigo, violet);
-      background-size: 400% 400%;
-      animation: doiMauNen 10s ease infinite;
+      padding: 0;
     }
 
-    @keyframes doiMauNen {
-      0% { background-position: 0% 50%; }
-      50% { background-position: 100% 50%; }
-      100% { background-position: 0% 50%; }
+    body {
+      font-family: 'Roboto', sans-serif;
+      background: radial-gradient(circle at top, #1a1a1a, #0d0d0d);
+      color: #fff;
+      padding: 30px 15px;
     }
 
     h1 {
-      color: #e84393; /* Màu hồng */
-      text-shadow: 2px 2px 0 #000; /* Viền màu đen */
+      text-align: center;
+      color: #ff6600;
+      margin-bottom: 10px;
+      font-size: 30px;
+      text-shadow: 0 0 10px #ff6600;
     }
 
-    #may-tinh {
-      background: #fff;
-      border: 3px solid #e84393; /* Viền màu hồng */
-      border-radius: 10px;
-      padding: 20px;
-      display: inline-block;
-      box-shadow: 0 0 15px rgba(0,0,0,0.1);
+    p {
+      text-align: center;
+      margin-bottom: 25px;
+      color: #ccc;
+      font-size: 14px;
     }
 
-    #man-hinh {
-      width: 240px;
-      height: 40px;
-      font-size: 24px;
-      text-align: right;
-      margin-bottom: 15px;
-      padding-right: 10px;
-      border: 1px solid #ccc;
-    }
-
-    .nut-bam {
-      display: grid;
-      grid-template-columns: repeat(4, 60px);
-      gap: 10px;
+    .container {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 20px;
       justify-content: center;
     }
 
-    button {
-      padding: 15px;
-      font-size: 18px;
+    .card {
+      background: linear-gradient(145deg, #1f1f1f, #111);
+      border: 1px solid #333;
+      border-radius: 12px;
+      padding: 20px;
+      width: 320px;
+      box-shadow: 0 0 20px rgba(255, 102, 0, 0.15);
+      transition: transform 0.3s ease, box-shadow 0.3s ease;
+    }
+
+    .card:hover {
+      transform: translateY(-5px);
+      box-shadow: 0 0 25px rgba(255, 102, 0, 0.4);
+    }
+
+    .card h3 {
+      color: #00ffff;
+      margin-bottom: 12px;
+      font-size: 20px;
+      text-shadow: 0 0 5px #00ffff88;
+    }
+
+    ul {
+      list-style-type: "🔥 ";
+      padding-left: 20px;
+    }
+
+    li {
+      margin-bottom: 8px;
+      line-height: 1.4;
+    }
+
+    .section-title {
+      color: #ffff66;
+      font-weight: bold;
+      margin: 12px 0 5px;
+    }
+
+    .button-link {
+      display: inline-block;
+      background-color: #ff6600;
+      color: white;
+      padding: 14px 28px;
+      margin-top: 40px;
       border: none;
-      border-radius: 6px;
-      cursor: pointer;
-      background-color: #dfe6e9;
+      border-radius: 8px;
+      font-size: 18px;
+      font-weight: bold;
+      text-decoration: none;
+      text-align: center;
+      box-shadow: 0 0 15px rgba(255, 102, 0, 0.6);
+      transition: background 0.3s ease, transform 0.3s ease;
     }
 
-    button.toan-tu {
-      background-color: #00b894;
-      color: white;
+    .button-link:hover {
+      background-color: #ff3300;
+      transform: scale(1.05);
     }
 
-    button.bang {
-      background-color: #0984e3;
-      color: white;
-    }
-
-    button.xoa {
-      background-color: #d63031;
-      color: white;
-      grid-column: span 4;
-    }
-
-    button.can, button.mu3, button.mu2, button.xoa-ky-tu {
-      background-color: #6c5ce7;
-      color: white;
+    .footer {
+      text-align: center;
     }
   </style>
 </head>
 <body>
-  <h1>Máy Tính Của Bo</h1>
-  <div id="may-tinh">
-    <input type="text" id="man-hinh" readonly>
-    <div class="nut-bam">
-      <button onclick="bam('7')">7</button>
-      <button onclick="bam('8')">8</button>
-      <button onclick="bam('9')">9</button>
-      <button class="toan-tu" onclick="bam('/')">Chia</button>
+  <h1>🌚 Đàm Trọng Nghĩa 🌚</h1>
+  <p>Dịch Vụ Uy Tín – Lên Đơn Rõ Ràng</p>
 
-      <button onclick="bam('4')">4</button>
-      <button onclick="bam('5')">5</button>
-      <button onclick="bam('6')">6</button>
-      <button class="toan-tu" onclick="bam('*')">Nhân</button>
+  <div class="container">
+    <!-- Kim Cương Free Fire -->
+    <div class="card">
+      <h3>💎 Kim Cương Free Fire</h3>
+      <ul>
+        <li>51 KC – 10.000đ</li>
+        <li>113 KC – 20.000đ</li>
+        <li>283 KC – 50.000đ</li>
+        <li>566 KC – 100.000đ</li>
+        <li>1.132 KC – 200.000đ</li>
+        <li>2.830 KC – 500.000đ</li>
+        <li>5.750 KC – 1.000.000đ</li>
+        <li>11.500 KC – 2.000.000đ</li>
+      </ul>
+    </div>
 
-      <button onclick="bam('1')">1</button>
-      <button onclick="bam('2')">2</button>
-      <button onclick="bam('3')">3</button>
-      <button class="toan-tu" onclick="bam('-')">Trừ</button>
+    <!-- Quân Huy Liên Quân -->
+    <div class="card">
+      <h3>🔷 Quân Huy Liên Quân</h3>
+      <ul>
+        <li>20 QH – 10.000đ</li>
+        <li>40 QH – 20.000đ</li>
+        <li>102 QH – 50.000đ</li>
+        <li>204 QH – 100.000đ</li>
+        <li>408 QH – 200.000đ</li>
+        <li>1.020 QH – 500.000đ</li>
+        <li>2.090 QH – 1.000.000đ</li>
+        <li>4.180 QH – 2.000.000đ</li>
+      </ul>
+    </div>
 
-      <button onclick="bam('0')">0</button>
-      <button onclick="bam('.')">,</button>
-      <button class="bang" onclick="tinhKetQua()">=</button>
-      <button class="toan-tu" onclick="bam('+')">Cộng</button>
+    <!-- Dịch Vụ MXH -->
+    <div class="card">
+      <h3>🍏 Dịch Vụ MXH & APP VIP</h3>
+      <p class="section-title">❤️ Tim, Like, Cảm Xúc</p>
+      <ul>
+        <li>10k/500 cảm xúc Facebook</li>
+        <li>10k/1.000 tim TikTok</li>
+        <li>10k/1.500 like Instagram</li>
+      </ul>
+      <p class="section-title">👀 View (Tạm Thời Không Chạy)</p>
+      <ul>
+        <li>1k/500 view Facebook</li>
+        <li>1k/10.000 view TikTok</li>
+        <li>1k/3.000 view Instagram</li>
+      </ul>
+      <p class="section-title">🌐 App/Shadow/Gold</p>
+      <ul>
+        <li>APK & IPA – 10k/Full App Nào Cũng Được</li>
+        <li>Locket Gold IOS: 20k / 1 thiết bị</li>
+         <li>Locket Gold ADR: 10k / 1 thiết bị</li>
+        <li>ID Apple Shadow: 5k/lần thuê</li>
+        <li>Prem App iOS: 10k – Android: 7k</li>
+      </ul>
+    </div>
 
-      <button class="can" onclick="canBacHai()">√</button>
-      <button class="mu2" onclick="muHai()">x²</button>
-      <button class="mu3" onclick="muBa()">x³</button>
-      <button class="xoa-ky-tu" onclick="xoaTungKyTu()">←</button>
+    <!-- Đồ Ăn -->
+    <div class="card">
+      <h3>🍱 MENU ĐỒ ĂN - ĐỒ UỐNG</h3>
+      <p class="section-title">☀️ Buổi Sáng</p>
+      <ul>
+        <li>Bún bò, giò, riêu: 20k–25k</li>
+        <li>Phở bò: 20k–25k</li>
+        <li>Bánh canh cá lóc: 35k</li>
+        <li>Mì Quảng: 30k</li>
+        <li>Bún thịt nướng: 20k–25k</li>
+        <li>Cà phê sữa/đá/muối/xỉu: 15k–20k</li>
+      </ul>
+      <p class="section-title">🌆 Buổi Chiều</p>
+      <ul>
+        <li>Bún mắm: 20k–25k</li>
+        <li>Chè thập cẩm: 10k–15k</li>
+      </ul>
+      <p class="section-title">🚚 Ship Cả Ngày</p>
+      <ul>
+        <li>Trà tắc, thái: 5k–11k</li>
+        <li>Matcha latte: 30k</li>
+        <li>Mì cay: 35k–40k</li>
+        <li>Bánh tráng (xoài/khô bò): 15k–20k</li>
+        <li>Bim bim: 6k–11k</li>
+        <li>Trà sữa: 25k–35k</li>
+      </ul>
+    </div>
 
-      <button class="xoa" onclick="xoaManHinh()">XÓA HẾT</button>
+    <!-- Lưu ý -->
+    <div class="card">
+      <h3>📌 Lưu Ý Cho Khách Hàng</h3>
+      <ul>
+        <li>Tài khoản để công khai</li>
+        <li>Không đổi ID khi chạy đơn</li>
+        <li>Không chạy 2 bên cùng lúc</li>
+        <li>Không đổi tên khi chạy tương tác</li>
+        <li>Chỉ ship 1 vài nơi tại Krông Nô</li>
+        <li>Gửi đúng thông tin và phí trước 👍</li>
+      </ul>
     </div>
   </div>
 
-  <script>
-    let manHinh = document.getElementById("man-hinh");
-
-    function bam(giatri) {
-      const toanTu = ['+', '-', '*', '/'];
-      let hienTai = manHinh.value;
-      let cuoi = hienTai[hienTai.length - 1];
-
-      if (toanTu.includes(giatri) && toanTu.includes(cuoi)) {
-        manHinh.value = hienTai.slice(0, -1) + giatri;
-      } else {
-        if (manHinh.value.length < 20) {
-          manHinh.value += giatri;
-        }
-      }
-    }
-
-    function xoaManHinh() {
-      manHinh.value = "";
-    }
-
-    function xoaTungKyTu() {
-      manHinh.value = manHinh.value.slice(0, -1);
-    }
-
-    function tinhKetQua() {
-      try {
-        let bieuThuc = manHinh.value.replace(/,/g, '.');
-        let ketQua = eval(bieuThuc);
-        manHinh.value = ketQua.toString().replace('.', ',');
-      } catch (e) {
-        manHinh.value = "Lỗi!";
-      }
-    }
-
-    function canBacHai() {
-      try {
-        let bieuThuc = manHinh.value.replace(/,/g, '.');
-        let giaTri = eval(bieuThuc);
-        if (giaTri < 0) {
-          manHinh.value = "Không hợp lệ";
-        } else {
-          let ketQua = Math.sqrt(giaTri);
-          manHinh.value = ketQua.toString().replace('.', ',');
-        }
-      } catch (e) {
-        manHinh.value = "Lỗi!";
-      }
-    }
-
-    function muHai() {
-      try {
-        let giaTri = eval(manHinh.value.replace(/,/g, '.'));
-        let ketQua = Math.pow(giaTri, 2);
-        manHinh.value = ketQua.toString().replace('.', ',');
-      } catch (e) {
-        manHinh.value = "Lỗi!";
-      }
-    }
-
-    function muBa() {
-      try {
-        let giaTri = eval(manHinh.value.replace(/,/g, '.'));
-        let ketQua = Math.pow(giaTri, 3);
-        manHinh.value = ketQua.toString().replace('.', ',');
-      } catch (e) {
-        manHinh.value = "Lỗi!";
-      }
-    }
-  </script>
+  <!-- Nút liên hệ -->
+  <div class="footer">
+    <a href="https://sites.google.com/view/damtrongnghia1759/" class="button-link" target="_blank">
+      🔗 Một Số Thứ Bạn Sẽ Cần
+    </a>
+  </div>
 </body>
-</html>
+  </html>
