@@ -1,0 +1,290 @@
+<!DOCTYPE html>
+<html lang="vi">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>🔥 BooSnạp 🔥</title>
+  <style>
+    @import url('https://fonts.googleapis.com/css2?family=Fredoka&display=swap');
+
+    :root {
+      --main-color: #ffb6c1;
+      --bg-color: #fff0f5;
+    }
+
+    body {
+      margin: 0;
+      font-family: 'Fredoka', sans-serif;
+      background-color: var(--bg-color);
+      color: #333;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      padding: 10px;
+    }
+
+    .top-buttons {
+      width: 100%;
+      display: flex;
+      justify-content: space-between;
+      position: fixed;
+      top: 10px;
+      left: 0;
+      padding: 0 15px;
+      z-index: 10;
+    }
+
+    .theme-btns {
+      display: flex;
+      gap: 5px;
+    }
+
+    .theme-btns button {
+      width: 25px;
+      height: 25px;
+      border-radius: 50%;
+      border: none;
+      cursor: pointer;
+      outline: none;
+    }
+
+    video {
+      width: 90vmin;
+      height: 90vmin;
+      max-width: 360px;
+      max-height: 360px;
+      object-fit: cover;
+      border-radius: 20px;
+      border: 5px solid white;
+      box-shadow: 0 0 15px var(--main-color);
+      margin-top: 60px;
+    }
+
+    .controls {
+      margin-top: -20px;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      gap: 15px;
+    }
+
+    .capture-btn {
+      width: 65px;
+      height: 65px;
+      border-radius: 50%;
+      background-color: var(--main-color);
+      border: 5px solid white;
+      box-shadow: 0 0 20px var(--main-color);
+      cursor: pointer;
+    }
+
+    .flip-btn {
+      font-size: 20px;
+      background: white;
+      border: 2px solid var(--main-color);
+      border-radius: 50%;
+      width: 40px;
+      height: 40px;
+      box-shadow: 0 0 10px var(--main-color);
+      cursor: pointer;
+    }
+
+    .gallery {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 10px;
+      justify-content: center;
+      margin-top: 20px;
+    }
+
+    .thumb {
+      position: relative;
+    }
+
+    .thumb img {
+      width: 80px;
+      height: 80px;
+      object-fit: cover;
+      border-radius: 10px;
+      border: 3px solid white;
+      box-shadow: 0 0 10px var(--main-color);
+    }
+
+    .thumb a {
+      position: absolute;
+      bottom: 2px;
+      right: 2px;
+      background: white;
+      font-size: 12px;
+      padding: 2px 4px;
+      border-radius: 5px;
+      color: var(--main-color);
+      text-decoration: none;
+      font-weight: bold;
+    }
+    
+    .thumb a {
+  position: static;
+  background: white;
+  font-size: 12px;
+  padding: 2px 4px;
+  border-radius: 5px;
+  color: var(--main-color);
+  text-decoration: none;
+  font-weight: bold;
+  margin-top: 4px;
+}
+
+.site-title {
+  width: 100%;
+  text-align: center;
+  padding: 12px 0;
+  background: linear-gradient(to right, #ffdee9, #b5fffc);
+  box-shadow: 0 4px 10px rgba(0,0,0,0.1);
+  position: sticky;
+  top: 0;
+  z-index: 10;
+}
+
+.site-title {
+  width: 100%;
+  text-align: center;
+  padding: 12px 0;
+  margin-top: 20px;
+  background: #5bd4f5; /* 💧 Màu xanh nước toàn bộ */
+  box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
+  position: sticky;
+  top: 0;
+  z-index: 10;
+  border-bottom: 2px solid #ffffff; /* viền trắng hoặc đổi theo ý */
+}
+
+.site-title h1 {
+  font-family: 'Comic Sans MS', 'Quicksand', cursive;
+  font-size: 26px;
+  color: white; /* ✨ chữ trắng nổi bật trên nền xanh */
+  margin: 0;
+  letter-spacing: 1px;
+  text-shadow: 1px 1px 4px rgba(0, 0, 0, 0.3); /* bóng đổ dễ đọc */
+}
+
+.site-title span.highlight {
+  color: #ffffff;
+  font-weight: bold;
+  text-shadow: 0 0 5px #ffffff, 0 0 10px #ffffff; /* phát sáng trắng */
+}
+    
+  </style>
+</head>
+<body>
+<!-- Tiêu đề phong cách ở giữa -->
+<header class="site-title">
+  <h1>👑 <span>BooSnap</span> 👑      <span class="highlight"></span></h1>
+</header>
+
+  <div class="top-buttons">
+   
+    <button class="flip-btn" onclick="switchCamera()">🔄</button>
+    <button onclick="startCamera()">📷 Bật lại camera</button>
+    <div class="theme-btns">
+      <button onclick="setTheme('#ffb6c1', '#fff0f5')" style="background:#ffb6c1"></button>
+      <button onclick="setTheme('#add8e6', '#f0f8ff')" style="background:#add8e6"></button>
+      <button onclick="setTheme('#f7dc6f', '#fffbe6')" style="background:#f7dc6f"></button>
+      <button onclick="setTheme('#90ee90', '#f0fff0')" style="background:#90ee90"></button>
+      <button onclick="setTheme('#ff6347', '#fff5f5')" style="background:#ff6347"></button>
+      <button onclick="setTheme('#a29bfe', '#f3f0ff')" style="background:#a29bfe"></button>
+    </div>
+  </div>
+  
+  
+    
+
+<video id="video" autoplay muted playsinline></video>
+
+  <div class="controls">
+    <button class="capture-btn" onclick="capture()"></button>
+  </div>
+
+  <div class="gallery" id="gallery"></div>
+
+  <canvas id="canvas" style="display:none;"></canvas>
+
+  <script>
+    let video = document.getElementById('video');
+    let canvas = document.getElementById('canvas');
+    let gallery = document.getElementById('gallery');
+    let stream;
+    let facingMode = "user";
+
+    async function startCamera() {
+  if (!navigator.mediaDevices || !navigator.mediaDevices.getUserMedia) {
+    alert("Trình duyệt không hỗ trợ camera.");
+    return;
+  }
+
+  if (stream) stream.getTracks().forEach(t => t.stop());
+
+  try {
+    stream = await navigator.mediaDevices.getUserMedia({
+      video: { facingMode: { ideal: facingMode } },
+      audio: false
+    });
+    video.srcObject = stream;
+  } catch (e) {
+    alert("Không thể mở camera. Có thể bạn chưa cấp quyền hoặc thiết bị không hỗ trợ.\n\nChi tiết: " + e.message);
+    console.error(e);
+  }
+}
+
+    function capture() {
+ if (gallery.children.length >= 8) {
+  alert("Bạn đã chụp tối đa 8 ảnh rồi! Vui lòng tải lại trang để tiếp tục.");
+  return;
+}
+
+  canvas.width = video.videoWidth;
+  canvas.height = video.videoHeight;
+  canvas.getContext('2d').drawImage(video, 0, 0);
+  const dataURL = canvas.toDataURL('image/png');
+
+  const img = document.createElement('img');
+  img.src = dataURL;
+
+  // Nút tải ảnh
+  const downloadLink = document.createElement('a');
+  downloadLink.href = dataURL;
+  downloadLink.download = 'anh-cute.png';
+  downloadLink.innerText = '⬇️';
+
+  // Nút chia sẻ FB
+  const fbShareLink = document.createElement('a');
+  fbShareLink.href = `https://www.facebook.com/sharer/sharer.php?u=${encodeURIComponent(dataURL)}`;
+  fbShareLink.target = '_blank';
+  fbShareLink.innerText = '📤';
+
+  const thumb = document.createElement('div');
+  thumb.className = 'thumb';
+  thumb.appendChild(img);
+
+  const btnWrap = document.createElement('div');
+  btnWrap.style.display = 'flex';
+  btnWrap.style.gap = '5px';
+  btnWrap.appendChild(downloadLink);
+  btnWrap.appendChild(fbShareLink);
+
+  thumb.appendChild(btnWrap);
+
+  gallery.prepend(thumb);
+}
+    function setTheme(main, bg) {
+      document.documentElement.style.setProperty('--main-color', main);
+      document.documentElement.style.setProperty('--bg-color', bg);
+    }
+
+    startCamera();
+  </script>
+  
+
+</body>
+
+</html>
