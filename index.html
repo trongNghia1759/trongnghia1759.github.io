@@ -1,0 +1,469 @@
+<!DOCTYPE html>
+<html lang="vi">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Trang Cá Nhân</title>
+  <link href="https://fonts.googleapis.com/css2?family=Fredoka:wght@500&display=swap" rel="stylesheet">
+  <style>
+    * {
+      box-sizing: border-box;
+      margin: 0;
+      padding: 0;
+      font-family: 'Fredoka', sans-serif;
+    }
+
+    body {
+      background: #000;
+      color: #fff;
+      text-align: center;
+      padding: 20px;
+      font-size: 13px;
+    }
+
+    .avatar-wrapper {
+      position: relative;
+      display: inline-block;
+      margin-top: 30px;
+      width: 150px;
+    }
+
+    .avatar-border {
+      width: 120px;
+      height: 120px;
+      position: absolute;
+      top: 15px;
+      left: 15px;
+      z-index: 0;
+    }
+
+    .avatar {
+      width: 150px;
+      height: 150px;
+      object-fit: cover;
+      position: relative;
+      z-index: 1;
+    }
+
+    h1 {
+      font-size: 18px;
+      margin-top: 20px;
+      color: #fff;
+    }
+
+    .desc {
+      color: #00f7ff;
+      margin-top: 10px;
+      line-height: 1.6;
+      font-size: 13px;
+    }
+
+    .divider {
+      border: none;
+      border-top: 1px solid rgba(255, 255, 255, 0.2);
+      width: 80%;
+      margin: 20px auto;
+      box-shadow: 0 0 4px rgba(255, 255, 255, 0.2);
+    }
+
+    .zalo-box {
+      margin: 15px 0;
+      font-weight: bold;
+      color: #000;
+      background: #00f7ff;
+      display: inline-block;
+      padding: 6px 12px;
+      border-radius: 10px;
+      font-size: 13px;
+    }
+
+    .button {
+  display: block;
+  margin: 8px auto;
+  width: 85%;
+  max-width: 240px;
+  background: #000;
+  color: white;
+  padding: 10px;
+  border-radius: 10px;
+  border: 2px solid hotpink;
+  font-size: 12px;
+  transition: 0.3s;
+  text-decoration: none;
+  box-shadow: 0 0 4px hotpink;
+  outline: none;
+  -webkit-tap-highlight-color: transparent; /* Chặn viền xanh khi tap trên thiết bị cảm ứng */
+}
+
+.button:hover {
+  background: #111; /* Giữ nền tối, không đổi màu */
+  color: hotpink;
+  box-shadow: 0 0 6px hotpink;
+}
+
+.button:focus {
+  outline: none;
+  background: #111; /* Không thay đổi màu khi focus */
+  color: hotpink;
+  box-shadow: 0 0 6px hotpink;
+}
+
+.button:active {
+  background: #111; /* Tránh nền bị sáng xanh khi nhấn giữ */
+  color: hotpink;
+  box-shadow: 0 0 8px hotpink;
+}
+
+.button:hover {
+  background: hotpink;
+  color: #000;
+}
+
+.button:hover {
+  background: hotpink;
+  color: #000;
+}
+    .button:hover {
+      background: cyan;
+      color: #000;
+    }
+
+  .glow-button {
+  position: relative;
+  padding: 10px 20px;
+  font-size: 12px;
+  border: none;
+  border-radius: 14px;
+  background-color: black; /* Nền đen */
+  color: white; /* Chữ trắng */
+  cursor: pointer;
+  z-index: 1;
+  box-shadow: 0 0 8px rgba(255, 255, 255, 0.3); /* Phát sáng nhẹ */
+  overflow: hidden;
+}
+
+.rainbow-wrapper {
+  position: relative;
+  display: block;
+  width: 85%;
+  max-width: 240px;
+  margin: 12px auto;
+  border-radius: 16px;
+  padding: 2px;
+  background: linear-gradient(270deg, red, orange, yellow, green, blue, indigo, violet, red);
+  background-size: 600% 600%;
+  animation: moveRainbow 5s linear infinite;
+  box-shadow: 0 0 12px rgba(255, 255, 255, 0.3);
+}
+
+@keyframes moveRainbow {
+  0% { background-position: 0% 50%; }
+  100% { background-position: 100% 50%; }
+}
+
+.rainbow-button-text {
+  display: block;
+  background-color: #000;
+  color: #fff;
+  text-align: center;
+  padding: 10px 0;
+  font-size: 13px;
+  border-radius: 14px;
+  text-decoration: none;
+  font-weight: bold;
+}
+@keyframes rainbow-border {
+  0% { background-position: 0% 50%; }
+  100% { background-position: 100% 50%; }
+}
+@keyframes rainbow-border {
+  0% { background-position: 0% 50%; }
+  100% { background-position: 100% 50%; }
+}
+
+    @keyframes glow {
+      0% { box-shadow: 0 0 5px #1e90ff; }
+      50% { box-shadow: 0 0 15px #1e90ff; }
+      100% { box-shadow: 0 0 5px #1e90ff; }
+    }
+
+    .qr-section img {
+      width: 100%;
+      max-width: 160px;
+    }
+
+    .qr-section h2 {
+      font-size: 16px;
+    }
+
+    /* Responsive mô tả, heading */
+    .desc, .zalo-box {
+      font-size: 13px;
+    }
+
+    @media (min-width: 600px) {
+      h1 {
+        font-size: 20px;
+      }
+    }
+    
+    .triple-color-btn-wrapper {
+  position: relative;
+  display: block;
+  width: 85%;
+  max-width: 240px;
+  margin: 12px auto;
+  border-radius: 14px;
+  padding: 2px;
+  background: linear-gradient(270deg, hotpink, limegreen, cyan, hotpink);
+  background-size: 400% 400%;
+  animation: tripleColorMove 5s linear infinite;
+  box-shadow: 0 0 12px rgba(255, 255, 255, 0.2);
+}
+
+@keyframes tripleColorMove {
+  0% { background-position: 0% 50%; }
+  100% { background-position: 100% 50%; }
+}
+
+.download-btn {
+  display: block;
+  margin: 8px auto;
+  width: 85%;
+  max-width: 240px;
+  background: #000;
+  color: white;
+  padding: 10px;
+  border-radius: 10px;
+  font-size: 12px;
+  text-decoration: none;
+  border: 3px solid;
+  border-image: linear-gradient(to right, hotpink, limegreen, deepskyblue) 1;
+  box-shadow: 0 0 12px hotpink, 0 0 12px limegreen, 0 0 12px deepskyblue;
+}
+
+
+
+#mascot-label {
+  position: fixed;
+  bottom: 0px;
+  right: 20px;
+  width: auto;
+  max-width: 160px;
+  padding: 6px 10px;
+  background-color: white !important;
+  color: black !important;
+  font-size: 10px;
+  font-weight: bold;
+  border-radius: 12px;
+  text-align: center;
+  box-shadow: 0 0 6px rgba(0, 0, 0, 0.15);
+  z-index: 998;
+  pointer-events: none;
+}
+  </style>
+</head>
+<body>
+
+<!-- Hiệu ứng hoa rơi -->
+<style>
+  .flower {
+    position: fixed;
+    top: -50px;
+    font-size: 20px;
+    animation: fall linear infinite;
+    z-index: 9999;
+    pointer-events: none;
+  }
+  @keyframes fall {
+    to {
+      transform: translateY(100vh) rotate(360deg);
+      opacity: 0;
+    }
+  }
+  .rainbow-button {
+  padding: 6px 14px;
+  font-size: 14px;
+  font-weight: bold;
+  border: none;
+  border-radius: 10px;
+  color: white;
+  cursor: pointer;
+  background: linear-gradient(270deg, red, orange, yellow, green, blue, indigo, violet, red);
+  background-size: 1400% 1400%;
+  animation: rainbowMove 6s linear infinite;
+  box-shadow: 0 0 18px rgba(255, 255, 255, 0.5); /* ánh sáng tĩnh */
+  transition: transform 0.2s;
+}
+
+.rainbow-button:hover {
+  transform: scale(1.05);
+}
+
+@keyframes rainbowMove {
+  0% { background-position: 0% 50%; }
+  100% { background-position: 100% 50%; }
+}
+
+@keyframes rainbowMove {
+  0% { background-position: 0% 50%; }
+  100% { background-position: 100% 50%; }
+}
+
+@keyframes glow {
+  0%, 100% {
+    box-shadow: 0 0 12px rgba(255,255,255,0.6), 0 0 24px rgba(255,255,255,0.4);
+  }
+  50% {
+    box-shadow: 0 0 20px rgba(255,255,255,1), 0 0 40px rgba(255,255,255,0.8);
+  }
+}
+
+@keyframes glow {
+  0%, 100% {
+    box-shadow: 0 0 10px rgba(255,255,255,0.6), 0 0 20px rgba(255,255,255,0.3);
+  }
+  50% {
+    box-shadow: 0 0 20px rgba(255,255,255,1), 0 0 30px rgba(255,255,255,0.8);
+  }
+}
+</style>
+<script>
+  function createFlower() {
+    const flower = document.createElement("div");
+    flower.classList.add("flower");
+    flower.style.left = Math.random() * 100 + "vw";
+    flower.style.animationDuration = 3 + Math.random() * 5 + "s";
+    flower.innerText = "🌸";
+    document.body.appendChild(flower);
+    setTimeout(() => flower.remove(), 8000);
+  }
+  setInterval(createFlower, 300);
+</script>
+
+<!-- Avatar -->
+<div class="avatar-wrapper">
+  <img src="https://i.postimg.cc/KzKck7tt/8ad3e721-a3ae-4d68-8e34-ab8feddb88f1.png" class="avatar-border" alt="Viền PNG">
+  <img src="https://i.postimg.cc/1354JSyR/04f85dee-0d49-4fbc-bd87-73056078487a-preview-rev-1.png" class="avatar" alt="Avatar">
+</div>
+
+<!-- Tên + tick -->
+<h1>
+  👻• Đàm Trọng Nghĩa
+  <img src="https://i.postimg.cc/zfdHxRYf/IMG-20250729-173606-preview-rev-1.png" alt="tick xanh" style="width: 14px; height: 14px; vertical-align: middle; margin-left: 6px;">
+</h1>
+
+<!-- Mô tả -->
+<div class="desc">
+  Cung Cấp Dịch Vụ Mạng Xã Hội Giá Rẻ<br>
+  • Thiết Kế Website Theo Yêu Cầu •
+</div>
+
+<hr class="divider" />
+
+<!-- Zalo Box -->
+<button class="rainbow-button">Liên hệ ngay</button>
+
+<!-- Nút liên kết mạng xã hội -->
+<a class="button" href="https://www.facebook.com/profile.php?id=61576009787673" target="_blank">Facebook</a>
+<a class="button" href="https://vm.tiktok.com/ZSS6vqAvM/" target="_blank">TikTok Chính</a>
+<a class="button" href="https://vm.tiktok.com/ZSSrwQnGQ/" target="_blank">TikTok Đú Theo Dân IT</a>
+<a class="button" href="https://www.instagram.com/bo1759_n?igsh=YzljYTk1ODg3Zg==" target="_blank">Instagram</a>
+<a class="button" href="https://locket.cam/bbo1759" target="_blank">Locket</a>
+
+<hr class="divider" />
+
+<!-- QR + Website -->
+<div class="qr-section">
+  <h2>Website Của Tôi</h2>
+  <div class="rainbow-wrapper">
+  <a href="https://trongnghia1759.github.io/banggia/" target="_blank" class="rainbow-button-text">📌 Bảng Giá 📌</a>
+</div>
+  <div class="rainbow-wrapper">
+  <a href="https://trongnghia1759.github.io/khodichvu.com/" target="_blank" class="rainbow-button-text">Kho Dịch Vụ</a>
+</div>
+
+<div class="rainbow-wrapper">
+  <a href="https://trongnghia1759.github.io/flappy/" target="_blank" class="rainbow-button-text">Game Flappy Cho Các Chicken Guy</a>
+</div>
+
+<div class="rainbow-wrapper">
+  <a href="https://trongnghia1759.github.io/boosnap/" target="_blank" class="rainbow-button-text">Web Anh Em Thất Lạc Của Locket</a>
+</div>
+
+<div class="rainbow-wrapper">
+  <a href="https://trongnghia1759.github.io/taoqr/" target="_blank" class="rainbow-button-text">Web Tạo Mã QR Từ Link</a>
+</div>
+
+<hr class="divider" />
+
+<!-- QR ủng hộ -->
+<div class="qr-section">
+  <h2>Chuyên Mục Ăng Xin</h2>
+  <br>
+  <img src="https://i.postimg.cc/C5fBjppM/IMG-20250729-135730.jpg" alt="QR Ủng hộ">
+  <br>
+  <div class="desc">
+    Zalo Pay: Đàm Trọng Nghĩa<br>
+    STK: 0948877241
+  </div>
+  <br>
+  <div class="triple-color-btn-wrapper">
+  <a class="triple-color-btn" href="https://i.postimg.cc/C5fBjppM/IMG-20250729-135730.jpg" download="qr-ung-ho.png">Tải mã QR</a>
+</div>
+
+
+<body>
+  <!-- Bot và nhạc -->
+  <img src="https://i.postimg.cc/zvBtGJQB/cute-robot-waving-hand-cartoon-illustration-138676-2744-preview-rev-1.png" id="mascot-bot">
+<div id="mascot-label">Phát nhạc, click 👆</div>
+
+<audio id="mascot-audio" src="https://files.catbox.moe/dha6ws.mp3"></audio>
+
+<script>
+  const mascotBot = document.getElementById("mascot-bot");
+  const mascotAudio = document.getElementById("mascot-audio");
+
+  mascotBot.addEventListener("click", function () {
+    if (mascotAudio.paused) {
+      mascotAudio.play();
+    } else {
+      mascotAudio.pause();
+    }
+  });
+</script>
+
+<style>
+  #mascot-bot {
+    position: fixed;
+    bottom: 40px;
+    right: 20px;
+    width: 80px;
+    cursor: pointer;
+    z-index: 999;
+    animation: float 3s ease-in-out infinite;
+  }
+
+  @keyframes float {
+    0%, 100% { transform: translateY(0px); }
+    50% { transform: translateY(-8px); }
+  }
+
+  #mascot-label {
+    position: fixed;
+    bottom: 0px;
+    right: 15px;
+    width: 90px;
+    text-align: center;
+    font-size: 13px;
+    color: pink;
+    font-weight: bold;
+    text-shadow: 0 0 4px hotpink;
+    z-index: 998;
+    pointer-events: none;
+  }
+
+</style>
+
+</body>
+</html>
