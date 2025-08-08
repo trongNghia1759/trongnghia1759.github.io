@@ -387,13 +387,9 @@
   <a href="https://trongnghia1759.github.io/khodichvu.com/" target="_blank" class="rainbow-button-text">Kho Dịch Vụ</a>
 </div>
 
-<div class="rainbow-wrapper">
-  <a href="https://trongnghia1759.github.io/flappy/" target="_blank" class="rainbow-button-text">Game Flappy Cho Các Chicken Guy</a>
-</div>
 
-<div class="rainbow-wrapper">
-  <a href="https://trongnghia1759.github.io/boosnap/" target="_blank" class="rainbow-button-text">Web Anh Em Thất Lạc Của Locket</a>
-</div>
+
+
 
 <div class="rainbow-wrapper">
   <a href="https://trongnghia1759.github.io/taoqr/" target="_blank" class="rainbow-button-text">Web Tạo Mã QR Từ Link</a>
@@ -468,6 +464,116 @@
   }
 
 </style>
+
+
+
+
+
+
+<div class="customer-comments" id="customer-comments">
+  <div class="comments-header">
+    <h3>BÌNH LUẬN</h3>
+    <p class="subtitle">Đây là những phản hồi của khách góp ý được chúng tôi xin ý phép dán vào Website</p>
+    <div class="line"></div>
+  </div>
+</div>
+
+<style>
+  .customer-comments {
+    max-width: 700px;
+    margin: 40px auto;
+    padding: 16px;
+    font-family: Arial, sans-serif;
+    background-color: #1a1a1a; /* nền tối */
+    border-radius: 10px;
+  }
+
+  /* Tiêu đề căn giữa */
+  .comments-header {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    margin-bottom: 16px;
+  }
+
+  .comments-header h3 {
+    font-size: 20px;
+    color: #fff;
+    margin-bottom: 4px;
+  }
+
+  /* Dòng chữ phụ */
+  .comments-header .subtitle {
+    font-size: 14px;
+    color: rgba(255, 255, 255, 0.7); /* trắng nhưng mờ hơn */
+    margin-bottom: 8px;
+  }
+
+  /* Dòng kẻ */
+  .comments-header .line {
+    width: 100%;
+    height: 2px;
+    background-color: #ccc;
+  }
+
+  /* Bình luận */
+  .comment-item {
+    border-bottom: 1px solid #333;
+    padding: 12px 0;
+    text-align: left;
+  }
+
+  /* Tên FB: xanh phát sáng */
+  .comment-meta {
+    font-size: 13px;
+    color: #00bfff;
+    text-shadow: 0 0 5px #00bfff;
+    margin-bottom: 6px;
+  }
+
+  /* Nội dung comment: trắng rõ */
+  .comment-text {
+    font-size: 15px;
+    line-height: 1.4;
+    color: #fff;
+  }
+</style>
+
+<script>
+  // Dữ liệu bình luận khách hàng thật
+  const customerComments = [
+    { name: "FB: Huỳnh Văn Thái", text: "Dv uy tín" },
+    { name: "FB: Nguyễn An", text: "Dịch vụ rất tốt, hỗ trợ nhanh" },
+    { name: "FB: Nguyễn Ngọc Bảo Nam", text: "rồi nha uy tín thật còn đồ ăn thì tôi chưa thử" },
+    { name: "FB: Chìn Chá", text: "Legitt nhó" },
+    { name: "FB: Nguyễn Mai", text: "Ê lên nhanh vậy ông" }
+  ];
+
+  function renderCustomerComments(containerId, comments) {
+    const container = document.getElementById(containerId);
+
+    comments.forEach(c => {
+      const item = document.createElement('div');
+      item.className = 'comment-item';
+
+      const meta = document.createElement('div');
+      meta.className = 'comment-meta';
+      meta.textContent = c.name;
+
+      const text = document.createElement('div');
+      text.className = 'comment-text';
+      text.textContent = c.text;
+
+      item.appendChild(meta);
+      item.appendChild(text);
+      container.appendChild(item);
+    });
+  }
+
+  renderCustomerComments("customer-comments", customerComments);
+</script>
+
+
 
 </body>
 </html>
