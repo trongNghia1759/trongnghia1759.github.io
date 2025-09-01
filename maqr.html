@@ -1,0 +1,213 @@
+<!DOCTYPE html>
+<html lang="vi">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Tạo QR Liên Kết</title>
+  <script src="https://cdn.jsdelivr.net/npm/qrcode@1.5.0/build/qrcode.min.js"></script>
+
+  <!-- Thêm Google Fonts + CSS Menu -->
+  <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;600&display=swap" rel="stylesheet">
+  <style>
+    /* Reset chung */
+body {
+  margin: 0;
+  font-family: 'Poppins', sans-serif;
+  background: #fffafc;
+  color: #333;
+  text-align: center;
+}
+
+/* Menu ba gạch */
+.menu-toggle {
+  position: fixed;
+  top: 15px;
+  left: 15px;
+  font-size: 26px;
+  background: #ff69b4;
+  color: white;
+  border: none;
+  padding: 8px 12px;
+  border-radius: 8px;
+  cursor: pointer;
+  z-index: 1001;
+  transition: background 0.3s;
+}
+.menu-toggle:hover {
+  background: #ff85c1;
+}
+
+/* Side menu */
+.side-menu {
+  position: fixed;
+  top: 0;
+  left: -250px;
+  width: 220px;
+  height: 100%;
+  background: #ffe6f0;
+  box-shadow: 2px 0 6px rgba(0,0,0,0.15);
+  padding: 20px;
+  transition: left 0.3s ease;
+  z-index: 1000;
+}
+.side-menu.open {
+  left: 0;
+}
+.side-menu h2 {
+  font-size: 22px;
+  margin-bottom: 20px;
+  text-align: center;
+}
+.side-menu a {
+  display: block;
+  text-decoration: none;
+  padding: 12px;
+  margin: 6px 0;
+  background: #fff;
+  border-radius: 10px;
+  color: #444;
+  font-weight: 600;
+  transition: background 0.3s, transform 0.2s;
+}
+.side-menu a:hover {
+  background: #ffb6d9;
+  transform: translateX(5px);
+}
+
+/* QR input */
+input[type="text"] {
+  width: 80%;
+  max-width: 400px;
+  padding: 10px;
+  margin: 15px 0;
+  border: 2px solid #ff69b4;
+  border-radius: 10px;
+  font-size: 16px;
+  outline: none;
+}
+input[type="text"]:focus {
+  border-color: #ff85c1;
+}
+
+/* Button */
+button {
+  margin: 8px;
+  padding: 10px 16px;
+  border: none;
+  border-radius: 12px;
+  font-size: 16px;
+  cursor: pointer;
+  background: #ff69b4;
+  color: white;
+  transition: background 0.3s;
+}
+button:hover {
+  background: #ff85c1;
+}
+
+/* Link tải QR */
+.download-link {
+  display: inline-block;
+  margin-top: 15px;
+  padding: 10px 14px;
+  background: #4caf50;
+  color: white;
+  border-radius: 10px;
+  text-decoration: none;
+  font-weight: 600;
+  transition: background 0.3s;
+}
+.download-link:hover {
+  background: #45a049;
+}
+
+/* Footer */
+.footer {
+  margin-top: 40px;
+  padding: 20px;
+  font-size: 14px;
+  background: #ffe6f0;
+  border-top: 2px dashed #ffb6d9;
+}
+  </style>
+
+ 
+</head>
+<body>
+  <!-- Menu điều hướng -->
+  <button class="menu-toggle" onclick="document.querySelector('.side-menu').classList.toggle('open')">☰</button>
+  <div class="side-menu">
+    <h2>🌸 Menu</h2>
+    <a href="index.html">🏠 Trang Chủ</a>
+    <a href="banggia.html">💰 Bảng Giá</a>
+    <a href="khodv.html">📦 Kho Dịch Vụ</a>
+    <a href="maqr.html">✨ Tạo mã QR</a>
+  </div>
+
+  <h1>✨ Tạo QR Liên Kết ✨</h1>
+  <input type="text" id="link-input" placeholder="Nhập link tại đây ví dụ: https://trongnghia1759.github.io/">
+  <div class="color-picker">
+    Màu QR: <input type="color" id="color-picker" value="#ff69b4">
+  </div>
+  <br>
+  <button onclick="generateQR()">🌈 Tạo QR</button>
+  <button onclick="clearQR()">❌ Xóa QR</button>
+
+  <div id="qr-container"></div>
+  <!-- Link tải xuống -->
+  <a id="download-link" class="download-link" download="qr-code.png" style="display:none;">⬇ Tải QR về máy</a>
+
+  <div class="footer">
+    ⚠️ Link sai vẫn tạo QR nhưng không quét được <br><br>
+    FB: Đàm Trọng Nghĩa (Bo)<br>
+    TikTok: bo1759
+  </div>
+
+  <script>
+    function generateQR() {
+      const link = document.getElementById("link-input").value.trim();
+      const color = document.getElementById("color-picker").value;
+      const qrContainer = document.getElementById("qr-container");
+      const downloadLink = document.getElementById("download-link");
+
+      qrContainer.innerHTML = ""; 
+      downloadLink.style.display = "none";
+
+      if (link === "") {
+        alert("🌸 Vui lòng nhập liên kết.");
+        return;
+      }
+
+      const canvas = document.createElement("canvas");
+      QRCode.toCanvas(canvas, link, {
+        color: {
+          dark: color,
+          light: "#00000000" // nền trong suốt
+        },
+        width: 256
+      }, function (error) {
+        if (error) {
+          console.error(error);
+          alert("⚠️ Lỗi khi tạo mã QR!");
+        } else {
+          qrContainer.appendChild(canvas);
+          downloadLink.href = canvas.toDataURL("image/png");
+          downloadLink.style.display = "inline-block";
+        }
+      });
+    }
+
+    function clearQR() {
+      document.getElementById("qr-container").innerHTML = "";
+      document.getElementById("download-link").style.display = "none";
+    }
+
+    // Enter để tạo QR
+    document.getElementById("link-input").addEventListener("keypress", function(e) {
+      if (e.key === "Enter") {
+        generateQR();
+      }
+    });
+  </script>
+</body>
+</html>
