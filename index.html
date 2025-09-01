@@ -264,6 +264,59 @@
   </style>
 </head>
 <body>
+<!-- Menu điều hướng -->
+<button class="menu-toggle" onclick="document.querySelector('.side-menu').classList.toggle('open')">
+  ☰
+</button>
+<div class="side-menu">
+  <h2>Danh Mục</h2>
+  <a href="index.html">🏠 Trang Chủ (TCN)</a>
+  <a href="banggia.html">💰 Bảng Giá</a>
+  <a href="khodv.html">📦 Kho Dịch Vụ</a>
+</div>
+
+<style>
+.menu-toggle {
+  position: fixed;
+  top: 20px;
+  left: 20px;
+  z-index: 10001;
+  background: transparent;
+  border: none;
+  font-size: 26px;
+  color: #ff4dd2;
+  cursor: pointer;
+}
+.side-menu {
+  position: fixed;
+  top: 0;
+  left: -240px;
+  width: 240px;
+  height: 100%;
+  background: #1a001f;
+  padding: 60px 20px;
+  transition: left 0.3s ease;
+  box-shadow: 4px 0 20px rgba(0,0,0,0.5);
+  z-index: 10000;
+}
+.side-menu.open { left: 0; }
+.side-menu h2 {
+  color: #ff99dd;
+  margin-bottom: 20px;
+  font-size: 16px;
+  text-align: center;
+}
+.side-menu a {
+  display: block;
+  color: #fff;
+  text-decoration: none;
+  padding: 10px 0;
+  border-bottom: 1px solid #444;
+  transition: all 0.3s;
+  font-size: 13px;
+}
+.side-menu a:hover { color: #ff4dd2; transform: translateX(4px); }
+</style>
 
 <!-- Hiệu ứng hoa rơi -->
 <style>
@@ -361,7 +414,7 @@
 </div>
 
 <div class="rainbow-wrapper">
-  <a href="https://trongnghia1759.github.io/banggia/" target="_blank" class="rainbow-button-text">🥇 Bảng Giá Dịch Vụ 🥇</a>
+  <a href="https://www.facebook.com/61576009787673/posts/122125229564866992/?mibextid=rS40aB7S9Ucbxw6v" target="_blank" class="rainbow-button-text">🥇 Check Uy Tín 🥇</a>
 </div>
 <hr class="divider" />
 
@@ -381,12 +434,7 @@
 <!-- QR + Website -->
 <div class="qr-section">
   <h2>Website Của Tôi</h2>
-  <div class="rainbow-wrapper">
-  <a href="https://trongnghia1759.github.io/banggia/" target="_blank" class="rainbow-button-text">📌 Bảng Giá 📌</a>
-</div>
-  <div class="rainbow-wrapper">
-  <a href="https://trongnghia1759.github.io/khodichvu.com/" target="_blank" class="rainbow-button-text">Kho Dịch Vụ</a>
-</div>
+  
 
 
 
@@ -412,6 +460,7 @@
   <div class="triple-color-btn-wrapper">
   <a class="triple-color-btn" href="https://i.postimg.cc/C5fBjppM/IMG-20250729-135730.jpg" download="qr-ung-ho.png">Tải mã QR</a>
 </div>
+
 
 
 <body>
