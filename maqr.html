@@ -4,137 +4,401 @@
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>Tạo QR Liên Kết</title>
+  
   <script src="https://cdn.jsdelivr.net/npm/qrcode@1.5.0/build/qrcode.min.js"></script>
 
-  <!-- Thêm Google Fonts + CSS Menu -->
-  <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;600&display=swap" rel="stylesheet">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Fredoka:wght@300..700&display=swap" rel="stylesheet">
+  
   <style>
-    /* Reset chung */
-body {
-  margin: 0;
-  font-family: 'Poppins', sans-serif;
-  background: #fffafc;
-  color: #333;
-  text-align: center;
-}
+    * {
+      box-sizing: border-box;
+      margin: 0;
+      padding: 0;
+      font-family: 'Fredoka', sans-serif;
+    }
+    
+    body {
+      background: #000;
+      color: #fff;
+      text-align: center;
+      padding: 20px;
+      font-size: 13px;
+    }
+    
+    .avatar-wrapper {
+      position: relative;
+      display: inline-block;
+      margin-top: 30px;
+      width: 150px;
+    }
+    
+    .avatar-border {
+      width: 120px;
+      height: 120px;
+      position: absolute;
+      top: 15px;
+      left: 15px;
+      z-index: 0;
+    }
+    
+    .avatar {
+      width: 150px;
+      height: 150px;
+      object-fit: cover;
+      position: relative;
+      z-index: 1;
+    }
+    
+    h1 {
+      font-size: 18px;
+      margin-top: 20px;
+      color: #fff;
+    }
+    
+    .desc {
+      color: #00f7ff;
+      margin-top: 10px;
+      line-height: 1.6;
+      font-size: 13px;
+    }
+    
+    .divider {
+      border: none;
+      border-top: 1px solid rgba(255, 255, 255, 0.2);
+      width: 80%;
+      margin: 20px auto;
+      box-shadow: 0 0 4px rgba(255, 255, 255, 0.2);
+    }
+    
+    .zalo-box {
+      margin: 15px 0;
+      font-weight: bold;
+      color: #000;
+      background: #00f7ff;
+      display: inline-block;
+      padding: 6px 12px;
+      border-radius: 10px;
+      font-size: 13px;
+    }
+    
+    .button {
+      display: block;
+      margin: 8px auto;
+      width: 85%;
+      max-width: 240px;
+      background: #000;
+      color: white;
+      padding: 10px;
+      border-radius: 10px;
+      border: 2px solid hotpink;
+      font-size: 12px;
+      transition: 0.3s;
+      text-decoration: none;
+      box-shadow: 0 0 4px hotpink;
+      outline: none;
+      -webkit-tap-highlight-color: transparent;
+    }
+    
+    .button:hover {
+      background: #111;
+      color: hotpink;
+      box-shadow: 0 0 6px hotpink;
+    }
+    
+    .button:focus {
+      outline: none;
+      background: #111;
+      color: hotpink;
+      box-shadow: 0 0 6px hotpink;
+    }
+    
+    .button:active {
+      background: #111;
+      color: hotpink;
+      box-shadow: 0 0 8px hotpink;
+    }
+    
+    .button:hover {
+      background: hotpink;
+      color: #000;
+    }
+    
+    .button:hover {
+      background: hotpink;
+      color: #000;
+    }
+    
+    .button:hover {
+      background: cyan;
+      color: #000;
+    }
+    
+    .glow-button {
+      position: relative;
+      padding: 10px 20px;
+      font-size: 12px;
+      border: none;
+      border-radius: 14px;
+      background-color: black;
+      color: white;
+      cursor: pointer;
+      z-index: 1;
+      box-shadow: 0 0 8px rgba(255, 255, 255, 0.3);
+      overflow: hidden;
+    }
+    
+    .rainbow-wrapper {
+      position: relative;
+      display: block;
+      width: 85%;
+      max-width: 240px;
+      margin: 12px auto;
+      border-radius: 16px;
+      padding: 2px;
+      background: linear-gradient(270deg, red, orange, yellow, green, blue, indigo, violet, red);
+      background-size: 600% 600%;
+      animation: moveRainbow 5s linear infinite;
+      box-shadow: 0 0 12px rgba(255, 255, 255, 0.3);
+    }
+    
+    @keyframes moveRainbow {
+      0% { background-position: 0% 50%; }
+      100% { background-position: 100% 50%; }
+    }
+    
+    .rainbow-button-text {
+      display: block;
+      background-color: #000;
+      color: #fff;
+      text-align: center;
+      padding: 10px 0;
+      font-size: 13px;
+      border-radius: 14px;
+      text-decoration: none;
+      font-weight: bold;
+    }
+    
+    @keyframes rainbow-border {
+      0% { background-position: 0% 50%; }
+      100% { background-position: 100% 50%; }
+    }
+    
+    @keyframes glow {
+      0% { box-shadow: 0 0 5px #1e90ff; }
+      50% { box-shadow: 0 0 15px #1e90ff; }
+      100% { box-shadow: 0 0 5px #1e90ff; }
+    }
+    
+    .qr-section img {
+      width: 100%;
+      max-width: 160px;
+    }
+    
+    .qr-section h2 {
+      font-size: 16px;
+    }
+    
+    /* Responsive mô tả, heading */
+    .desc, .zalo-box {
+      font-size: 13px;
+    }
+    
+    @media (min-width: 600px) {
+      h1 {
+        font-size: 20px;
+      }
+    }
+    
+    .triple-color-btn-wrapper {
+      position: relative;
+      display: block;
+      width: 85%;
+      max-width: 240px;
+      margin: 12px auto;
+      border-radius: 14px;
+      padding: 2px;
+      background: linear-gradient(270deg, hotpink, limegreen, cyan, hotpink);
+      background-size: 400% 400%;
+      animation: tripleColorMove 5s linear infinite;
+      box-shadow: 0 0 12px rgba(255, 255, 255, 0.2);
+    }
+    
+    @keyframes tripleColorMove {
+      0% { background-position: 0% 50%; }
+      100% { background-position: 100% 50%; }
+    }
+    
+    .download-btn {
+      display: block;
+      margin: 8px auto;
+      width: 85%;
+      max-width: 240px;
+      background: #000;
+      color: white;
+      padding: 10px;
+      border-radius: 10px;
+      font-size: 12px;
+      text-decoration: none;
+      border: 3px solid;
+      border-image: linear-gradient(to right, hotpink, limegreen, deepskyblue) 1;
+      box-shadow: 0 0 12px hotpink, 0 0 12px limegreen, 0 0 12px deepskyblue;
+    }
+    
+    #mascot-label {
+      position: fixed;
+      bottom: 0px;
+      right: 20px;
+      width: auto;
+      max-width: 160px;
+      padding: 6px 10px;
+      background-color: white !important;
+      color: black !important;
+      font-size: 10px;
+      font-weight: bold;
+      border-radius: 12px;
+      text-align: center;
+      box-shadow: 0 0 6px rgba(0, 0, 0, 0.15);
+      z-index: 998;
+      pointer-events: none;
+    }
 
-/* Menu ba gạch */
-.menu-toggle {
-  position: fixed;
-  top: 15px;
-  left: 15px;
-  font-size: 26px;
-  background: #ff69b4;
-  color: white;
-  border: none;
-  padding: 8px 12px;
-  border-radius: 8px;
-  cursor: pointer;
-  z-index: 1001;
-  transition: background 0.3s;
-}
-.menu-toggle:hover {
-  background: #ff85c1;
-}
+    /* CSS cho các thành phần tạo QR */
+    input[type="text"] {
+      width: 80%;
+      max-width: 400px;
+      padding: 10px;
+      margin: 15px 0;
+      border: 2px solid cyan;
+      border-radius: 10px;
+      font-size: 16px;
+      outline: none;
+      background: #000;
+      color: #fff;
+    }
 
-/* Side menu */
-.side-menu {
-  position: fixed;
-  top: 0;
-  left: -250px;
-  width: 220px;
-  height: 100%;
-  background: #ffe6f0;
-  box-shadow: 2px 0 6px rgba(0,0,0,0.15);
-  padding: 20px;
-  transition: left 0.3s ease;
-  z-index: 1000;
-}
-.side-menu.open {
-  left: 0;
-}
-.side-menu h2 {
-  font-size: 22px;
-  margin-bottom: 20px;
-  text-align: center;
-}
-.side-menu a {
-  display: block;
-  text-decoration: none;
-  padding: 12px;
-  margin: 6px 0;
-  background: #fff;
-  border-radius: 10px;
-  color: #444;
-  font-weight: 600;
-  transition: background 0.3s, transform 0.2s;
-}
-.side-menu a:hover {
-  background: #ffb6d9;
-  transform: translateX(5px);
-}
+    input[type="text"]:focus {
+      border-color: hotpink;
+    }
 
-/* QR input */
-input[type="text"] {
-  width: 80%;
-  max-width: 400px;
-  padding: 10px;
-  margin: 15px 0;
-  border: 2px solid #ff69b4;
-  border-radius: 10px;
-  font-size: 16px;
-  outline: none;
-}
-input[type="text"]:focus {
-  border-color: #ff85c1;
-}
+    /* Nút Tạo QR và Xóa QR */
+    .qr-button {
+      margin: 8px;
+      padding: 10px 16px;
+      border: none;
+      border-radius: 12px;
+      font-size: 16px;
+      cursor: pointer;
+      background: cyan;
+      color: #000;
+      transition: background 0.3s, color 0.3s;
+      font-weight: bold;
+    }
+    
+    .qr-button:hover {
+      background: hotpink;
+      color: #fff;
+    }
 
-/* Button */
-button {
-  margin: 8px;
-  padding: 10px 16px;
-  border: none;
-  border-radius: 12px;
-  font-size: 16px;
-  cursor: pointer;
-  background: #ff69b4;
-  color: white;
-  transition: background 0.3s;
-}
-button:hover {
-  background: #ff85c1;
-}
+    /* Link tải xuống QR */
+    .download-link {
+      display: inline-block;
+      margin-top: 15px;
+      padding: 10px 14px;
+      background: #00f7ff;
+      color: #000;
+      border-radius: 10px;
+      text-decoration: none;
+      font-weight: bold;
+      transition: background 0.3s, color 0.3s;
+      box-shadow: 0 0 8px #00f7ff;
+    }
 
-/* Link tải QR */
-.download-link {
-  display: inline-block;
-  margin-top: 15px;
-  padding: 10px 14px;
-  background: #4caf50;
-  color: white;
-  border-radius: 10px;
-  text-decoration: none;
-  font-weight: 600;
-  transition: background 0.3s;
-}
-.download-link:hover {
-  background: #45a049;
-}
+    .download-link:hover {
+      background: hotpink;
+      color: #fff;
+      box-shadow: 0 0 8px hotpink;
+    }
 
-/* Footer */
-.footer {
-  margin-top: 40px;
-  padding: 20px;
-  font-size: 14px;
-  background: #ffe6f0;
-  border-top: 2px dashed #ffb6d9;
-}
+    /* Menu ba gạch và menu bên */
+    .menu-toggle {
+      position: fixed;
+      top: 15px;
+      left: 15px;
+      font-size: 26px;
+      background: transparent;
+      color: hotpink;
+      border: 2px solid hotpink;
+      padding: 8px 12px;
+      border-radius: 8px;
+      cursor: pointer;
+      z-index: 1001;
+      transition: background 0.3s, color 0.3s;
+      box-shadow: 0 0 4px hotpink;
+    }
+    
+    .menu-toggle:hover {
+      background: hotpink;
+      color: #fff;
+    }
+    
+    .side-menu {
+      position: fixed;
+      top: 0;
+      left: -250px;
+      width: 220px;
+      height: 100%;
+      background: #111;
+      box-shadow: 2px 0 6px rgba(0,0,0,0.5);
+      padding: 20px;
+      transition: left 0.3s ease;
+      z-index: 1000;
+      border-right: 2px solid hotpink;
+    }
+    
+    .side-menu.open {
+      left: 0;
+    }
+    
+    .side-menu h2 {
+      font-size: 22px;
+      margin-bottom: 20px;
+      text-align: center;
+      color: hotpink;
+    }
+    
+    .side-menu a {
+      display: block;
+      text-decoration: none;
+      padding: 12px;
+      margin: 6px 0;
+      background: #222;
+      border-radius: 10px;
+      color: #fff;
+      font-weight: 600;
+      transition: background 0.3s, transform 0.2s;
+      border: 1px solid hotpink;
+      box-shadow: 0 0 4px hotpink;
+    }
+    
+    .side-menu a:hover {
+      background: hotpink;
+      color: #000;
+      transform: translateX(5px);
+    }
+
+    .footer {
+      margin-top: 40px;
+      padding: 20px;
+      font-size: 14px;
+      background: #111;
+      border-top: 2px dashed hotpink;
+      color: #fff;
+    }
   </style>
-
- 
 </head>
 <body>
-  <!-- Menu điều hướng -->
   <button class="menu-toggle" onclick="document.querySelector('.side-menu').classList.toggle('open')">☰</button>
   <div class="side-menu">
     <h2>🌸 Menu</h2>
@@ -146,22 +410,21 @@ button:hover {
     <a href="maqr.html">✨ Tạo mã QR</a>
     <a href="muachu.html">👩‍💻 Mưa chữ + Lời nhắn</a>
     <br>
-  <h2>Web Khác Của Tôi</h2>
-   <a href="https://trongnghia1759.github.io/devbase/">Dev Base - Kho Tài Nguyên Free</a>
-  <a href="https://c8-thptkrongno.github.io/">C8 - THPT Krông Nô</a>
+    <h2>Web Khác Của Tôi</h2>
+    <a href="https://trongnghia1759.github.io/devbase/">Dev Base - Kho Tài Nguyên Free</a>
+    <a href="https://c8-thptkrongno.github.io/">C8 - THPT Krông Nô</a>
   </div>
 
   <h1>✨ Tạo QR Liên Kết ✨</h1>
   <input type="text" id="link-input" placeholder="Nhập link tại đây ví dụ: https://trongnghia1759.github.io/">
   <div class="color-picker">
-    Màu QR: <input type="color" id="color-picker" value="#ff69b4">
+    Màu QR: <input type="color" id="color-picker" value="#00f7ff">
   </div>
   <br>
-  <button onclick="generateQR()">🌈 Tạo QR</button>
-  <button onclick="clearQR()">❌ Xóa QR</button>
+  <button class="qr-button" onclick="generateQR()">🌈 Tạo QR</button>
+  <button class="qr-button" onclick="clearQR()">❌ Xóa QR</button>
 
   <div id="qr-container"></div>
-  <!-- Link tải xuống -->
   <a id="download-link" class="download-link" download="qr-code.png" style="display:none;">⬇ Tải QR về máy</a>
 
   <div class="footer">
@@ -177,7 +440,7 @@ button:hover {
       const qrContainer = document.getElementById("qr-container");
       const downloadLink = document.getElementById("download-link");
 
-      qrContainer.innerHTML = ""; 
+      qrContainer.innerHTML = "";
       downloadLink.style.display = "none";
 
       if (link === "") {

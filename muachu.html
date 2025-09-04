@@ -1,20 +1,22 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="vi">
 <head>
   <meta charset="UTF-8">
-  <title>Love Rain</title>
+  <title>Mưa Chữ Tình Yêu</title>
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <style>
+    /* -------------------- Reset & Body Styles -------------------- */
     html, body {
       margin: 0;
       padding: 0;
       overflow: hidden;
-      background-color: black;
+      background-color: #000;
       height: 100%;
       width: 100%;
       font-family: Arial, sans-serif;
     }
 
+    /* -------------------- Canvas & Text Effects -------------------- */
     canvas {
       display: block;
       position: absolute;
@@ -30,7 +32,7 @@
       transform: translate(-50%, -50%);
       font-size: 48px;
       font-weight: bold;
-      color: #ffffff;
+      color: #fff;
       text-align: center;
       text-shadow: 0 0 15px #fff, 0 0 25px #f584b7;
       z-index: 2;
@@ -38,6 +40,7 @@
       display: none;
     }
 
+    /* -------------------- UI Elements -------------------- */
     #userText, #setTextButton, #errorMsg, #startButton {
       z-index: 1000;
     }
@@ -54,6 +57,12 @@
       width: 80vw;
       resize: none;
       display: block;
+      background-color: rgba(255, 255, 255, 0.1);
+      color: white;
+    }
+    
+    #userText::placeholder {
+        color: rgba(255, 255, 255, 0.7);
     }
 
     #setTextButton {
@@ -65,10 +74,17 @@
       font-size: 20px;
       border-radius: 8px;
       background-color: #f584b7;
-      color: white;
+      color: #fff;
       border: none;
       cursor: pointer;
       display: block;
+      box-shadow: 0 0 10px #f584b7;
+      transition: background-color 0.3s, box-shadow 0.3s;
+    }
+    
+    #setTextButton:hover {
+        background-color: #ff85c1;
+        box-shadow: 0 0 15px #ff85c1;
     }
 
     #errorMsg {
@@ -79,6 +95,7 @@
       color: #ff4d4f;
       font-size: 18px;
       display: none;
+      text-shadow: 0 0 5px #ff4d4f;
     }
 
     #startButton {
@@ -92,103 +109,125 @@
       background-color: #f584b7;
       border: none;
       border-radius: 12px;
-      color: white;
+      color: #fff;
       cursor: pointer;
       z-index: 1001;
       display: none;
       box-shadow: 0 0 20px #f584b7;
+      transition: background-color 0.3s, box-shadow 0.3s;
+    }
+    
+    #startButton:hover {
+        background-color: #ff85c1;
+        box-shadow: 0 0 25px #ff85c1;
     }
 
-    /* Thông báo dưới chân web */
-    #bottomNotice {
-      position: fixed;
-      bottom: 0;
-      left: 0;
-      width: 100%;
-      padding: 10px;
-      text-align: center;
-      color: white;
-      font-size: 18px;
-      background: rgba(0,0,0,0.5);
-      z-index: 1000;
-    }
+    /* -------------------- Menu ba gạch -------------------- */
+.menu-toggle {
+    position: fixed;
+    top: 10px;
+    left: 10px;
+    font-size: 20px; /* Nhỏ hơn nữa */
+    background: #f584b7;
+    color: white;
+    border: none;
+    padding: 6px 10px; /* Padding nhỏ hơn */
+    border-radius: 6px; /* Bo góc nhỏ hơn */
+    cursor: pointer;
+    z-index: 2100;
+    box-shadow: 0 0 6px rgba(245, 132, 183, 0.6);
+    transition: all 0.3s ease;
+}
 
-    /* Menu ba gạch */
-    .menu-toggle {
-      position: fixed;
-      top: 20px;
-      left: 20px;
-      font-size: 28px;
-      background: none;
-      border: none;
-      color: white;
-      cursor: pointer;
-      z-index: 2100;
-    }
+.menu-toggle:hover {
+    background-color: #ff85c1;
+    box-shadow: 0 0 10px #ff85c1;
+}
 
-    .side-menu {
-      position: fixed;
-      top: 0;
-      left: -100%; /* ẩn hoàn toàn */
-      width: 250px;
-      max-width: 80%;
-      height: 100%;
-      background-color: #111;
-      color: white;
-      padding: 20px;
-      box-shadow: 2px 0 5px rgba(0,0,0,0.5);
-      transition: left 0.3s ease;
-      z-index: 2000;
-      display: flex;
-      flex-direction: column;
-    }
+/* -------------------- Side Menu -------------------- */
+.side-menu {
+    position: fixed;
+    top: 0;
+    left: -200px; /* Đảm bảo menu đóng hoàn toàn */
+    width: 180px;
+    height: 100%;
+    background-color: #1a1a1a;
+    color: #fff;
+    padding: 15px; /* Giảm padding tổng thể */
+    box-shadow: 2px 0 10px rgba(0, 0, 0, 0.8);
+    transition: left 0.4s cubic-bezier(0.25, 0.8, 0.25, 1);
+    z-index: 2000;
+    display: flex;
+    flex-direction: column;
+    border-right: 2px solid #f584b7;
+}
 
-    .side-menu.open {
-      left: 0;
-    }
+.side-menu.open {
+    left: 0;
+}
 
-    .side-menu h2 {
-      margin-top: 0;
-      font-size: 22px;
-      text-align: center;
-    }
+.side-menu h2 {
+    margin-top: 0;
+    font-size: 18px; /* Kích thước font nhỏ hơn */
+    text-align: center;
+    color: #ff85c1;
+    font-weight: bold;
+    margin-bottom: 15px;
+}
 
-    .side-menu a {
-      display: block;
-      color: white;
-      text-decoration: none;
-      margin: 15px 0;
-      font-size: 18px;
-      padding: 8px;
-      border-radius: 6px;
-      transition: 0.2s;
-    }
+/* Các link trong menu */
+.side-menu a {
+    display: flex;
+    align-items: center;
+    gap: 8px; /* Khoảng cách giữa icon và chữ nhỏ hơn */
+    color: #fff;
+    text-decoration: none;
+    margin: 5px 0; /* Khoảng cách giữa các mục nhỏ hơn */
+    font-size: 13px; /* Kích thước font nhỏ hơn */
+    padding: 8px 10px; /* Padding nhỏ hơn */
+    border-radius: 6px;
+    transition: 0.3s;
+    background-color: #2a2a2a;
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.2);
+}
 
-    .side-menu a:hover {
-      background-color: #f584b7;
-      color: black;
-    }
+.side-menu a:hover {
+    background-color: #f584b7;
+    color: #000;
+    transform: translateX(5px);
+    box-shadow: 0 4px 10px rgba(245, 132, 183, 0.4);
+}
+
+/* Phân chia các phần trong menu */
+.menu-section-divider {
+    border-top: 1px solid rgba(255, 255, 255, 0.1);
+    margin: 10px 0; /* Khoảng cách nhỏ hơn */
+}
+
+
   </style>
 </head>
 <body>
 
-  <!-- Nút ba gạch -->
   <button class="menu-toggle">☰</button>
 
-  <!-- Side Menu -->
   <div class="side-menu">
     <h2>Danh Mục</h2>
-    <a href="index.html">🏠 Trang Chủ (TCN)</a>
-    <a href="banggia.html">💰 Bảng Giá</a>
-    <a href="khodv.html">📦 Kho Dịch Vụ</a>
-    <br> <br> <br>
+    <a href="index.html"><span>🏠</span> Trang Chủ (TCN)</a>
+    <a href="banggia.html"><span>💰</span> Bảng Giá</a>
+    <a href="khodv.html"><span>📦</span> Kho Dịch Vụ</a>
+    
+    <div class="menu-section-divider"></div>
+    
     <h2>Dịch Vụ Free</h2>
-    <a href="maqr.html">🔥 Tạo mã QR từ link</a>
-    <a href="muachu.html">👩‍💻 Mưa chữ + Lời nhắn</a>
-    <br><br><br>
-  <h2>Web Khác Của Tôi</h2>
-  <a href="https://trongnghia1759.github.io/devbase/">Dev Base - Kho Tài Nguyên Free</a>
-  <a href="https://c8-thptkrongno.github.io/">C8 - THPT Krông Nô</a>
+    <a href="maqr.html"><span>✨</span> Tạo mã QR từ link</a>
+    <a href="muachu.html"><span>👩‍💻</span> Mưa chữ + Lời nhắn</a>
+    
+    <div class="menu-section-divider"></div>
+    
+    <h2>Web Khác Của Tôi</h2>
+    <a href="https://trongnghia1759.github.io/devbase/"><span>📚</span> Dev Base - Kho Tài Nguyên</a>
+    <a href="https://c8-thptkrongno.github.io/"><span>🏫</span> C8 - THPT Krông Nô</a>
   </div>
 
   <canvas id="canvas"></canvas>
@@ -202,7 +241,6 @@ Tối đa 10 dòng"></textarea>
   <div id="errorMsg"></div>
   <button id="startButton">BẮT ĐẦU</button>
 
-  <!-- Thông báo dưới chân web -->
   <div id="bottomNotice">
     Xoay ngang màn hình để có trải nghiệm tốt nhất
   </div>
@@ -212,22 +250,21 @@ Tối đa 10 dòng"></textarea>
     const ctx = canvas.getContext('2d');
     const centerText = document.getElementById('centerText');
     const startButton = document.getElementById('startButton');
-
     const userTextInput = document.getElementById('userText');
     const setTextButton = document.getElementById('setTextButton');
     const errorMsg = document.getElementById('errorMsg');
-
     const menuToggle = document.querySelector('.menu-toggle');
     const sideMenu = document.querySelector('.side-menu');
+    const bottomNotice = document.getElementById('bottomNotice');
 
     let messages = [];
-    let index = 0;
-    let started = false;
+    let messageIndex = 0;
+    let isStarted = false;
 
-    const texts = ['L','O','V','E'];
+    const texts = ['L', 'O', 'V', 'E'];
     const fontSize = 16;
-    let columns = Math.floor(window.innerWidth / fontSize);
-    let drops = Array(columns).fill(1);
+    let columns;
+    let drops;
 
     function resizeCanvas() {
       canvas.width = window.innerWidth;
@@ -236,63 +273,73 @@ Tối đa 10 dòng"></textarea>
       drops = Array(columns).fill(1);
     }
 
-    window.addEventListener('resize', resizeCanvas);
-    resizeCanvas();
+    function initialize() {
+      resizeCanvas();
+      window.addEventListener('resize', resizeCanvas);
+      startButton.addEventListener('click', startShow);
+      setTextButton.addEventListener('click', handleSetText);
+      menuToggle.addEventListener('click', () => {
+        sideMenu.classList.toggle('open');
+      });
+    }
 
-    function draw() {
-      if (!started) return;
+    function drawRain() {
+      if (!isStarted) return;
       ctx.fillStyle = 'rgba(0,0,0,0.05)';
-      ctx.fillRect(0,0,canvas.width,canvas.height);
+      ctx.fillRect(0, 0, canvas.width, canvas.height);
       ctx.fillStyle = '#f584b7';
       ctx.font = `${fontSize}px Arial`;
-      for(let i=0;i<drops.length;i++){
+      for (let i = 0; i < drops.length; i++) {
         const text = texts[Math.floor(Math.random() * texts.length)];
-        ctx.fillText(text, i*fontSize, drops[i]*fontSize);
-        if(drops[i]*fontSize > canvas.height || Math.random() > 0.95) drops[i] = 0;
+        ctx.fillText(text, i * fontSize, drops[i] * fontSize);
+        if (drops[i] * fontSize > canvas.height || Math.random() > 0.95) {
+          drops[i] = 0;
+        }
         drops[i]++;
       }
-      requestAnimationFrame(draw);
+      requestAnimationFrame(drawRain);
     }
 
     function showNextMessage() {
-      if(index >= messages.length) return;
+      if (messageIndex >= messages.length) return;
+      
+      // Hiển thị thông điệp
       centerText.style.display = 'block';
-      centerText.innerText = messages[index];
-      setTimeout(()=>{
+      centerText.innerText = messages[messageIndex];
+      
+      // Sau 2 giây, ẩn thông điệp và chuẩn bị hiển thị cái tiếp theo
+      setTimeout(() => {
         centerText.style.display = 'none';
-        index++;
-        setTimeout(showNextMessage,500);
-      },2000);
+        messageIndex++;
+        setTimeout(showNextMessage, 500); // Khoảng thời gian giữa các thông điệp
+      }, 2000);
     }
 
     function startShow() {
-      if(started) return;
-      started = true;
-      startButton.style.display='none';
-      draw();
+      if (isStarted) return;
+      isStarted = true;
+      bottomNotice.style.display = 'none';
+      startButton.style.display = 'none';
+      drawRain();
       showNextMessage();
     }
 
-    startButton.addEventListener('click', startShow);
-
-    // Nhập văn bản
-    setTextButton.addEventListener('click', ()=>{
-      const lines = userTextInput.value.trim().split('\n').filter(l=>l.trim()!=='');
-      if(lines.length < 1 || lines.length > 10){
-        errorMsg.textContent="Vui lòng nhập tối thiểu 1 dòng và tối đa 10 dòng!";
+    function handleSetText() {
+      const lines = userTextInput.value.trim().split('\n').filter(l => l.trim() !== '');
+      if (lines.length < 1 || lines.length > 10) {
+        errorMsg.textContent = "Vui lòng nhập tối thiểu 1 dòng và tối đa 10 dòng!";
+        errorMsg.style.display = 'block';
         return;
       }
       messages = lines;
-      userTextInput.style.display='none';
-      setTextButton.style.display='none';
-      errorMsg.style.display='none';
-      startButton.style.display='block';
-    });
+      userTextInput.style.display = 'none';
+      setTextButton.style.display = 'none';
+      errorMsg.style.display = 'none';
+      startButton.style.display = 'block';
+    }
 
-    // Toggle menu
-    menuToggle.addEventListener('click', ()=>{
-      sideMenu.classList.toggle('open');
-    });
+    // Khởi tạo ứng dụng
+    initialize();
   </script>
 </body>
 </html>
