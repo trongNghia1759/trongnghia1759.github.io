@@ -333,7 +333,10 @@
     top: -50px;
     font-size: 20px;
     animation: fall linear infinite;
-    z-index: 9999;
+   
+  z-index: -1; /* Đặt giá trị âm để nó nằm dưới mọi thứ */
+
+
     pointer-events: none;
   }
   @keyframes fall {
@@ -395,7 +398,7 @@
     flower.classList.add("flower");
     flower.style.left = Math.random() * 100 + "vw";
     flower.style.animationDuration = 3 + Math.random() * 5 + "s";
-    flower.innerText = "🌸";
+    flower.innerText = "🌚";
     document.body.appendChild(flower);
     setTimeout(() => flower.remove(), 8000);
   }
