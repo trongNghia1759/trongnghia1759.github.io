@@ -1,633 +1,295 @@
-<!DOCTYPE html><html lang="vi"><head>
+<!DOCTYPE html>
+<html lang="vi">
+<head>
   <meta charset="UTF-8">
-  <title>DV MXH</title>
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Bảng Giá Dịch Vụ MXH</title>
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
+
   <style>
-    @import url('https://fonts.googleapis.com/css2?family=Roboto:wght@400;700&display=swap');
+    :root {
+      --cool-pink: #ff4dd2; /* Hồng nổi bật */
+      --dark-pink: #C71585;
+      --light-pink: #ff99dd;
+      --text-color: #333;
+      --border-radius: 12px;
+    }
+
     * {
       box-sizing: border-box;
       margin: 0;
       padding: 0;
-    }body {
-  font-family: 'Roboto', sans-serif;
-  font-size: 13px;
-  background: radial-gradient(circle at top, #1a001f, #0a0010);
-  color: #fff;
-  padding: 30px 15px;
-  opacity: 0;
-  transition: opacity 1s ease-in-out;
-}
-
-body.loaded {
-  opacity: 1;
-}
-
-#preloader {
-  position: fixed;
-  top: 0;
-  left: 0;
-  width: 100%;
-  height: 100%;
-  background: radial-gradient(circle, #1a001f, #0a0010);
-  z-index: 9999;
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  color: #ff4dd2;
-  font-size: 22px;
-  font-weight: bold;
-  font-family: 'Roboto', sans-serif;
-  animation: fadeOut 0.5s ease 1s forwards;
-}
-
-@keyframes fadeOut {
-  to {
-    opacity: 0;
-    visibility: hidden;
-  }
-}
-
-.menu-toggle {
-  position: fixed;
-  top: 20px;
-  left: 20px;
-  z-index: 10000;
-  background: transparent;
-  border: none;
-  font-size: 28px;
-  color: #ff4dd2;
-  cursor: pointer;
-}
-
-.side-menu {
-  position: fixed;
-  top: 0;
-  left: -260px;
-  width: 260px;
-  height: 100%;
-  background: #2a0033;
-  padding: 60px 20px;
-  transition: left 0.3s ease;
-  box-shadow: 4px 0 20px rgba(0, 0, 0, 0.5);
-  z-index: 9998;
-}
-
-.side-menu.open {
-  left: 0;
-}
-
-.side-menu h2 {
-  color: #ff99dd;
-  margin-bottom: 20px;
-  font-size: 16px;
-  text-align: center;
-}
-
-.side-menu a {
-  display: block;
-  color: #fff;
-  text-decoration: none;
-  padding: 10px 0;
-  border-bottom: 1px solid #444;
-  transition: all 0.3s;
-  font-size: 13px;
-}
-
-.side-menu a:hover {
-  color: #ff4dd2;
-  transform: translateX(4px);
-}
-
-h1 {
-  text-align: center;
-  color: #ff4dd2;
-  margin-bottom: 10px;
-  font-size: 16px;
-  text-shadow: 0 0 15px #ff4dd2, 0 0 25px #ff99dd;
-  animation: pulseGlow 2s infinite alternate;
-}
-
-@keyframes pulseGlow {
-  from {
-    text-shadow: 0 0 10px #ff4dd2;
-  }
-
-  to {
-    text-shadow: 0 0 25px #ff4dd2, 0 0 35px #ff99dd;
-  }
-}
-
-p {
-  text-align: center;
-  margin-bottom: 15px;
-  color: #eee;
-  font-size: 13px;
-}
-
-.top-link {
-  text-align: center;
-  margin-bottom: 30px;
-}
-
-.top-link a {
-  display: inline-block;
-  background-color: transparent;
-  border: 2px solid #ff4dd2;
-  padding: 10px 22px;
-  font-weight: bold;
-  font-size: 16px;
-  border-radius: 8px;
-  color: #ff4dd2;
-  text-decoration: none;
-  transition: all 0.3s ease;
-  box-shadow: 0 0 12px #ff4dd2;
-}
-
-.top-link a:hover {
-  background-color: #ff4dd2;
-  color: #fff;
-  transform: scale(1.05);
-  box-shadow: 0 0 20px #ff4dd2;
-}
-
-.container {
-  display: flex;
-  flex-wrap: wrap;
-  gap: 20px;
-  justify-content: center;
-}
-
-.card {
-  background: linear-gradient(145deg, #2c002c, #110011);
-  border: 2px solid transparent;
-  border-radius: 16px;
-  padding: 20px;
-  width: 320px;
-  box-shadow: 0 0 10px #ff4dd255, 0 0 20px #ff4dd222;
-  transition: transform 0.3s ease, box-shadow 0.3s ease, border 0.3s ease;
-  opacity: 0;
-  transform: translateY(20px);
-  animation: fadeInUp 0.6s ease forwards;
-}
-
-.card:hover {
-  transform: translateY(-6px);
-  box-shadow: 0 0 35px #ff4dd2cc;
-  border: 2px solid #ff4dd2;
-}
-
-@keyframes fadeInUp {
-  to {
-    opacity: 1;
-    transform: translateY(0);
-  }
-}
-
-.card h3 {
-  color: #ff99dd;
-  margin-bottom: 12px;
-  font-size: 16px;
-  text-shadow: 0 0 5px #ff99dd88;
-}
-
-ul {
-  list-style-type: "🔥 ";
-  padding-left: 20px;
-}
-
-li {
-  margin-bottom: 8px;
-  line-height: 1.5;
-  font-size: 13px;
-}
-
-.section-title {
-  color: #ffccff;
-  font-weight: bold;
-  margin: 14px 0 6px;
-  font-size: 16px;
-}
-
-
-
-.text-list p {
-  margin-bottom: 6px;
-  line-height: 1.5;
-  font-size: 13px;
-}
-
-.card img {
-  display: block;
-  margin: 10px auto 0;   /* căn giữa ảnh */
-  border-radius: 12px;
-  max-width: 250px;
-  width: 100%;
-  object-fit: cover;
-  box-shadow: 0 0 10px rgba(255,77,210,0.6);
-}
-
-.text-list {
-  padding-left: 0;   /* bỏ thụt lề */
-  margin-left: 0;
-}
-
-.text-list p {
-  margin: 4px 0;     /* khoảng cách trên dưới */
-  line-height: 1.5;
-  font-size: 13px;
-  text-align: left;  /* chữ sát trái */
-}
-
-
-.section-title {
-  font-weight: bold;
-  font-size: 14px;
-  margin: 10px 0 6px 0;
-  text-align: left;   /* căn chữ sát lề trái */
-  padding-left: 0;    /* bỏ thụt lề */
-}
-
-
-
-
-
-
-
-
-.divider {
-  width: 100%;
-  text-align: center;
-  border-bottom: 2px solid #ccc; /* Dòng kẻ */
-  line-height: 0.1em;
-  margin: 30px 0 20px;
-} 
-
-.divider span {
-  background: #fff; /* Màu nền trùng với background của web */
-  padding: 0 15px;
-  font-size: 18px;
-  font-weight: bold;
-  color: #333;
-}
-
-
-
-
-
-.section-title {
-  text-align: center;
-  margin: 40px 0; /* khoảng cách trên dưới */
-}
-
-.section-title hr {
-  border: none;
-  border-top: 2px solid white; /* kẻ ngang màu trắng */
-  margin-bottom: 15px; /* cách tiêu đề */
-  width: 80%; /* độ dài đường kẻ */
-  margin-left: auto;
-  margin-right: auto;
-}
-
-.section-title h2 {
-  color: white;  /* chữ trắng */
-  font-size: 24px;
-  font-weight: bold;
-  text-transform: uppercase; /* viết hoa cho nổi bật */
-}
-  </style>
-</head><body>
-  <!-- Nội dung trang HTML đầy đủ tiếp theo sẽ được chèn ở phần sau -->
-
-<body>
-<!-- Menu điều hướng -->
-<button class="menu-toggle" onclick="document.querySelector('.side-menu').classList.toggle('open')">
-  ☰
-</button>
-<div class="side-menu">
-  <h2>Danh Mục Chính</h2>
-  <a href="index.html">🏠 Trang Chủ (TCN)</a>
-  <a href="banggia.html">💰 Bảng Giá</a>
-  <a href="khodv.html">📦 Kho Dịch Vụ</a>
-  <br><br><br><br>
-  <h2>Dịch Vụ Free</h2>
-  <a href="maqr.html">🔥 Tạo mã qr từ link</a>
-  <a href="muachu.html">👩‍💻 Mưa chữ + Lời nhắn</a>
-  <br><br><br><br>
-  <h2>Web Khác Của Tôi</h2>
-   <a href="https://trongnghia1759.github.io/devbase/">Dev Base - Kho Tài Nguyên Free</a>
-  <a href="https://c8-thptkrongno.github.io/">C8 - THPT Krông Nô</a>
-</div>
-
-<style>
-.menu-toggle {
-  position: fixed;
-  top: 20px;
-  left: 20px;
-  z-index: 10001;
-  background: transparent;
-  border: none;
-  font-size: 26px;
-  color: #ff4dd2;
-  cursor: pointer;
-}
-.side-menu {
-  position: fixed;
-  top: 0;
-  left: -240px;
-  width: 240px;
-  height: 100%;
-  background: #1a001f;
-  padding: 60px 20px;
-  transition: left 0.3s ease;
-  box-shadow: 4px 0 20px rgba(0,0,0,0.5);
-  z-index: 10000;
-}
-.side-menu.open { left: 0; }
-.side-menu h2 {
-  color: #ff99dd;
-  margin-bottom: 20px;
-  font-size: 16px;
-  text-align: center;
-}
-.side-menu a {
-  display: block;
-  color: #fff;
-  text-decoration: none;
-  padding: 10px 0;
-  border-bottom: 1px solid #444;
-  transition: all 0.3s;
-  font-size: 13px;
-}
-.side-menu a:hover { color: #ff4dd2; transform: translateX(4px); }
-</style>
-<style>
-  .flower {
-    position: fixed;
-    top: -50px;
-    font-size: 24px;
-    animation: fall linear infinite;
-    z-index: 9999;
-    pointer-events: none;
-  }
-
-  @keyframes fall {
-    to {
-      transform: translateY(100vh) rotate(360deg);
-      opacity: 0;
+      font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
     }
-  }
-</style>
 
+    body {
+      color: #fff;
+      min-height: 100vh;
+      padding: 20px;
+      background-image: url('bgr.png'); 
+      background-size: cover;
+      background-position: center;
+      background-attachment: fixed;
+    }
 
+    .container {
+      max-width: 900px;
+      margin: 0 auto;
+    }
 
-  <div id="preloader">👻 Đang tải nội dung... 👻</div>
-  <div id="mainContent">
-   
-    
- 
-</div>
+    .card {
+      background: rgba(255, 255, 255, 0.9);
+      border-radius: var(--border-radius);
+      padding: 20px;
+      margin: 20px 0;
+      box-shadow: 0 8px 20px rgba(0,0,0,0.2);
+      color: #000;
+      transition: all 0.3s ease;
+    }
+    .card:hover {
+      transform: translateY(-5px);
+      box-shadow: 0 12px 24px rgba(0,0,0,0.25);
+    }
 
-  
-    <div class="top-link">
-     
-     
-      <a href="https://www.facebook.com/profile.php?id=61576009787673" target="_blank">👑 Click Liên Hệ 👑</a>
-      
-    </div>
-    <div class="container">
-   <!-- Các card bạn đã có ở đây -->
+    .card h3 {
+      margin-bottom: 12px;
+      font-size: 1.4em;
+      color: var(--dark-pink);
+    }
+
+    .card ul, .text-list {
+      margin-left: 20px;
+      margin-bottom: 10px;
+    }
+
+    .card p {
+      margin: 5px 0;
+    }
+
+    .section-title {
+      margin: 12px 0 6px;
+      font-weight: 700;
+      color: var(--cool-pink);
+    }
+
+    .section-header {
+      display:flex;
+      flex-direction:column;
+      align-items:center;
+      gap:12px;
+      margin:30px 0 10px;
+    }
+    .section-header__line {
+      width:100%;
+      border:none;
+      border-top:2px solid #fff;
+      opacity:.9;
+    }
+    .section-header__title {
+      margin:0;
+      text-align:center;
+      font-weight:700;
+      font-size:clamp(20px,2.5vw,28px);
+      letter-spacing:.2px;
+      color: #fff;
+    }
+
+    /* Menu 3 gạch */
+    .menu-toggle {
+      position: fixed;
+      top: 20px;
+      left: 20px;
+      z-index: 1001;
+      background: var(--cool-pink);
+      color: #fff;
+      border: none;
+      padding: 10px 15px;
+      border-radius: 5px;
+      cursor: pointer;
+      font-size: 1.5em;
+      box-shadow: 0 2px 5px rgba(0, 0, 0, 0.2);
+      transition: background 0.3s;
+    }
+    .menu-toggle:hover { background: var(--dark-pink); }
+
+    .sidebar-menu {
+      position: fixed;
+      top: 0;
+      left: -250px;
+      width: 250px;
+      height: 100%;
+      background: rgba(255, 255, 255, 0.98);
+      box-shadow: 2px 0 10px rgba(0, 0, 0, 0.1);
+      padding-top: 60px;
+      z-index: 1000;
+      transition: left 0.3s ease;
+      display: flex;
+      flex-direction: column;
+    }
+    .sidebar-menu.active { left: 0; }
+
+    .sidebar-menu a {
+      padding: 15px 20px;
+      text-decoration: none;
+      color: var(--text-color);
+      font-weight: 600;
+      border-bottom: 1px solid var(--light-pink);
+      transition: background 0.2s;
+    }
+    .sidebar-menu a:hover {
+      background: var(--light-pink);
+      color: var(--dark-pink);
+    }
+
+    html { scroll-behavior: smooth; }
+  </style>
+</head>
+<body>
+
 <div class="container">
+ <!-- Nút menu -->
+  <button id="menu-toggle" class="menu-toggle">
+    <i class="fas fa-bars"></i>
+  </button>
 
+  <!-- Menu bên -->
+  <nav id="sidebar-menu" class="sidebar-menu">
+      <a href="index.html">Trang Chủ</a>
+      <a href="banggia.html">Bảng Giá</a>
+      <a href="khodv.html">Kho Dịch Vụ Khách</a>
+      <a href="khoad.html">Kho Dịch Vụ Admin</a>
+      <a href="taoqr.html">Tạo QR từ link</a>
+      <a href="muachu.html">Mưa Chữ</a>
+    </nav>
 
-
-
-
-
- <!-- Card 6 -->
+  <!-- Lưu ý -->
   <div class="card">
-    
     <h3>🚀 Lưu Ý - Không Tuân Thủ Những Điều Này Sẽ Không Được Hoàn Tiền</h3>
     <ul>
       <li>Tài khoản phải để công khai</li>
       <li>Không đổi thông tin (tên, id,...) khi chạy đơn</li>
       <li>Không chạy 2 bên cùng lúc</li>
       <li>Gửi đúng thông tin (Link)</li>
-      
     </ul>
   </div>
-  
-  
 
-
-
-
-
-
-
-
-  
-  
-
-  
-
-  
-  
-  
-  
-  <div class="container">
-  <div class="section-header" role="separator" aria-label="Tạo Website">
+  <!-- Dịch vụ Locket -->
+  <div class="section-header">
     <hr class="section-header__line">
     <h2 class="section-header__title">Dịch Vụ Locket Widget</h2>
   </div>
-</div>
 
-<style>
-  .section-header{
-    display:flex;
-    flex-direction:column;
-    align-items:center;
-    gap:12px;              /* khoảng cách giữa dòng kẻ và tiêu đề */
-    margin:20px 0;
-  }
-  .section-header__line{
-    width:100%;
-    border:none;
-    border-top:2px solid #fff;  /* dòng kẻ màu trắng */
-    opacity:.95;
-  }
-  .section-header__title{
-    margin:0;
-    text-align:center;
-    font-weight:700;
-    font-size:clamp(20px,2.5vw,28px);
-    letter-spacing:.2px;
-  }
-</style>
+  <div class="card">
+    <h3>✨ Gói Locket Boo</h3>
+    <div class="text-list">
+      <p>📸 Đăng không giới hạn</p>
+      <p>🚫 Không cần nâng Gold</p>
+      <p>🔒 Đăng riêng tư</p>
+      <p>🖼️ Đăng ảnh & 🎥 video từ album</p>
+      <p>🎨 Caption màu nổi bật</p>
+      <p>🖌️ Chèn logo hoặc ảnh vào caption</p>
+      <p>😂 Thêm meme & gif trong caption</p>
+      <p>📱 Hỗ trợ mọi thiết bị</p>
+    </div>
 
+    <p class="section-title">⚠️ LƯU Ý</p>
+    <div class="text-list">
+      <p>Người dùng không đăng trực tiếp → cần gửi thông tin cho trung gian để admin đăng.</p>
+      <p>Thông tin cần gửi gồm: TK – MK, ảnh, caption, ảnh cạnh caption.</p>
+    </div>
 
+    <p class="section-title">💰 GIÁ CẢ</p>
+    <div class="text-list">
+      <p>💎 5k / 1 tháng</p>
+      <p>💎 10k / 5 tháng</p>
+      <p>💎 15k / 12 tháng</p>
+      <p>💎 45k / vĩnh viễn (cho đến khi Locket fix)</p>
+      <p>💎 50k / vĩnh viễn + lên locket gold</p>
+    </div>
 
-  
-  
-  
- <!-- Card ĐẶC QUYỀN -->
-<div class="card">
-  <h3>✨ Gói Locket Boo</h3>
-  <div class="text-list">
-  <p>📸 Đăng không giới hạn</p>
-  <p>🚫 Không cần nâng Gold</p>
-  <p>🔒 Đăng riêng tư</p>
-  <p>🖼️ Đăng ảnh & 🎥 video từ album</p>
-  <p>🎨 Caption màu nổi bật</p>
-  <p>🖌️ Chèn logo hoặc ảnh vào caption</p>
-  <p>😂 Thêm meme & gif trong caption</p>
-  <p>📱 Hỗ trợ mọi thiết bị</p>
-</div>
-  <p class="section-title">⚠️ LƯU Ý</p>
-<div class="text-list">
-  <p>Người dùng không đăng trực tiếp → cần gửi thông tin cho trung gian để admin đăng.</p>
-  <p>Thông tin cần gửi gồm: TK – MK, ảnh, caption, ảnh cạnh caption.</p>
-</div>
-<p class="section-title">💰 GIÁ CẢ</p>
-<div class="text-list">
-  <p>💎 5k / 1 tháng</p>
-  <p>💎 10k / 5 tháng</p>
-  <p>💎 15k / 12 tháng</p>
-  <p>💎 45k / vĩnh viễn (cho đến khi Locket fix)</p>
-  <p>💎 50k / vĩnh viễn + lên locket gold</p>
-</div>
+    <img src="https://i.postimg.cc/jj9rYwjb/IMG-20250831-141318.jpg" 
+         alt="Ảnh minh họa Đặc Quyền" 
+         style="width:100%; max-width:250px; border-radius:12px; object-fit:cover; box-shadow:0 0 10px rgba(255,77,210,0.6); margin-top:10px;">
+    <p style="margin-top:8px; font-size:13px; color:#ff99dd; font-weight:bold; text-align:center;">
+      🌸 Ảnh minh họa 🌸
+    </p>
+  </div>
 
-  <!-- Ảnh minh họa ở cuối card -->
-  <img src="https://i.postimg.cc/jj9rYwjb/IMG-20250831-141318.jpg" 
-       alt="Ảnh minh họa Đặc Quyền" 
-       style="width:100%; max-width:250px; border-radius:12px; object-fit:cover; box-shadow:0 0 10px rgba(255,77,210,0.6); margin-top:10px;">
+  <div class="card">
+    <h3>✨ Gói Locket 3s</h3>
+    <div class="text-list">
+      <p>👤 Kết bạn không giới hạn</p>
+      <p>🖼️ Đăng ảnh từ album</p>
+      <p>🎨 Caption dài hơn</p>
+      <p>🖌️ Đổi được camera theme</p>
+      <p>😂 Đổi màu viền widget</p>
+      <p>📱 Xem được ai đã xem bài đăng</p>
+      <p>📷 Quay được video 3s</p>
+    </div>
+    <p class="section-title">💰 GIÁ CẢ</p>
+    <div class="text-list">
+      <p>Android - 20k: vĩnh viễn</p>
+      <p>IOS - 30k: vĩnh viễn</p>
+    </div>
+  </div>
 
-  <p style="margin-top:8px; font-size:13px; color:#ff99dd; font-weight:bold; text-align:center;">
-    🌸 Ảnh minh họa 🌸
-  </p>
-</div>
+  <div class="card">
+    <h3>✨ Gói Locket 15s</h3>
+    <div class="text-list">
+      <p>👤 Kết bạn không giới hạn</p>
+      <p>🖼️ Đăng ảnh từ album</p>
+      <p>🎨 Caption dài hơn</p>
+      <p>🖌️ Đổi được camera theme</p>
+      <p>😂 Đổi màu viền widget</p>
+      <p>📱 Xem được ai đã xem bài đăng</p>
+      <p>📷 Quay được video 15s</p>
+    </div>
+    <p class="section-title">💰 GIÁ CẢ</p>
+    <div class="text-list">
+      <p>IOS - 45k: vĩnh viễn (có bảo hành)</p>
+    </div>
+  </div>
 
-
-
-
-<!-- Card ĐẶC QUYỀN -->
-<div class="card">
-  <h3>✨ Gói Locket 3s</h3>
-  <div class="text-list">
-  
-  <p>👤 Kết bạn không giới hạn</p>
-  <p>🖼️ Đăng ảnh từ album</p>
-  <p>🎨 Caption dài hơn</p>
-  <p>🖌️ Đổi được camera theme</p>
-  <p>😂 Đổi màu viền widget</p>
-  <p>📱 Xem được ai đã xem bài đăng</p>
-  <p>📷 Quay được video 3s</p>
-</div>
-  
-
-<p class="section-title">💰 GIÁ CẢ</p>
-<div class="text-list">
- <p>Android - 20k: vĩnh viễn</p>
- <p>IOS - 30k: vĩnh viễn</p>
-</div>
-</div>
- 
-
-
-
-
-
-
-<!-- Card ĐẶC QUYỀN -->
-<div class="card">
-  <h3>✨ Gói Locket 15s</h3>
-  <div class="text-list">
-  
-  <p>👤 Kết bạn không giới hạn</p>
-  <p>🖼️ Đăng ảnh từ album</p>
-  <p>🎨 Caption dài hơn</p>
-  <p>🖌️ Đổi được camera theme</p>
-  <p>😂 Đổi màu viền widget</p>
-  <p>📱 Xem được ai đã xem bài đăng</p>
-  <p>📷 Quay được video 15s</p>
-</div>
-  
-
-<p class="section-title">💰 GIÁ CẢ</p>
-<div class="text-list">
- <p>IOS - 45k: vĩnh viễn (có bảo hành)</p>
-</div>
-</div>
-
-
-
-
-<div class="container">
-  <div class="section-header" role="separator" aria-label="Tạo Website">
+  <!-- Dịch vụ MXH -->
+  <div class="section-header">
     <hr class="section-header__line">
     <h2 class="section-header__title">Dịch Vụ Mạng Xã Hội</h2>
   </div>
-</div>
 
-<style>
-  .section-header{
-    display:flex;
-    flex-direction:column;
-    align-items:center;
-    gap:12px;              /* khoảng cách giữa dòng kẻ và tiêu đề */
-    margin:20px 0;
-  }
-  .section-header__line{
-    width:100%;
-    border:none;
-    border-top:2px solid #fff;  /* dòng kẻ màu trắng */
-    opacity:.95;
-  }
-  .section-header__title{
-    margin:0;
-    text-align:center;
-    font-weight:700;
-    font-size:clamp(20px,2.5vw,28px);
-    letter-spacing:.2px;
-  }
-</style></div>
-
- <!-- Card 2 -->
   <div class="card">
     <h3>📱 Dịch Vụ TikTok</h3>
     <ul>
-      <li>1.5k/100 tim</li>
-      <li>2k/10.000 view</li>
-      <li>10k/100 follower</li>
+      <li>1k/100 tim</li>
+      <li>1k/1.000 view</li>
+      <li>10k/100 follower Việt</li>
+      <li>20k/1000 follower clone</li>
     </ul>
-</div>
+  </div>
 
-<div class="card">
+  <div class="card">
     <h3>📱 Dịch Vụ Facebook</h3>
     <ul>
       <li>1.5k/50 cảm xúc</li>
       <li>2k/1.000 view</li>
-      <li>10k/100 follower</li>
+      <li>20k/1000 follower clone</li>
     </ul>
-</div>
+  </div>
 
-<div class="card">
+  <div class="card">
     <h3>📱 Dịch Vụ Instagram</h3>
     <ul>
-      <li>1k/100 like</li>
-      <li>2k/1.000 view</li>
+      <li>20k/1000 like</li>
+      <li>1k/1.000 view</li>
       <li>10k/150 follower</li>
     </ul>
-</div>
-</div></div>
- </div>
- 
-<div class="container">
-  <div class="section-header" role="separator" aria-label="Tạo Website">
+  </div>
+
+  <!-- Nạp game -->
+  <div class="section-header">
     <hr class="section-header__line">
     <h2 class="section-header__title">Giá Nạp Game</h2>
   </div>
 
-  <!-- Card 1 -->
   <div class="card">
     <h3>⚡ Nạp Free Fire - Liên Quân</h3>
     <ul>
@@ -641,15 +303,13 @@ li {
       <li>11.500 KC | 2.180 QH – 2.000.000đ</li>
     </ul>
   </div>
-</div>
 
-<div class="container">
-  <div class="section-header" role="separator" aria-label="Tạo Website">
+  <!-- App Premium -->
+  <div class="section-header">
     <hr class="section-header__line">
     <h2 class="section-header__title">App Pro - Premium</h2>
   </div>
 
-  <!-- Card 3 -->
   <div class="card">
     <h3>📲 IOS</h3>
     <ul>
@@ -660,7 +320,6 @@ li {
     </ul>
   </div>
 
-  <!-- Card 4 -->
   <div class="card">
     <h3>🤖 Android</h3>
     <ul>
@@ -673,347 +332,15 @@ li {
   </div>
 </div>
 
-<style>
-  .section-header {
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-    gap: 12px;              /* khoảng cách giữa dòng kẻ và tiêu đề */
-    margin: 20px 0;
-  }
-  .section-header__line {
-    width: 100%;
-    border: none;
-    border-top: 2px solid #fff;  /* dòng kẻ màu trắng */
-    opacity: .95;
-  }
-  .section-header__title {
-    margin: 0;
-    text-align: center;
-    font-weight: 700;
-    font-size: clamp(20px, 2.5vw, 28px);
-    letter-spacing: .2px;
-  }
-  .card {
-    background: rgba(255,255,255,0.05);
-    border: 1px solid #fff;
-    border-radius: 12px;
-    padding: 16px;
-    margin: 16px 0;
-    color: #fff;
-  }
-  .card h3 {
-    margin-bottom: 10px;
-  }
-  .card ul {
-    padding-left: 20px;
-  }
-</style>
-   
- 
-<div class="container">
-  <div class="section-header" role="separator" aria-label="Tạo Website">
-    <hr class="section-header__line">
-    <h2 class="section-header__title">Tạo Website</h2>
-  </div>
-
- <!-- Card 1 -->
-  <div class="card">
-    <h3>👩‍💻 Website</h3>
-    <ul>
-      <li>Web học tập- Tra cứu: 100.000đ-500.000đ</li>
-      <li>Bio Cơ Bản-Nâng Cao: 20.000đ-50.000đ</li>
-      <li>Web kỷ niệm (Tỏ Tình,...): 10.000-50.000đ</li>
-      <li>Web Troll mọi người theo yêu cầu: 40.000đ</li>
-      <li>Các Web Theo Yêu Cầu: Giá Trao Đổi</li>
-    </ul>
-  </div>
-  
-<style>
-  .section-header{
-    display:flex;
-    flex-direction:column;
-    align-items:center;
-    gap:12px;              /* khoảng cách giữa dòng kẻ và tiêu đề */
-    margin:20px 0;
-  }
-  .section-header__line{
-    width:100%;
-    border:none;
-    border-top:2px solid #fff;  /* dòng kẻ màu trắng */
-    opacity:.95;
-  }
-  .section-header__title{
-    margin:0;
-    text-align:center;
-    font-weight:700;
-    font-size:clamp(20px,2.5vw,28px);
-    letter-spacing:.2px;
-  }
-</style>
-      <!-- ... Giữ nguyên phần card và counter ... -->
-      
-      
-<style>
-.tcn-footer-btn {
-  display: inline-block;
-  background: linear-gradient(45deg, #00c6ff, #0072ff);
-  color: white;
-  padding: 12px 24px;
-  border-radius: 30px;
-  text-decoration: none;
-  font-weight: bold;
-  box-shadow: 0 4px 10px rgba(0,0,0,0.2);
-  transition: background 0.3s ease, transform 0.3s ease;
-}
-.tcn-footer-btn:hover {
-  background: linear-gradient(45deg, #0072ff, #00c6ff);
-  transform: scale(1.05);
-}
-</style>
-
-
-
-    </div>
-    <div class="footer">
-      
-      
-
-  
-
- 
-<style>
-  .counter {
-    font-family: 'Segoe UI', sans-serif;
-    padding: 20px;
-    max-width: 360px;
-    margin: 30px auto;
-    border-radius: 16px;
-    position: relative;
-    z-index: 1;
-    background: transparent;
-  }
-
-  .counter::before {
-    content: "";
-    position: absolute;
-    inset: 0;
-    padding: 3px;
-    border-radius: 16px;
-    background: conic-gradient(
-      from 0deg,
-      #ff0000,
-      #ffa500,
-      #ffff00,
-      #00ff00,
-      #00ffff,
-      #0000ff,
-      #800080,
-      #ff0000
-    );
-    -webkit-mask: 
-      linear-gradient(#fff 0 0) content-box, 
-      linear-gradient(#fff 0 0);
-    -webkit-mask-composite: xor;
-    mask-composite: exclude;
-    z-index: -1;
-  }
-
-  .counter-item {
-    display: flex;
-    align-items: center;
-    gap: 12px;
-    margin: 12px 0;
-  }
-
-  .tick-icon {
-    display: inline-flex;
-    justify-content: center;
-    align-items: center;
-    background-color: #28a745;
-    color: white;
-    font-size: 16px;
-    font-weight: bold;
-    width: 28px;
-    height: 28px;
-    border-radius: 50%;
-    flex-shrink: 0;
-  }
-
-  .counter-item span {
-    font-size: 18px;
-    color: white;
-  }
-
-  .counter-item span span {
-    color: #2c7be5;
-    font-weight: bold;
-    font-size: 20px;
-  }
-</style>
-
+<!-- Script mở menu -->
 <script>
-  function animateCount(id, target) {
-    const el = document.getElementById(id);
-    let count = 0;
-    const duration = 1000;
-    const steps = 60;
-    const increment = target / steps;
-    const stepTime = duration / steps;
+  const toggleBtn = document.getElementById("menu-toggle");
+  const sidebar = document.getElementById("sidebar-menu");
 
-    const counter = setInterval(() => {
-      count += increment;
-      if (count >= target) {
-        count = target;
-        clearInterval(counter);
-      }
-      el.textContent = Math.floor(count).toLocaleString('vi-VN');
-    }, stepTime);
-  }
-
-  window.addEventListener('DOMContentLoaded', () => {
-    animateCount('visit-count', 1762);
-    animateCount('order-count', 286);
+  toggleBtn.addEventListener("click", () => {
+    sidebar.classList.toggle("active");
   });
 </script>
-  <script>
-    window.addEventListener("load", function () {
-      document.body.classList.add("loaded");
-      setTimeout(function () {
-        document.getElementById("preloader").style.display = "none";
-      }, 1500);
 
-      const visitKey = "visit_count";
-      const lastVisitKey = "last_visit_date";
-      const today = new Date().toDateString();
-      let visits = parseInt(localStorage.getItem(visitKey)) || 0;
-      const lastVisit = localStorage.getItem(lastVisitKey);
-
-      if (lastVisit !== today) {
-        visits += 1;
-        localStorage.setItem(visitKey, visits);
-        localStorage.setItem(lastVisitKey, today);
-      }
-
-      document.getElementById("visit-count").textContent = visits.toLocaleString();
-
-      const completedOrders = 1259;
-      document.getElementById("order-count").textContent = completedOrders.toLocaleString();
-    });
-  </script>
-  </div>
-  <audio id="bg-music" loop muted>
-  <source src="https://voca.ro/18TXQE8Sonrg" type="audio/mpeg">
-  Trình duyệt của bạn không hỗ trợ âm thanh.
-</audio>
-
-
-  </script>
- 
-  
-<style>
-  #mascot {
-    position: fixed;
-    bottom: 20px;
-    right: 20px;
-    width: 100px; /* Đã chỉnh nhỏ lại */
-    text-align: center;
-    z-index: 9999;
-  }
-
-  #mascot img {
-    width: 100%;
-    animation: float 2.5s ease-in-out infinite;
-    cursor: pointer; /* Cho người dùng biết có thể click */
-  }
-
-  @keyframes float {
-    0% { transform: translateY(0); }
-    50% { transform: translateY(-5px); }
-    100% { transform: translateY(0); }
-  }
-
-  .speech-bubble {
-    background: #fff;
-    color: #333;
-    padding: 6px 8px;
-    border-radius: 10px;
-    margin-top: 4px;
-    font-size: 10px;
-    box-shadow: 0 2px 6px rgba(0,0,0,0.2);
-    position: relative;
-  }
-
-  .speech-bubble::after {
-    content: "";
-    position: absolute;
-    bottom: 100%;
-    left: 12px;
-    border-width: 4px;
-    border-style: solid;
-    border-color: transparent transparent #fff transparent;
-  }
-</style>
-
-<script>
-  const messages = [
-    "Click Lên Đơn",
-    
-  ];
-
-  setInterval(() => {
-    const bubble = document.getElementById('bot-speech');
-    const randomMessage = messages[Math.floor(Math.random() * messages.length)];
-    bubble.textContent = randomMessage;
-  }, 10000);
-</script>
-<!-- FontAwesome CDN -->
-<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css">
-
-<!-- Footer phong cách với một mục không có link -->
-
-
-   
-
-<!-- Style -->
-<style>
-  .social-block {
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-    width: 70px;
-  }
-
-  .social-icon {
-    width: 42px;
-    height: 42px;
-    line-height: 42px;
-    border-radius: 50%;
-    font-size: 18px;
-    color: white;
-    margin-bottom: 6px;
-    text-align: center;
-  }
-
-  .social-icon:hover {
-    transform: scale(1.1);
-    box-shadow: 0 0 10px rgba(255,255,255,0.4);
-    transition: 0.3s;
-  }
-
-  .social-label {
-    font-size: 12px;
-    color: #ccc;
-    text-align: center;
-  }
-
-  .fb { background: #3b5998; }
-  .tiktok { background: #000000; }
-  .instagram {
-    background: radial-gradient(circle at 30% 107%, #fdf497 0%, #fd5949 45%, #d6249f 60%, #285AEB 90%);
-  }
-  .locket { background: #ffb700; color: #222; }
-  .link { background: #4caf50; }
-</style>
 </body>
 </html>
