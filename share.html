@@ -1,0 +1,304 @@
+<!DOCTYPE html>
+<html lang="vi">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Đàm Trọng Nghĩa</title>
+    <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@400;700&family=Roboto:wght@400;700&display=swap" rel="stylesheet">
+    <style>
+        /* CSS nội bộ */
+        :root {
+            --bg-color: #121212;
+            --text-color: #e0e0e0;
+            --primary-color: #00ff99; /* Xanh neon */
+            --secondary-bg: #1f1f1f;
+            --border-color: #333;
+        }
+        body {
+            background-color: var(--bg-color);
+            color: var(--text-color);
+            font-family: 'Roboto', sans-serif;
+            margin: 0;
+            padding: 0;
+            line-height: 1.6;
+            transition: margin-left 0.3s ease;
+            font-size: 0.9em; /* Giảm kích thước chữ của toàn bộ web */
+        }
+        .container {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 20px;
+        }
+        header {
+            text-align: center;
+            padding: 40px 20px;
+            border-bottom: 2px solid var(--border-color);
+        }
+        header h1 {
+            font-family: 'Montserrat', sans-serif;
+            font-weight: 700;
+            font-size: 2.5em; /* Giảm kích thước h1 */
+            color: var(--primary-color);
+            text-transform: uppercase;
+            margin: 0 0 10px 0;
+        }
+        header p {
+            font-size: 1em; /* Giảm kích thước p */
+            color: #b0b0b0;
+        }
+        .search-box {
+            display: flex;
+            justify-content: center;
+            margin-top: 20px;
+        }
+        .search-box input {
+            width: 100%;
+            max-width: 500px;
+            padding: 10px 20px; /* Giảm padding input */
+            border: none;
+            border-radius: 50px 0 0 50px;
+            background-color: var(--secondary-bg);
+            color: var(--text-color);
+            font-size: 0.9em; /* Giảm kích thước chữ input */
+            outline: none;
+            transition: box-shadow 0.3s ease;
+        }
+        .search-box button {
+            padding: 10px 25px; /* Giảm padding button */
+            border: none;
+            border-radius: 0 50px 50px 0;
+            background-color: var(--primary-color);
+            color: var(--bg-color);
+            font-size: 0.9em; /* Giảm kích thước chữ button */
+            cursor: pointer;
+            transition: background-color 0.3s ease;
+        }
+        .search-box button:hover {
+            background-color: #00e68a;
+        }
+        main {
+            padding: 40px 0;
+        }
+        h2 {
+            font-family: 'Montserrat', sans-serif;
+            font-weight: 700;
+            color: var(--primary-color);
+            text-align: center;
+            margin-bottom: 30px;
+            position: relative;
+            font-size: 1.8em; /* Giảm kích thước h2 */
+        }
+        h2::after {
+            content: '';
+            display: block;
+            width: 50px;
+            height: 3px;
+            background-color: var(--primary-color);
+            margin: 10px auto 0;
+        }
+        .app-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+            gap: 25px;
+        }
+        .app-card {
+            background-color: #e6e6e6; /* Màu xám nhạt cho card */
+            border-radius: 15px;
+            overflow: hidden;
+            box-shadow: 0 4px 15px rgba(0, 0, 0, 0.3);
+            transition: transform 0.3s ease, box-shadow 0.3s ease;
+        }
+        .app-card:hover {
+            transform: translateY(-8px);
+            box-shadow: 0 8px 25px rgba(0, 255, 153, 0.2);
+        }
+        .app-card img {
+            width: 100%;
+            height: 150px;
+            object-fit: cover;
+            border-bottom: 1px solid var(--border-color);
+        }
+        .app-card-content {
+            padding: 20px;
+            text-align: center;
+            color: #1f1f1f; /* Màu chữ đen cho nội dung card */
+        }
+        .app-card-content h3 {
+            margin-top: 0;
+            font-size: 1.2em; /* Giảm kích thước h3 trong card */
+            color: #1f1f1f; /* Đảm bảo h3 cũng là màu đen */
+        }
+        .app-card-content p {
+            color: #444; /* Màu chữ hơi xám để dễ đọc hơn */
+            font-size: 0.8em; /* Giảm kích thước chữ p trong card */
+            margin-bottom: 20px;
+        }
+        .app-price {
+            font-weight: bold;
+            color: #cc0000; /* Thay đổi màu giá cho dễ nhìn trên nền xám */
+        }
+        .download-button {
+            display: inline-block;
+            background-color: var(--primary-color);
+            color: var(--bg-color);
+            padding: 10px 20px; /* Giảm padding button */
+            border-radius: 50px;
+            text-decoration: none;
+            font-weight: bold;
+            font-size: 0.9em; /* Giảm kích thước chữ button */
+            transition: background-color 0.3s ease, transform 0.3s ease;
+            box-shadow: 0 4px 10px rgba(0, 255, 153, 0.4);
+        }
+        .download-button:hover {
+            background-color: #00e68a;
+            transform: scale(1.05);
+        }
+        footer {
+            text-align: center;
+            padding: 20px;
+            border-top: 2px solid var(--border-color);
+            margin-top: 40px;
+            font-size: 0.8em; /* Giảm kích thước chữ footer */
+        }
+        /* Style cho menu */
+        .menu-toggle {
+            position: fixed;
+            top: 20px;
+            left: 20px;
+            z-index: 1000;
+            background-color: var(--primary-color);
+            color: var(--bg-color);
+            border: none;
+            padding: 6px 10px;
+            font-size: 0.9em; /* Giảm kích thước chữ của toggle */
+            cursor: pointer;
+            border-radius: 5px;
+        }
+        .side-menu {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 200px; /* Giảm chiều rộng menu */
+            height: 100%;
+            background-color: #dcdcdc; /* Màu xám nhạt cho menu */
+            padding: 20px;
+            box-shadow: 2px 0 10px rgba(0, 0, 0, 0.5);
+            transition: transform 0.3s ease;
+            transform: translateX(-100%);
+            z-index: 999;
+        }
+        .side-menu.open {
+            transform: translateX(0);
+        }
+        .side-menu h2 {
+            text-align: left;
+            margin-bottom: 20px;
+            color: #1f1f1f; /* Màu chữ đen cho tiêu đề menu */
+        }
+        .side-menu h2::after {
+            margin: 10px 0 0 0;
+        }
+        .side-menu a {
+            display: block;
+            color: #1f1f1f; /* Màu chữ đen cho các liên kết */
+            text-decoration: none;
+            padding: 10px 0;
+            border-bottom: 1px solid #ccc; /* Màu đường viền nhạt hơn */
+            transition: color 0.3s ease;
+            font-size: 0.8em; /* Giảm kích thước chữ của liên kết */
+        }
+        .side-menu a:hover {
+            color: var(--primary-color);
+        }
+    </style>
+</head>
+<body>
+   <button class="menu-toggle">☰</button>
+    <div class="side-menu">
+        <a href="index.html">Trang Chủ</a>
+      <a href="banggia.html">Bảng Giá</a>
+      <a href="khodv.html">Kho Dịch Vụ Khách</a>
+      <a href="khoad.html">Kho Dịch Vụ Admin</a>
+      <a href="taoqr.html">Tạo QR từ link</a>
+      <a href="muachu.html">Mưa Chữ</a>
+      <a href="share.html">Nguồn Tài Nguyên Miễn Phí</a>
+    </div>
+
+    <div class="container">
+        <header>
+            <h1>DEV BASE</h1>
+            <p>Kho tài nguyên miễn phí.</p>
+        </header>
+
+        <main>
+            <h2>Tài Nguyên Miễn Phí.</h2>
+            
+            
+            
+            
+            
+            
+            
+            
+            
+            
+            
+            
+            
+            
+            
+            
+            
+            
+            
+            
+            
+             <div class="app-grid">
+                <div class="app-card">
+                 <img src="hanhtinhtim.png" alt="Hình ảnh ứng dụng 1">
+                    <div class="app-card-content">
+                        <h3>Mô Phỏng Hành Tinh</h3>
+                        <p>Mô phỏng một hành tinh trong giải ngân hà, có màu tím được cấu tạo từ các hạt tím li ti,...</p>
+                        <p class="app-price">Loại: HTML</p>
+                        <a href="https://www.mediafire.com/file/h4wwc5nmi51d4c7/thienhatim.html/file" class="download-button">Tải Xuống</a>
+                    </div>
+                </div>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+                
+                
+                 
+            </div>
+        </main>
+    </div>
+
+    <footer>
+        <p>&copy; 2025 Kho Tài Nguyên Đa Nền Tảng Miễn Phí</p>
+    </footer>
+
+    <script>
+        const menuToggle = document.querySelector('.menu-toggle');
+        const sideMenu = document.querySelector('.side-menu');
+        
+        menuToggle.addEventListener('click', () => {
+            sideMenu.classList.toggle('open');
+        });
+    </script>
+</body>
+</html>
