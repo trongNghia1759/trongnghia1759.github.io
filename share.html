@@ -1,442 +1,488 @@
-<!DOCTYPE html>
-<html lang="vi">
+<!DOCTYPE html><html lang="vi">
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Đàm Trọng Nghĩa</title>
-    <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@400;700&family=Roboto:wght@400;700&display=swap" rel="stylesheet">
-    <style>
-        /* CSS nội bộ */
-        :root {
-            --bg-color: #121212;
-            --text-color: #e0e0e0;
-            --primary-color: #00ff99; /* Xanh neon */
-            --secondary-bg: #1f1f1f;
-            --border-color: #333;
-        }
-        body {
-            background-color: var(--bg-color);
-            color: var(--text-color);
-            font-family: 'Roboto', sans-serif;
-            margin: 0;
-            padding: 0;
-            line-height: 1.6;
-            transition: margin-left 0.3s ease;
-            font-size: 0.9em; /* Giảm kích thước chữ của toàn bộ web */
-        }
-        .container {
-            max-width: 1200px;
-            margin: 0 auto;
-            padding: 20px;
-        }
-        header {
-            text-align: center;
-            padding: 40px 20px;
-            border-bottom: 2px solid var(--border-color);
-        }
-        header h1 {
-            font-family: 'Montserrat', sans-serif;
-            font-weight: 700;
-            font-size: 2.5em; /* Giảm kích thước h1 */
-            color: var(--primary-color);
-            text-transform: uppercase;
-            margin: 0 0 10px 0;
-        }
-        header p {
-            font-size: 1em; /* Giảm kích thước p */
-            color: #b0b0b0;
-        }
-        .search-box {
-            display: flex;
-            justify-content: center;
-            margin-top: 20px;
-        }
-        .search-box input {
-            width: 100%;
-            max-width: 500px;
-            padding: 10px 20px; /* Giảm padding input */
-            border: none;
-            border-radius: 50px 0 0 50px;
-            background-color: var(--secondary-bg);
-            color: var(--text-color);
-            font-size: 0.9em; /* Giảm kích thước chữ input */
-            outline: none;
-            transition: box-shadow 0.3s ease;
-        }
-        .search-box button {
-            padding: 10px 25px; /* Giảm padding button */
-            border: none;
-            border-radius: 0 50px 50px 0;
-            background-color: var(--primary-color);
-            color: var(--bg-color);
-            font-size: 0.9em; /* Giảm kích thước chữ button */
-            cursor: pointer;
-            transition: background-color 0.3s ease;
-        }
-        .search-box button:hover {
-            background-color: #00e68a;
-        }
-        main {
-            padding: 40px 0;
-        }
-        h2 {
-            font-family: 'Montserrat', sans-serif;
-            font-weight: 700;
-            color: var(--primary-color);
-            text-align: center;
-            margin-bottom: 30px;
-            position: relative;
-            font-size: 1.8em; /* Giảm kích thước h2 */
-        }
-        h2::after {
-            content: '';
-            display: block;
-            width: 50px;
-            height: 3px;
-            background-color: var(--primary-color);
-            margin: 10px auto 0;
-        }
-        .app-grid {
-            display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
-            gap: 25px;
-        }
-        .app-card {
-            background-color: #e6e6e6; /* Màu xám nhạt cho card */
-            border-radius: 15px;
-            overflow: hidden;
-            box-shadow: 0 4px 15px rgba(0, 0, 0, 0.3);
-            transition: transform 0.3s ease, box-shadow 0.3s ease;
-        }
-        .app-card:hover {
-            transform: translateY(-8px);
-            box-shadow: 0 8px 25px rgba(0, 255, 153, 0.2);
-        }
-        .app-card img {
-            width: 100%;
-            height: 150px;
-            object-fit: cover;
-            border-bottom: 1px solid var(--border-color);
-        }
-        .app-card-content {
-            padding: 20px;
-            text-align: center;
-            color: #1f1f1f; /* Màu chữ đen cho nội dung card */
-        }
-        .app-card-content h3 {
-            margin-top: 0;
-            font-size: 1.2em; /* Giảm kích thước h3 trong card */
-            color: #1f1f1f; /* Đảm bảo h3 cũng là màu đen */
-        }
-        .app-card-content p {
-            color: #444; /* Màu chữ hơi xám để dễ đọc hơn */
-            font-size: 0.8em; /* Giảm kích thước chữ p trong card */
-            margin-bottom: 20px;
-        }
-        .app-price {
-            font-weight: bold;
-            color: #cc0000; /* Thay đổi màu giá cho dễ nhìn trên nền xám */
-        }
-        .download-button {
-            display: inline-block;
-            background-color: var(--primary-color);
-            color: var(--bg-color);
-            padding: 10px 20px; /* Giảm padding button */
-            border-radius: 50px;
-            text-decoration: none;
-            font-weight: bold;
-            font-size: 0.9em; /* Giảm kích thước chữ button */
-            transition: background-color 0.3s ease, transform 0.3s ease;
-            box-shadow: 0 4px 10px rgba(0, 255, 153, 0.4);
-        }
-        .download-button:hover {
-            background-color: #00e68a;
-            transform: scale(1.05);
-        }
-        footer {
-            text-align: center;
-            padding: 20px;
-            border-top: 2px solid var(--border-color);
-            margin-top: 40px;
-            font-size: 0.8em; /* Giảm kích thước chữ footer */
-        }
-        /* Style cho menu */
-        .menu-toggle {
-            position: fixed;
-            top: 20px;
-            left: 20px;
-            z-index: 1000;
-            background-color: var(--primary-color);
-            color: var(--bg-color);
-            border: none;
-            padding: 6px 10px;
-            font-size: 0.9em; /* Giảm kích thước chữ của toggle */
-            cursor: pointer;
-            border-radius: 5px;
-        }
-        .side-menu {
-            position: fixed;
-            top: 0;
-            left: 0;
-            width: 200px; /* Giảm chiều rộng menu */
-            height: 100%;
-            background-color: #dcdcdc; /* Màu xám nhạt cho menu */
-            padding: 20px;
-            box-shadow: 2px 0 10px rgba(0, 0, 0, 0.5);
-            transition: transform 0.3s ease;
-            transform: translateX(-100%);
-            z-index: 999;
-        }
-        .side-menu.open {
-            transform: translateX(0);
-        }
-        .side-menu h2 {
-            text-align: left;
-            margin-bottom: 20px;
-            color: #1f1f1f; /* Màu chữ đen cho tiêu đề menu */
-        }
-        .side-menu h2::after {
-            margin: 10px 0 0 0;
-        }
-        .side-menu a {
-            display: block;
-            color: #1f1f1f; /* Màu chữ đen cho các liên kết */
-            text-decoration: none;
-            padding: 10px 0;
-            border-bottom: 1px solid #ccc; /* Màu đường viền nhạt hơn */
-            transition: color 0.3s ease;
-            font-size: 0.8em; /* Giảm kích thước chữ của liên kết */
-        }
-        .side-menu a:hover {
-            color: var(--primary-color);
-        }
-    </style>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>DevBase | Kho Tài Nguyên Đa Nền Tảng</title>
+  <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+  <style>
+    :root {
+      --primary: #2563eb;
+      --secondary: #1e40af;
+      --text: #1f2937;
+      --background: #f9fafb;
+      --card: #ffffff;
+      --border: #e5e7eb;
+      --muted: #6b7280;
+    }* { box-sizing: border-box; }
+body {
+  margin: 0;
+  font-family: 'Poppins', sans-serif;
+  background-color: var(--background);
+  color: var(--text);
+  transition: all 0.3s ease;
+}
+
+/* Header + Navbar */
+header {
+  background: var(--card);
+  border-bottom: 1px solid var(--border);
+  padding: 1rem 2rem;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  position: fixed;
+  top: 0; left: 0; right: 0;
+  z-index: 100;
+  flex-wrap: wrap;
+  gap: 1rem;
+}
+.logo {
+  display: flex;
+  flex-direction: column;
+  font-weight: 700;
+  color: var(--primary);
+}
+.slogan {
+  font-size: 0.8rem;
+  color: var(--muted);
+  font-weight: 500;
+}
+
+nav {
+  position: absolute;
+  top: 70px;
+  left: 0;
+  width: 100%;
+  background: var(--card);
+  border-bottom: 1px solid var(--border);
+  transform: translateY(-200%);
+  opacity: 0;
+  transition: all 0.3s ease;
+}
+nav.active {
+  transform: translateY(0);
+  opacity: 1;
+}
+nav ul {
+  list-style: none;
+  margin: 0;
+  padding: 1rem 0;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 1rem;
+}
+nav a {
+  text-decoration: none;
+  color: var(--text);
+  font-weight: 600;
+  transition: color 0.3s;
+}
+nav a:hover { color: var(--primary); }
+
+.menu-toggle {
+  background: var(--primary);
+  color: #fff;
+  border: none;
+  padding: 0.5rem 1rem;
+  border-radius: 8px;
+  cursor: pointer;
+  font-weight: 600;
+  transition: background 0.3s;
+}
+.menu-toggle:hover { background: var(--secondary); }
+
+.color-picker {
+  display: flex;
+  align-items: center;
+  gap: 0.5rem;
+  cursor: pointer;
+}
+.color-picker input {
+  border: none;
+  width: 28px;
+  height: 28px;
+  border-radius: 6px;
+  cursor: pointer;
+}
+
+/* Hero */
+.hero {
+  margin-top: 100px;
+  text-align: center;
+  padding: 4rem 1rem;
+  background: linear-gradient(135deg, var(--primary), var(--secondary));
+  color: #fff;
+  border-radius: 0 0 40px 40px;
+}
+.hero h1 {
+  font-size: clamp(1.8rem, 4vw, 3rem);
+  margin-bottom: 0.5rem;
+}
+.hero p {
+  font-size: clamp(1rem, 2vw, 1.2rem);
+  color: #e0e7ff;
+}
+
+/* Products */
+.products {
+  max-width: 1200px;
+  margin: 2rem auto;
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+  gap: 1.5rem;
+  padding: 0 1rem;
+}
+.product {
+  background: var(--card);
+  border: 1px solid var(--border);
+  border-radius: 12px;
+  box-shadow: 0 2px 6px rgba(0,0,0,0.05);
+  overflow: hidden;
+  display: flex;
+  flex-direction: column;
+  transition: transform 0.3s ease, box-shadow 0.3s ease;
+}
+.product:hover {
+  transform: translateY(-5px);
+  box-shadow: 0 8px 20px rgba(0,0,0,0.1);
+}
+.product img {
+  width: 100%;
+  height: 180px;
+  object-fit: cover;
+}
+.product-content {
+  padding: 1rem;
+  display: flex;
+  flex-direction: column;
+  gap: 0.5rem;
+}
+.product h3 {
+  color: var(--primary);
+  margin: 0;
+  font-size: 1.1rem;
+}
+.product p {
+  color: var(--muted);
+  font-size: 0.9rem;
+}
+.product .price {
+  font-weight: 700;
+  color: var(--secondary);
+}
+.product .category {
+  font-size: 0.85rem;
+  background: var(--primary);
+  color: #fff;
+  border-radius: 6px;
+  padding: 0.2rem 0.5rem;
+  width: fit-content;
+}
+.product a {
+  text-align: center;
+  margin-top: auto;
+  background: var(--primary);
+  color: #fff;
+  text-decoration: none;
+  padding: 0.6rem;
+  border-radius: 8px;
+  font-weight: 600;
+  transition: background 0.3s;
+}
+.product a:hover { background: var(--secondary); }
+
+/* Footer */
+footer {
+  text-align: center;
+  padding: 2rem;
+  color: var(--muted);
+  border-top: 1px solid var(--border);
+}
+
+@media(min-width: 768px) {
+  nav {
+    position: static;
+    opacity: 1;
+    transform: none;
+    width: auto;
+    background: none;
+    border: none;
+  }
+  nav ul {
+    flex-direction: row;
+    gap: 2rem;
+  }
+  .menu-toggle { display: none; }
+}
+
+  </style>
 </head>
 <body>
-   <button class="menu-toggle">☰</button>
-    <div class="side-menu">
-        <a href="index.html">Trang Chủ</a>
-      <a href="banggia.html">Bảng Giá</a>
-      <a href="khodv.html">Kho Dịch Vụ Khách</a>
-      <a href="khoad.html">Kho Dịch Vụ Admin</a>
-      <a href="taoqr.html">Tạo QR từ link</a>
-      <a href="muachu.html">Mưa Chữ</a>
-      <a href="share.html">Nguồn Tài Nguyên Đa Nền Tảng</a>
+  <header>
+    <div class="logo">
+      DevBase
+      <span class="slogan">Kho Tài Nguyên Đa Nền Tảng</span>
     </div>
+    <button class="menu-toggle" id="menuToggle">☰ Menu</button>
+    <nav id="mainNav">
+      <ul>
+        <li><a href="index.html">Profile</a></li>
+        <li><a href="banggia.html">Bảng Giá</a></li>
+        <li><a href="khoad.html">Kho Admin</a></li>
+        <li><a href="khodv.html">Kho Khách Hàng</a></li>
+         <li><a href="muachu.html">Mưa Chữ</a></li>
+          <li><a href="taoqr.html">Tạo Mã QR Từ Link</a></li>
+           <li><a href="share.html">Tài Nguyên Đa Nền Tảng</a></li>
+      </ul>
+    </nav>
+    <label class="color-picker">
+      <input type="color" id="colorPicker" value="#2563eb">
+    </label>
+  </header>  <section class="hero">
+    <h1>Kho Tài Nguyên DevBase</h1>
+    <p>Nơi chia sẻ & bán các tài nguyên đa nền tảng, đa chủ đề</p>
+  </section>  <section id="products" 
+  class="products">
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+   <div class="product">
+  <img src="denlong.png" alt="MS#175906">
+  <div class="product-content">
+    <span class="category">HTML</span>
+    <h3>Đèn Lồng Lời Chúc - Trung Thu</h3>
+   <p>MS#175906</p>
+    <p>Khi chạm vào đèn lồng sẽ có một dòng chúc ngẫu nhiên hiện ra,...</p>
+    <span class="price">5.000 VND</span>
+    <a href="https://www.mediafire.com/folder/ir2lz38kg9zg3/Web+SN+V1+-+VanhLoveIT">Liên Hệ Mua</a>
+  </div>
+</div>
+
+
+
+
+
+
+
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+   <div class="product">
+  <img src="hanhtinhtim.png" alt="MS#175905">
+  <div class="product-content">
+    <span class="category">HTML</span>
+    <h3>Mô Phỏng Hành Tinh</h3>
+   <p>MS#175905</p>
+    <p>Mô phỏng một hành tinh trong giải ngân hà, có màu tím được cấu tạo từ các hạt tím li ti,...</p>
+    <span class="price">Miễn phí</span>
+    <a href="https://www.mediafire.com/file/h4wwc5nmi51d4c7/thienhatim.html/file">Tải Sản Phẩm</a>
+  </div>
+</div>
+
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+   <div class="product">
+  <img src="snv1.png" alt="MS#175904">
+  <div class="product-content">
+    <span class="category">Config Shadowrocket</span>
+    <h3>Config Shadow Locket Gold V17</h3>
+   <p>MS#175904</p>
+    <p>Config shadowrocket Locket Gold V17. Up locket lên gold 3s</p>
+    <span class="price">Miễn phí</span>
+    <a href="https://www.mediafire.com/file/xhfh48z98u68vtv/%25F0%259F%258C%259ALocketV17_TNghia1759.conf/file">Tải Sản Phẩm</a>
+  </div>
+</div>
+
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+     <div class="product">
+  <img src="minecraft.png" alt="MS#175903">
+  <div class="product-content">
+    <span class="category">APK</span>
+    <h3>MINECRAFT 1.21.92</h3>
+   <p>MS#175903</p>
+    <p>Tải xuống Minecraft phiên bản 1.21.92 cho thiết bị điện thoại android một cách miễn phí</p>
+    <span class="price">Miễn phí</span>
+    <a href="https://www.mediafire.com/file/osyo4mdimnjcdie/Minecraft-1.21.92-TNghia1759.apk/file">Tải Sản Phẩm</a>
+  </div>
+</div>
 
-    <div class="container">
-        <header>
-            <h1>DEV BASE</h1>
-            <p>Kho tài nguyên đa nền tảng.</p>
-        </header>
-
-        <main>
-            <h2>Tài Nguyên Đa Nền Tảng.</h2>
-            
-            
-            
-            
-            
-            
-            
-            
-            
-            
-            
-            
-            
-            
-            
-            
-            
-            
-            
-            
-               <div class="app-grid">
-                <div class="app-card">
-                 <img src="denlong.png" alt="Hình ảnh ứng dụng 1">
-                    <div class="app-card-content">
-                        <h3>Đèn Lồng Lời Chúc - Trung Thu</h3><p>MS#175906</p>
-                        <p>Khi chạm vào đèn lồng sẽ có một dòng chúc ngẫu nhiên hiện ra,...</p>
-                        <p class="app-price">Loại: HTML</p>
-                        <a href="https://www.facebook.com/profile.php?id=61576009787673" class="download-button">Mua 5.000 VND</a>
-                    </div>
-                </div>
-            
-            
-            
-            
-            
-            
-            
-            
-            
-            
-            
-            
-            
-            
-            
-            
-            
-            
-            
-             <div class="app-grid">
-                <div class="app-card">
-                 <img src="hanhtinhtim.png" alt="Hình ảnh ứng dụng 1">
-                    <div class="app-card-content">
-                        <h3>Mô Phỏng Hành Tinh</h3><p>MS#175905</p>
-                        <p>Mô phỏng một hành tinh trong giải ngân hà, có màu tím được cấu tạo từ các hạt tím li ti,...</p>
-                        <p class="app-price">Loại: HTML</p>
-                        <a href="https://www.mediafire.com/file/h4wwc5nmi51d4c7/thienhatim.html/file" class="download-button">Tải Xuống</a>
-                    </div>
-                </div>
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-             <div class="app-grid">
-                <div class="app-card">
-                 <img src="locketgoldv17.png" alt="Hình ảnh ứng dụng 1">
-                    <div class="app-card-content">
-                        <h3>Config Shadow Locket Gold V17</h3><p>MS#175904</p>
-                        <p>Config shadowrocket Locket Gold V17. Up locket lên gold 3s</p>
-                        <p class="app-price">Loại: Config Shadowrocket</p>
-                        <a href="https://www.mediafire.com/file/xhfh48z98u68vtv/%25F0%259F%258C%259ALocketV17_TNghia1759.conf/file" class="download-button">Tải Xuống</a>
-                    </div>
-                </div>
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-  <div class="app-grid">
-                <div class="app-card">
-                 <img src="minecraft.png" alt="Hình ảnh ứng dụng 1">
-                    <div class="app-card-content">
-                        <h3>MINECRAFT 1.21.92</h3><p>MS#175903</p>
-                        <p>Tải xuống Minecraft phiên bản 1.21.92 cho thiết bị điện thoại android một cách miễn phí</p>
-                        <p class="app-price">Loại: APK</p>
-                        <a href="https://www.mediafire.com/file/osyo4mdimnjcdie/Minecraft-1.21.92-TNghia1759.apk/file" class="download-button">Tải Xuống</a>
-                    </div>
-                </div>
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-  <div class="app-grid">
-                <div class="app-card">
-                 <img src="snv1.png" alt="Hình ảnh ứng dụng 1">
-                    <div class="app-card-content">
-                        <h3>Happy Birthday-VanhLoveIT</h3><p>MS#175902</p>
-                        <p>HTML chúc mừng sinh nhật Cre tiktok: Vanh Love IT</p>
-                        <p class="app-price">Loại: HTML</p>
-                        <a href="https://www.mediafire.com/folder/ir2lz38kg9zg3/Web+SN+V1+-+VanhLoveIT" class="download-button">Tải Xuống</a>
-                    </div>
-                </div>
-                
-                
-                
-                
-                
-                
-
-
-
-
-
-
-
-     
-                
-                   <div class="app-grid">
-                <div class="app-card">
-                 <img src="mmo-dtn.png" alt="Hình ảnh ứng dụng 1">
-                    <div class="app-card-content">
-                        <h3>Web Bio AD DTN</h3><p>MS#175901</p>
-                        <p>html web devbase, bio,... bạn đang sử dụng hiện tại</p>
-                        <p class="app-price">Loại: HTML</p>
-                        <a href="https://www.facebook.com/profile.php?id=61576009787673" class="download-button">Mua 19.000 VND</a>
-                    </div>
-                </div>
-                
-                
-                
-                
-                
-                
-                
-                
-                
-                
-                
-                
-                
-            </div>
-        </main>
-    </div>
-
-    <footer>
-        <p>&copy; 2025 Kho Tài Nguyên Đa Nền Tảng</p>
-    </footer>
-
-    <script>
-        const menuToggle = document.querySelector('.menu-toggle');
-        const sideMenu = document.querySelector('.side-menu');
-        
-        menuToggle.addEventListener('click', () => {
-            sideMenu.classList.toggle('open');
-        });
-    </script>
-</body>
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    <div class="product">
+  <img src="snv1.png" alt="MS#175902">
+  <div class="product-content">
+    <span class="category">HTML</span>
+    <h3>Happy Birthday-VanhLoveIT</h3>
+   <p>MS#175902</p>
+    <p>HTML chúc mừng sinh nhật Cre tiktok: Vanh Love IT</p>
+    <span class="price">Miễn phí</span>
+    <a href="https://www.mediafire.com/folder/ir2lz38kg9zg3/Web+SN+V1+-+VanhLoveIT">Tải Sản Phẩm</a>
+  </div>
+</div>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+<div class="product">
+  <img src="mmo-dtn.png" alt="MS#175901">
+  <div class="product-content">
+    <span class="category">HTML</span>
+    <h3>Bio DTN-Up Liên Tục</h3>
+    <p>MS#175901</p>
+    <p>html web devbase, bio,... bạn đang sử dụng hiện tại.</p>
+    <span class="price">19.000 VND</span>
+    <a href="https://www.facebook.com/profile.php?id=61576009787673">Liên Hệ Mua</a>
+  </div>
+</div>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+  </section>  <footer>
+    <p>© <span id="year"></span> DevBase. Kho Tài Nguyên Đa Nền Tảng.</p>
+  </footer>  <script>
+    document.getElementById('year').textContent = new Date().getFullYear();
+
+    const menuToggle = document.getElementById('menuToggle');
+    const nav = document.getElementById('mainNav');
+    menuToggle.addEventListener('click', () => {
+      nav.classList.toggle('active');
+    });
+
+    const colorPicker = document.getElementById('colorPicker');
+    colorPicker.addEventListener('input', (e) => {
+      document.documentElement.style.setProperty('--primary', e.target.value);
+      document.documentElement.style.setProperty('--secondary', e.target.value);
+    });
+  </script></body>
 </html>
