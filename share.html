@@ -1,9 +1,10 @@
-<!DOCTYPE html><html lang="vi">
+<!DOCTYPE html>
+<html lang="vi">
 <head>
-  <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
   <title>DevBase | Kho Tài Nguyên Đa Nền Tảng</title>
-  <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+  <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;500;600;700;800&display=swap" rel="stylesheet"/>
   <style>
     :root {
       --primary: #2563eb;
@@ -13,209 +14,234 @@
       --card: #ffffff;
       --border: #e5e7eb;
       --muted: #6b7280;
-    }* { box-sizing: border-box; }
-body {
-  margin: 0;
-  font-family: 'Poppins', sans-serif;
-  background-color: var(--background);
-  color: var(--text);
-  transition: all 0.3s ease;
-}
+    }
+    * { box-sizing: border-box; }
+    body {
+      margin: 0;
+      font-family: 'Poppins', sans-serif;
+      background-color: var(--background);
+      color: var(--text);
+      transition: all 0.3s ease;
+    }
 
-/* Header + Navbar */
-header {
-  background: var(--card);
-  border-bottom: 1px solid var(--border);
-  padding: 1rem 2rem;
-  display: flex;
-  align-items: center;
-  justify-content: space-between;
-  position: fixed;
-  top: 0; left: 0; right: 0;
-  z-index: 100;
-  flex-wrap: wrap;
-  gap: 1rem;
-}
-.logo {
-  display: flex;
-  flex-direction: column;
-  font-weight: 700;
-  color: var(--primary);
-}
-.slogan {
-  font-size: 0.8rem;
-  color: var(--muted);
-  font-weight: 500;
-}
+    header {
+      background: var(--card);
+      border-bottom: 1px solid var(--border);
+      padding: 1rem 2rem;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      position: fixed;
+      top: 0; left: 0; right: 0;
+      z-index: 100;
+      flex-wrap: wrap;
+      gap: 1rem;
+    }
 
-nav {
-  position: absolute;
-  top: 70px;
-  left: 0;
-  width: 100%;
-  background: var(--card);
-  border-bottom: 1px solid var(--border);
-  transform: translateY(-200%);
-  opacity: 0;
-  transition: all 0.3s ease;
-}
-nav.active {
-  transform: translateY(0);
-  opacity: 1;
-}
-nav ul {
-  list-style: none;
-  margin: 0;
-  padding: 1rem 0;
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-  gap: 1rem;
-}
-nav a {
-  text-decoration: none;
-  color: var(--text);
-  font-weight: 600;
-  transition: color 0.3s;
-}
-nav a:hover { color: var(--primary); }
+    .logo {
+      display: flex;
+      flex-direction: column;
+      font-weight: 700;
+      color: var(--primary);
+    }
 
-.menu-toggle {
-  background: var(--primary);
-  color: #fff;
-  border: none;
-  padding: 0.5rem 1rem;
-  border-radius: 8px;
-  cursor: pointer;
-  font-weight: 600;
-  transition: background 0.3s;
-}
-.menu-toggle:hover { background: var(--secondary); }
+    .slogan {
+      font-size: 0.8rem;
+      color: var(--muted);
+      font-weight: 500;
+    }
 
-.color-picker {
-  display: flex;
-  align-items: center;
-  gap: 0.5rem;
-  cursor: pointer;
-}
-.color-picker input {
-  border: none;
-  width: 28px;
-  height: 28px;
-  border-radius: 6px;
-  cursor: pointer;
-}
+    nav {
+      display: none;
+      width: 100%;
+      background: var(--card);
+      border-top: 1px solid var(--border);
+    }
 
-/* Hero */
-.hero {
-  margin-top: 100px;
-  text-align: center;
-  padding: 4rem 1rem;
-  background: linear-gradient(135deg, var(--primary), var(--secondary));
-  color: #fff;
-  border-radius: 0 0 40px 40px;
-}
-.hero h1 {
-  font-size: clamp(1.8rem, 4vw, 3rem);
-  margin-bottom: 0.5rem;
-}
-.hero p {
-  font-size: clamp(1rem, 2vw, 1.2rem);
-  color: #e0e7ff;
-}
+    nav.active {
+      display: block;
+    }
 
-/* Products */
-.products {
-  max-width: 1200px;
-  margin: 2rem auto;
-  display: grid;
-  grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
-  gap: 1.5rem;
-  padding: 0 1rem;
-}
-.product {
-  background: var(--card);
-  border: 1px solid var(--border);
-  border-radius: 12px;
-  box-shadow: 0 2px 6px rgba(0,0,0,0.05);
-  overflow: hidden;
-  display: flex;
-  flex-direction: column;
-  transition: transform 0.3s ease, box-shadow 0.3s ease;
-}
-.product:hover {
-  transform: translateY(-5px);
-  box-shadow: 0 8px 20px rgba(0,0,0,0.1);
-}
-.product img {
-  width: 100%;
-  height: 180px;
-  object-fit: cover;
-}
-.product-content {
-  padding: 1rem;
-  display: flex;
-  flex-direction: column;
-  gap: 0.5rem;
-}
-.product h3 {
-  color: var(--primary);
-  margin: 0;
-  font-size: 1.1rem;
-}
-.product p {
-  color: var(--muted);
-  font-size: 0.9rem;
-}
-.product .price {
-  font-weight: 700;
-  color: var(--secondary);
-}
-.product .category {
-  font-size: 0.85rem;
-  background: var(--primary);
-  color: #fff;
-  border-radius: 6px;
-  padding: 0.2rem 0.5rem;
-  width: fit-content;
-}
-.product a {
-  text-align: center;
-  margin-top: auto;
-  background: var(--primary);
-  color: #fff;
-  text-decoration: none;
-  padding: 0.6rem;
-  border-radius: 8px;
-  font-weight: 600;
-  transition: background 0.3s;
-}
-.product a:hover { background: var(--secondary); }
+    nav ul {
+      list-style: none;
+      margin: 0;
+      padding: 0.5rem 0;
+      display: flex;
+      flex-direction: column;
+      gap: 0.5rem;
+    }
 
-/* Footer */
-footer {
-  text-align: center;
-  padding: 2rem;
-  color: var(--muted);
-  border-top: 1px solid var(--border);
-}
+    nav ul li a {
+      text-decoration: none;
+      color: var(--text);
+      padding: 0.5rem 1rem;
+      display: block;
+      font-weight: 600;
+      transition: background 0.3s;
+      border-radius: 6px;
+    }
 
-@media(min-width: 768px) {
-  nav {
-    position: static;
-    opacity: 1;
-    transform: none;
-    width: auto;
-    background: none;
-    border: none;
-  }
-  nav ul {
-    flex-direction: row;
-    gap: 2rem;
-  }
-  .menu-toggle { display: none; }
-}
+    nav ul li a:hover {
+      background: var(--primary);
+      color: #fff;
+    }
 
+    .menu-toggle {
+      background: var(--primary);
+      color: #fff;
+      border: none;
+      padding: 0.5rem 1rem;
+      border-radius: 8px;
+      cursor: pointer;
+      font-weight: 600;
+      transition: background 0.3s;
+      display: block;
+      z-index: 110;
+    }
+
+    .menu-toggle:hover {
+      background: var(--secondary);
+    }
+
+    .color-picker {
+      display: flex;
+      align-items: center;
+      gap: 0.5rem;
+      cursor: pointer;
+    }
+
+    .color-picker input {
+      border: none;
+      width: 28px;
+      height: 28px;
+      border-radius: 6px;
+      cursor: pointer;
+    }
+
+    .hero {
+      margin-top: 100px;
+      text-align: center;
+      padding: 4rem 1rem;
+      background: linear-gradient(135deg, var(--primary), var(--secondary));
+      color: #fff;
+      border-radius: 0 0 40px 40px;
+    }
+
+    .hero h1 {
+      font-size: clamp(1.8rem, 4vw, 3rem);
+      margin-bottom: 0.5rem;
+    }
+
+    .hero p {
+      font-size: clamp(1rem, 2vw, 1.2rem);
+      color: #e0e7ff;
+    }
+
+    .products {
+      max-width: 1200px;
+      margin: 2rem auto;
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+      gap: 1.5rem;
+      padding: 0 1rem;
+    }
+
+    .product {
+      background: var(--card);
+      border: 1px solid var(--border);
+      border-radius: 12px;
+      box-shadow: 0 2px 6px rgba(0, 0, 0, 0.05);
+      overflow: hidden;
+      display: flex;
+      flex-direction: column;
+      transition: transform 0.3s ease, box-shadow 0.3s ease;
+    }
+
+    .product:hover {
+      transform: translateY(-5px);
+      box-shadow: 0 8px 20px rgba(0, 0, 0, 0.1);
+    }
+
+    .product img {
+      width: 100%;
+      height: 180px;
+      object-fit: cover;
+    }
+
+    .product-content {
+      padding: 1rem;
+      display: flex;
+      flex-direction: column;
+      gap: 0.5rem;
+    }
+
+    .product h3 {
+      color: var(--primary);
+      margin: 0;
+      font-size: 1.1rem;
+    }
+
+    .product p {
+      color: var(--muted);
+      font-size: 0.9rem;
+      margin: 0;
+    }
+
+    .product .price {
+      font-weight: 700;
+      color: var(--secondary);
+    }
+
+    .product .category {
+      font-size: 0.85rem;
+      background: var(--primary);
+      color: #fff;
+      border-radius: 6px;
+      padding: 0.2rem 0.5rem;
+      width: fit-content;
+      margin-bottom: 0.5rem;
+    }
+
+    .product a {
+      text-align: center;
+      margin-top: auto;
+      background: var(--primary);
+      color: #fff;
+      text-decoration: none;
+      padding: 0.6rem;
+      border-radius: 8px;
+      font-weight: 600;
+      transition: background 0.3s;
+    }
+
+    .product a:hover {
+      background: var(--secondary);
+    }
+
+    footer {
+      text-align: center;
+      padding: 2rem;
+      color: var(--muted);
+      border-top: 1px solid var(--border);
+      margin-top: 2rem;
+    }
+
+    @media (min-width: 768px) {
+      nav {
+        display: flex !important;
+        width: auto;
+        border: none;
+      }
+
+      nav ul {
+        flex-direction: row;
+        gap: 1rem;
+      }
+
+      .menu-toggle {
+        display: none;
+      }
+    }
   </style>
 </head>
 <body>
@@ -231,33 +257,23 @@ footer {
         <li><a href="banggia.html">Bảng Giá</a></li>
         <li><a href="khoad.html">Kho Admin</a></li>
         <li><a href="khodv.html">Kho Khách Hàng</a></li>
-         <li><a href="muachu.html">Mưa Chữ</a></li>
-          <li><a href="taoqr.html">Tạo Mã QR Từ Link</a></li>
-           <li><a href="share.html">Tài Nguyên Đa Nền Tảng</a></li>
+        <li><a href="muachu.html">Mưa Chữ</a></li>
+        <li><a href="taoqr.html">Tạo Mã QR Từ Link</a></li>
+        <li><a href="share.html">Tài Nguyên Đa Nền Tảng</a></li>
       </ul>
     </nav>
     <label class="color-picker">
-      <input type="color" id="colorPicker" value="#2563eb">
+      <input type="color" id="colorPicker" value="#2563eb" />
     </label>
-  </header>  <section class="hero">
+  </header>
+
+  <section class="hero">
     <h1>Kho Tài Nguyên DevBase</h1>
     <p>Nơi chia sẻ & bán các tài nguyên đa nền tảng, đa chủ đề</p>
-  </section>  <section id="products" 
-  class="products">
-  
-  
-  
-  
-  
-  
-  
-  
-  
-  
-  
-  
-  
-  
+  </section>
+
+  <section class="products">
+    
   
   
   
@@ -482,37 +498,29 @@ footer {
 </div>
 
 
+  </section>
 
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-  </section>  <footer>
+  <footer>
     <p>© <span id="year"></span> DevBase. Kho Tài Nguyên Đa Nền Tảng.</p>
-  </footer>  <script>
+  </footer>
+
+  <script>
+    // Hiển thị năm hiện tại ở footer
     document.getElementById('year').textContent = new Date().getFullYear();
 
+    // Bật/tắt menu nav trên di động
     const menuToggle = document.getElementById('menuToggle');
     const nav = document.getElementById('mainNav');
     menuToggle.addEventListener('click', () => {
       nav.classList.toggle('active');
     });
 
+    // Thay đổi màu chủ đạo bằng color picker
     const colorPicker = document.getElementById('colorPicker');
     colorPicker.addEventListener('input', (e) => {
       document.documentElement.style.setProperty('--primary', e.target.value);
       document.documentElement.style.setProperty('--secondary', e.target.value);
     });
-  </script></body>
+  </script>
+</body>
 </html>
