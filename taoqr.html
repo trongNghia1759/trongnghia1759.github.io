@@ -303,7 +303,7 @@
   
   <div class="file-input-wrapper">
       <label for="image-input" class="file-label">
-          <i class="fas fa-image"></i> Chọn ảnh nền (tùy chọn)
+          <i class="fas fa-image"></i> Chọn ảnh nền
       </label>
       <input type="file" id="image-input" accept="image/*">
       <span id="file-name">Chưa chọn tệp nào</span>
@@ -327,7 +327,7 @@
   
   <div id="music-bot" class="music-bot" onclick="toggleMusic()">
     <i class="fas fa-compact-disc"></i>
-    <span>🎵 Nghe Nhạc Chill</span>
+    <span>🎵 Phát Nhạc</span>
   </div>
   
   <audio id="chill-music" loop>
@@ -360,7 +360,7 @@
         errorCorrectionLevel: 'H',
         color: {
           dark: color,
-          light: "#00000000" // Nền trong suốt
+          light: "#00000000" // Nền trong suốt cho QR code
         },
         width: qrSize,
         margin: 1
@@ -393,10 +393,15 @@
           finalCanvas.height = qrSize;
           const ctx = finalCanvas.getContext('2d');
 
-          // Bước 1: Vẽ ảnh nền vào finalCanvas, bao phủ toàn bộ
+          // Bước 1: Vẽ ảnh nền vào finalCanvas
           ctx.drawImage(img, 0, 0, finalCanvas.width, finalCanvas.height);
           
-          // Bước 2: Tạo một canvas tạm thời để vẽ mã QR lên đó với nền trong suốt
+          // Bước 2: Thêm lớp phủ màu đen bán trong suốt lên trên ảnh nền để làm tối
+          // Điều chỉnh alpha (0.0 - 1.0) để kiểm soát độ tối. Ví dụ: 0.4 cho 40% đen.
+          ctx.fillStyle = "rgba(0, 0, 0, 0.4)"; // Đen với độ trong suốt 40%
+          ctx.fillRect(0, 0, finalCanvas.width, finalCanvas.height);
+          
+          // Bước 3: Tạo một canvas tạm thời để vẽ mã QR lên đó với nền trong suốt
           const tempQrCanvas = document.createElement('canvas');
           
           QRCode.toCanvas(tempQrCanvas, link, qrOptions, function(error) {
@@ -404,7 +409,7 @@
               console.error(error);
               alert("⚠️ Lỗi khi tạo mã QR với ảnh nền!");
             } else {
-              // Bước 3: Vẽ mã QR từ tempQrCanvas lên finalCanvas (đã có ảnh nền)
+              // Bước 4: Vẽ mã QR từ tempQrCanvas lên finalCanvas (đã có ảnh nền và lớp phủ tối)
               ctx.drawImage(tempQrCanvas, 0, 0);
 
               // Hiển thị finalCanvas và link tải về
@@ -446,7 +451,6 @@
     const chillMusic = document.getElementById('chill-music');
 
     function toggleMusic() {
-      // Sửa lỗi: kiểm tra thuộc tính 'src' thay vì 'hasChildNodes'
       if (chillMusic.src) { 
           if (chillMusic.paused) {
             chillMusic.play();
@@ -455,10 +459,9 @@
           } else {
             chillMusic.pause();
             musicBot.classList.remove('playing');
-            musicBot.querySelector('span').textContent = '🎵 Phát Nhạc';
+            musicBot.querySelector('span').textContent = '🎵 Nghe Nhạc Chill';
           }
       } else {
-          // Sửa lỗi chính tả trong alert
           alert('Chức năng nghe nhạc chưa có file nhạc, Bo ạ! Vui lòng thêm thuộc tính src="anhthuongemnhatma.mp3" vào thẻ <audio>.');
       }
     }
