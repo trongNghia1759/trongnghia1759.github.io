@@ -68,7 +68,7 @@
       box-shadow: 0 0 8px var(--primary-color);
     }
 
-    /* === MỚI: Style cho phần chọn file ảnh nền === */
+    /* Style cho phần chọn file ảnh nền */
     .file-input-wrapper {
         margin: 15px auto;
         padding: 10px;
@@ -103,7 +103,6 @@
         color: var(--text-color);
         font-style: italic;
     }
-    /* === KẾT THÚC STYLE MỚI === */
 
     /* Nút Tạo QR và Xóa QR */
     .qr-button {
@@ -341,7 +340,6 @@
   </div>
 
   <script>
-    // === CẬP NHẬT: Toàn bộ hàm generateQR được viết lại ===
     function generateQR() {
       const link = document.getElementById("link-input").value.trim();
       const color = document.getElementById("color-picker").value;
@@ -357,14 +355,15 @@
         return;
       }
 
+      const qrSize = 256; // Kích thước cố định cho QR code
       const qrOptions = {
-        errorCorrectionLevel: 'H', // Mức sửa lỗi cao, tốt khi có logo/ảnh nền
+        errorCorrectionLevel: 'H',
         color: {
           dark: color,
-          light: "#00000000" // Nền trong suốt để vẽ lên ảnh
+          light: "#00000000" // Nền trong suốt
         },
-        width: 256,
-        margin: 1 // Giảm lề để QR to hơn
+        width: qrSize,
+        margin: 1
       };
 
       // TRƯỜNG HỢP 1: Người dùng KHÔNG chọn ảnh nền (hoạt động như cũ)
@@ -386,59 +385,54 @@
       // TRƯỜNG HỢP 2: Người dùng CÓ chọn ảnh nền
       const reader = new FileReader();
       
-      // Khi đã đọc file ảnh xong
       reader.onload = function(e) {
         const img = new Image();
-        
-        // Khi đã tải ảnh vào đối tượng Image
         img.onload = function() {
           const finalCanvas = document.createElement('canvas');
-          finalCanvas.width = qrOptions.width;
-          finalCanvas.height = qrOptions.width;
+          finalCanvas.width = qrSize;
+          finalCanvas.height = qrSize;
           const ctx = finalCanvas.getContext('2d');
 
-          // Bước 1: Vẽ ảnh nền vào canvas
+          // Bước 1: Vẽ ảnh nền vào finalCanvas, bao phủ toàn bộ
           ctx.drawImage(img, 0, 0, finalCanvas.width, finalCanvas.height);
           
-          // Bước 2: Vẽ mã QR lên trên ảnh nền
-          QRCode.toCanvas(finalCanvas, link, qrOptions, function(error) {
+          // Bước 2: Tạo một canvas tạm thời để vẽ mã QR lên đó với nền trong suốt
+          const tempQrCanvas = document.createElement('canvas');
+          
+          QRCode.toCanvas(tempQrCanvas, link, qrOptions, function(error) {
             if (error) {
               console.error(error);
               alert("⚠️ Lỗi khi tạo mã QR với ảnh nền!");
             } else {
-              // Canvas đã có cả ảnh và QR, giờ chỉ cần hiển thị
+              // Bước 3: Vẽ mã QR từ tempQrCanvas lên finalCanvas (đã có ảnh nền)
+              ctx.drawImage(tempQrCanvas, 0, 0);
+
+              // Hiển thị finalCanvas và link tải về
               qrContainer.appendChild(finalCanvas);
               downloadLink.href = finalCanvas.toDataURL("image/png");
               downloadLink.style.display = "inline-block";
             }
           });
         };
-        // Bắt đầu tải ảnh từ dữ liệu đã đọc
         img.src = e.target.result;
       };
-      
-      // Bắt đầu đọc file ảnh người dùng đã chọn
       reader.readAsDataURL(imageFile);
     }
 
-    // === CẬP NHẬT: Hàm clearQR để xóa cả file đã chọn ===
     function clearQR() {
       document.getElementById("qr-container").innerHTML = "";
       document.getElementById("download-link").style.display = "none";
-      // Xóa file đã chọn trong input và reset tên file
       const fileInput = document.getElementById("image-input");
       fileInput.value = ""; 
       document.getElementById("file-name").textContent = "Chưa chọn tệp nào";
     }
 
-    // Enter để tạo QR
     document.getElementById("link-input").addEventListener("keypress", function(e) {
       if (e.key === "Enter") {
         generateQR();
       }
     });
 
-    // === MỚI: Hiển thị tên file đã chọn ===
     document.getElementById('image-input').addEventListener('change', function() {
         const fileNameSpan = document.getElementById('file-name');
         if (this.files && this.files.length > 0) {
@@ -448,12 +442,12 @@
         }
     });
     
-    // CHỨC NĂNG MUSIC BOT (giữ nguyên)
     const musicBot = document.getElementById('music-bot');
     const chillMusic = document.getElementById('chill-music');
 
     function toggleMusic() {
-      if (chillMusic.src) { // Kiểm tra xem đã có nguồn nhạc chưa
+      // Sửa lỗi: kiểm tra thuộc tính 'src' thay vì 'hasChildNodes'
+      if (chillMusic.src) { 
           if (chillMusic.paused) {
             chillMusic.play();
             musicBot.classList.add('playing');
@@ -461,10 +455,11 @@
           } else {
             chillMusic.pause();
             musicBot.classList.remove('playing');
-            musicBot.querySelector('span').textContent = '🎵 Nghe Nhạc Chill';
+            musicBot.querySelector('span').textContent = '🎵 Phát Nhạc';
           }
       } else {
-          alert('Chức năng nghe nhạc chưa có file nhạc! Vui lòng thêm src="anhthuongemnhatma.mp3" vào thẻ <audio>.');
+          // Sửa lỗi chính tả trong alert
+          alert('Chức năng nghe nhạc chưa có file nhạc, Bo ạ! Vui lòng thêm thuộc tính src="anhthuongemnhatma.mp3" vào thẻ <audio>.');
       }
     }
   </script>
