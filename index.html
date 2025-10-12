@@ -1,642 +1,544 @@
 <!DOCTYPE html>
 <html lang="vi">
 <head>
-  <meta charset="UTF-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
-  <title>DevBase | Kho Tài Nguyên Đa Nền Tảng</title>
-  <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;500;600;700;800&display=swap" rel="stylesheet"/>
-  <style>
-    :root {
-      --primary: #2563eb;
-      --secondary: #1e40af;
-      --text: #1f2937;
-      --background: #f9fafb;
-      --card: #ffffff;
-      --border: #e5e7eb;
-      --muted: #6b7280;
-    }
-    * { box-sizing: border-box; }
-    body {
-      margin: 0;
-      font-family: 'Poppins', sans-serif;
-      background-color: var(--background);
-      color: var(--text);
-      transition: all 0.3s ease;
-    }
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>DevBase</title>
+    <link href="https://fonts.googleapis.com/css2?family=Roboto:wght@300;400;700&display=swap" rel="stylesheet">
 
-    header {
-      background: var(--card);
-      border-bottom: 1px solid var(--border);
-      padding: 1rem 2rem;
-      display: flex;
-      align-items: center;
-      justify-content: space-between;
-      position: fixed;
-      top: 0; left: 0; right: 0;
-      z-index: 100;
-      flex-wrap: wrap;
-      gap: 1rem;
-    }
+    <style>
+        /* --- PHẦN CSS (KHÔNG THAY ĐỔI) --- */
+               :root {
+            --primary-color: #E91E63; /* Màu hồng đậm */
+            --secondary-color: #F06292; /* Màu hồng nhạt hơn */
+            --background-color: #f0f2f5; /* Giữ nguyên nền xám nhạt */
+            --card-background: #ffffff;
+            --text-color: #333;
+            --shadow-color: rgba(0, 0, 0, 0.1);
+        }
+        
 
-    .logo {
-      display: flex;
-      flex-direction: column;
-      font-weight: 700;
-      color: var(--primary);
-    }
+        body {
+            font-family: 'Roboto', sans-serif;
+            background-color: var(--background-color);
+            color: var(--text-color);
+            margin: 0;
+            padding: 20px;
+        }
 
-    .slogan {
-      font-size: 0.8rem;
-      color: var(--muted);
-      font-weight: 500;
-    }
+        .container {
+            width: 100%;
+            max-width: 1200px;
+            margin: 0 auto;
+        }
 
-    nav {
-      display: none;
-      width: 100%;
-      background: var(--card);
-      border-top: 1px solid var(--border);
-    }
+        header {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            padding: 20px;
+            background: linear-gradient(90deg, var(--primary-color), var(--secondary-color));
+            color: white;
+            border-radius: 12px;
+            box-shadow: 0 4px 15px var(--shadow-color);
+            margin-bottom: 30px;
+        }
 
-    nav.active {
-      display: block;
-    }
+        header h1 {
+            margin: 0;
+            font-size: 2em;
+        }
 
-    nav ul {
-      list-style: none;
-      margin: 0;
-      padding: 0.5rem 0;
-      display: flex;
-      flex-direction: column;
-      gap: 0.5rem;
-    }
+        .wallet {
+            font-size: 1.2em;
+            background-color: rgba(255, 255, 255, 0.2);
+            padding: 10px 20px;
+            border-radius: 8px;
+        }
 
-    nav ul li a {
-      text-decoration: none;
-      color: var(--text);
-      padding: 0.5rem 1rem;
-      display: block;
-      font-weight: 600;
-      transition: background 0.3s;
-      border-radius: 6px;
-    }
+        #balance {
+            font-weight: 700;
+        }
 
-    nav ul li a:hover {
-      background: var(--primary);
-      color: #fff;
-    }
+        main h2 {
+            text-align: center;
+            font-size: 2.5em;
+            margin-bottom: 40px;
+            color: var(--primary-color);
+        }
 
-    .menu-toggle {
-      background: var(--primary);
-      color: #fff;
-      border: none;
-      padding: 0.5rem 1rem;
-      border-radius: 8px;
-      cursor: pointer;
-      font-weight: 600;
-      transition: background 0.3s;
-      display: block;
-      z-index: 110;
-    }
+        .product-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+            gap: 30px;
+        }
 
-    .menu-toggle:hover {
-      background: var(--secondary);
-    }
+        .product-card {
+            background: var(--card-background);
+            border-radius: 15px;
+            box-shadow: 0 4px 20px var(--shadow-color);
+            overflow: hidden;
+            text-align: center;
+            transition: transform 0.3s, box-shadow 0.3s;
+            display: flex;
+            flex-direction: column;
+            justify-content: space-between;
+        }
 
-    .color-picker {
-      display: flex;
-      align-items: center;
-      gap: 0.5rem;
-      cursor: pointer;
-    }
+        .product-card:hover {
+            transform: translateY(-10px);
+            box-shadow: 0 10px 30px rgba(0, 0, 0, 0.15);
+        }
+        
+        .product-card .product-info {
+            padding: 0 15px;
+        }
 
-    .color-picker input {
-      border: none;
-      width: 28px;
-      height: 28px;
-      border-radius: 6px;
-      cursor: pointer;
-    }
+        .product-card img {
+            width: 100%;
+            height: 200px;
+            object-fit: cover;
+        }
 
-    .hero {
-      margin-top: 100px;
-      text-align: center;
-      padding: 4rem 1rem;
-      background: linear-gradient(135deg, var(--primary), var(--secondary));
-      color: #fff;
-      border-radius: 0 0 40px 40px;
-    }
+        .product-card h3 {
+            font-size: 1.4em;
+            margin: 15px 0;
+        }
 
-    .hero h1 {
-      font-size: clamp(1.8rem, 4vw, 3rem);
-      margin-bottom: 0.5rem;
-    }
+        .product-card .price {
+            font-size: 1.2em;
+            font-weight: 700;
+            color: var(--secondary-color);
+            margin-bottom: 20px;
+        }
 
-    .hero p {
-      font-size: clamp(1rem, 2vw, 1.2rem);
-      color: #e0e7ff;
-    }
+        .buy-btn {
+            background: linear-gradient(90deg, var(--primary-color), var(--secondary-color));
+            color: white;
+            border: none;
+            padding: 12px 30px;
+            font-size: 1em;
+            font-weight: 700;
+            border-radius: 8px;
+            cursor: pointer;
+            transition: opacity 0.3s;
+            margin: 0 auto 20px auto; /* Căn giữa nút và thêm margin */
+            display: block; /* Để margin auto hoạt động */
+        }
 
-    .products {
-      max-width: 1200px;
-      margin: 2rem auto;
-      display: grid;
-      grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
-      gap: 1.5rem;
-      padding: 0 1rem;
-    }
 
-    .product {
-      background: var(--card);
-      border: 1px solid var(--border);
-      border-radius: 12px;
-      box-shadow: 0 2px 6px rgba(0, 0, 0, 0.05);
-      overflow: hidden;
-      display: flex;
-      flex-direction: column;
-      transition: transform 0.3s ease, box-shadow 0.3s ease;
-    }
+        .buy-btn:hover {
+            opacity: 0.9;
+        }
 
-    .product:hover {
-      transform: translateY(-5px);
-      box-shadow: 0 8px 20px rgba(0, 0, 0, 0.1);
-    }
+        .redeem-section {
+            text-align: center;
+            margin-top: 50px;
+            background: var(--card-background);
+            padding: 30px;
+            border-radius: 12px;
+            box-shadow: 0 4px 20px var(--shadow-color);
+        }
 
-    .product img {
-      width: 100%;
-      height: 180px;
-      object-fit: cover;
-    }
+        .redeem-section h3 {
+            margin-top: 0;
+            font-size: 1.8em;
+        }
 
-    .product-content {
-      padding: 1rem;
-      display: flex;
-      flex-direction: column;
-      gap: 0.5rem;
-    }
+        #code-input {
+            padding: 12px;
+            font-size: 1em;
+            border-radius: 8px;
+            border: 1px solid #ddd;
+            width: 250px;
+            margin-right: 10px;
+        }
 
-    .product h3 {
-      color: var(--primary);
-      margin: 0;
-      font-size: 1.1rem;
-    }
+        #redeem-btn {
+            background-color: #28a745;
+            color: white;
+            border: none;
+            padding: 12px 25px;
+            font-size: 1em;
+            font-weight: 700;
+            border-radius: 8px;
+            cursor: pointer;
+            transition: background-color 0.3s;
+        }
 
-    .product p {
-      color: var(--muted);
-      font-size: 0.9rem;
-      margin: 0;
-    }
+        #redeem-btn:hover {
+            background-color: #218838;
+        }
 
-    .product .price {
-      font-weight: 700;
-      color: var(--secondary);
-    }
+        #notification {
+            position: fixed;
+            bottom: 20px;
+            left: 50%;
+            transform: translateX(-50%);
+            padding: 15px 30px;
+            border-radius: 8px;
+            color: white;
+            font-size: 1.1em;
+            z-index: 1000;
+            opacity: 0;
+            transition: opacity 0.5s, transform 0.5s;
+            text-align: center;
+            width: 90%;
+            max-width: 400px;
+        }
 
-    .product .category {
-      font-size: 0.85rem;
-      background: var(--primary);
-      color: #fff;
-      border-radius: 6px;
-      padding: 0.2rem 0.5rem;
-      width: fit-content;
-      margin-bottom: 0.5rem;
-    }
+        #notification.show {
+            opacity: 1;
+            transform: translate(-50%, 0);
+        }
+        
+        #notification.hidden {
+            opacity: 0;
+            transform: translate(-50%, 50px);
+        }
 
-    .product a {
-      text-align: center;
-      margin-top: auto;
-      background: var(--primary);
-      color: #fff;
-      text-decoration: none;
-      padding: 0.6rem;
-      border-radius: 8px;
-      font-weight: 600;
-      transition: background 0.3s;
-    }
+        #notification.success {
+            background-color: #28a745;
+        }
 
-    .product a:hover {
-      background: var(--secondary);
-    }
+        #notification.error {
+            background-color: #dc3545;
+        }
 
-    footer {
-      text-align: center;
-      padding: 2rem;
-      color: var(--muted);
-      border-top: 1px solid var(--border);
-      margin-top: 2rem;
-    }
+        /* --- PHẦN CSS CHO RESPONSIVE (KHÔNG THAY ĐỔI) --- */
+        @media (max-width: 768px) {
+            body {
+                padding: 10px;
+            }
 
-    @media (min-width: 768px) {
-      nav {
-        display: flex !important;
-        width: auto;
-        border: none;
-      }
+            header {
+                flex-direction: column;
+                gap: 15px;
+                text-align: center;
+            }
 
-      nav ul {
-        flex-direction: row;
-        gap: 1rem;
-      }
+            main h2 {
+                font-size: 2em;
+            }
 
-      .menu-toggle {
-        display: none;
-      }
-    }
-  </style>
+            .product-grid {
+                gap: 20px;
+            }
+        }
+
+        @media (max-width: 480px) {
+            header h1 {
+                font-size: 1.5em;
+            }
+            .wallet {
+                font-size: 1em;
+            }
+            .redeem-section {
+                padding: 20px;
+            }
+            #code-input {
+                width: 90%;
+                margin-right: 0;
+                margin-bottom: 10px;
+            }
+        }
+    </style>
 </head>
 <body>
-  <header>
-    <div class="logo">
-      DevBase
-      <span class="slogan">Kho Tài Nguyên Đa Nền Tảng</span>
-    </div>
-    <button class="menu-toggle" id="menuToggle">☰ Menu</button>
-    <nav id="mainNav">
-      <ul>
-        <li><a href="index.html">DevBase</a></li>
-        <li><a href="kho.html">Kho Dịch Vụ</a></li>
-        <li><a href="qr.html">Tạo QR Từ Link</a></li>
-        <li><a href="profile.html">Profile Về Tôi</a></li>
-        <li><a href="ad.html">Dành Riêng Cho AD</a></li>
-        <li><a href="banggia.html">Bảng Giá Dịch Vụ</a></li>
+    <div class="container">
+        <header>
+            <h1>DevBase</h1>
+            <div class="wallet">
+                <span>Số Dư:</span>
+                <span id="balance">0</span>$
+            </div>
+        </header>
+
+        <main>
+            <h2>Sản Phẩm</h2>
+            <div class="product-grid">
+               <div class="product-card" data-price="0" data-link="https://www.mediafire.com/folder/fqfqmrwt7bj1t/Tỏ+Tình+#1">
+                    <img src="totinhv1.png" alt="MS#175911">
+                    <div class="product-info">
+                        <h3>Tỏ Tình #1</h3>
+                        <p>Loại: HTML<br>Mã: MS#175911</p>
+                        <p class="price">Giá: 0$</p>
+                    </div>
+                    <button class="buy-btn">Mua ngay</button>
+                </div>
+                <div class="product-card" data-price="0" data-link="https://www.mediafire.com/folder/lkvzgpenbvlrg/Tạo+QR">
+                    <img src="taoqrv1.png" alt="MS#175910">
+                    <div class="product-info">
+                        <h3>Tạo Mã QR Từ Link</h3>
+                        <p>Loại: HTML<br>Mã: MS#175910</p>
+                        <p class="price">Giá: 0$</p>
+                    </div>
+                    <button class="buy-btn">Mua ngay</button>
+                </div>
+                <div class="product-card" data-price="0" data-link="https://www.mediafire.com/folder/t1xg0ag0ob8tk/Galaxy+Hành+Tinh+V2">
+                    <img src="galaxyv2.png" alt="MS#175909">
+                    <div class="product-info">
+                        <h3>Galaxy V2</h3>
+                        <p>Loại: HTML<br>Mã: MS#175909</p>
+                        <p class="price">Giá: 0$</p>
+                    </div>
+                    <button class="buy-btn">Mua ngay</button>
+                </div>
+                <div class="product-card" data-price="2" data-link="https://www.mediafire.com/folder/eo5002wshac1l/Check-Scammer">
+                    <img src="checkscam.png" alt="MS#175908">
+                    <div class="product-info">
+                        <h3>Web Bio DTN</h3>
+                        <p>Loại: HTML<br>Mã: MS#175908</p>
+                        <p class="price">Giá: 2$</p>
+                    </div>
+                    <button class="buy-btn">Mua ngay</button>
+                </div>
+                <div class="product-card" data-price="1" data-link="https://www.mediafire.com/folder/9n7x18mkpyufc/Web+Cửa+Hàng+#1">
+                    <img src="ban1.png" alt="MS#175907">
+                    <div class="product-info">
+                        <h3>Web Bán Hàng #1</h3>
+                        <p>Loại: HTML<br>Mã: MS#175907</p>
+                        <p class="price">Giá: 1$</p>
+                    </div>
+                    <button class="buy-btn">Mua ngay</button>
+                </div>
+                <div class="product-card" data-price="1" data-link="https://www.mediafire.com/folder/f764r7t2mvw3z/Bốc+Lời+Chúc,+Trung+Thu">
+                    <img src="denlong.png" alt="MS#175906">
+                    <div class="product-info">
+                        <h3>Đèn Lồng Lời Chúc</h3>
+                        <p>Loại: HTML<br>Mã: MS#175906</p>
+                        <p class="price">Giá: 1$</p>
+                    </div>
+                    <button class="buy-btn">Mua ngay</button>
+                </div>
+                <div class="product-card" data-price="0" data-link="https://www.mediafire.com/file/h4wwc5nmi51d4c7/thienhatim.html/file">
+                    <img src="hanhtinhtim.png" alt="MS#175905">
+                    <div class="product-info">
+                        <h3>Galaxy V1</h3>
+                        <p>Loại: HTML<br>Mã: MS#175905</p>
+                        <p class="price">Giá: 0$</p>
+                    </div>
+                    <button class="buy-btn">Mua ngay</button>
+                </div>
+                <div class="product-card" data-price="1" data-link="https://www.mediafire.com/file/xhfh48z98u68vtv/%25F0%259F%258C%259ALocketV17_TNghia1759.conf/file">
+                    <img src="locketgoldv17.png" alt="MS#175904">
+                    <div class="product-info">
+                        <h3>locketgoldv17.png</h3>
+                        <p>Loại: Config Shadowrocket<br>Mã: MS#175904</p>
+                        <p class="price">Giá: 1$</p>
+                    </div>
+                    <button class="buy-btn">Mua ngay</button>
+                </div>
+                <div class="product-card" data-price="0" data-link="https://www.mediafire.com/file/osyo4mdimnjcdie/Minecraft-1.21.92-TNghia1759.apk/file">
+                    <img src="minecraft.png" alt="MS#175903">
+                    <div class="product-info">
+                        <h3>MINECRAFT 1.21.92</h3>
+                        <p>Loại: APK<br>Mã: MS#175903</p>
+                        <p class="price">Giá: 0$</p>
+                    </div>
+                    <button class="buy-btn">Mua ngay</button>
+                </div>
+                <div class="product-card" data-price="0" data-link="https://www.mediafire.com/folder/ir2lz38kg9zg3/Web+SN+V1+-+VanhLoveIT">
+                    <img src="snv1.png" alt="MS#175902">
+                    <div class="product-info">
+                        <h3>Happy Birthday-VanhLoveIT</h3>
+                        <p>Loại: HTML<br>Mã: MS#175902</p>
+                        <p class="price">Giá: 0$</p>
+                    </div>
+                    <button class="buy-btn">Mua ngay</button>
+                </div>
+                <div class="product-card" data-price="10" data-link="https://www.mediafire.com/folder/ga0wd5ajiyzhp/MMO-DTN">
+                    <img src="mmo-dtn.png" alt="MS#175901">
+                    <div class="product-info">
+                        <h3>Web Bio DTN</h3>
+                        <p>Loại: HTML<br>Mã: MS#175901</p>
+                        <p class="price">Giá: 10$</p>
+                    </div>
+                    <button class="buy-btn">Mua ngay</button>
+                </div>
+            </div>
+
+            <div class="redeem-section">
+                <h3>Nạp tiền</h3>
+                <input type="text" id="code-input" placeholder="Nhập mã tại đây">
+                <button id="redeem-btn">Nạp tiền</button>
+            </div>
+        </main>
+
+        <div id="notification" class="hidden"></div>
         
-      </ul>
-    </nav>
-    <label class="color-picker">
-      <input type="color" id="colorPicker" value="#2563eb" />
-    </label>
-  </header>
-
-  <section class="hero">
-    <h1>Kho Tài Nguyên DevBase</h1>
-    <p>Nơi chia sẻ & bán các tài nguyên đa nền tảng, đa chủ đề</p>
-  </section>
-
-  <section class="products">
-    
-  
-  
-  
-  
-  
-  
-  
-  
-  
-  
-  
-  
-  
-  
-  
-  
-  
-  
-    <div class="product">
-  <img src="totinhv1.png" alt="MS#175911">
-  <div class="product-content">
-    <span class="category">HTML</span>
-    <h3>Tỏ Tình #1</h3>
-   <p>MS#175911</p>
-    <p>html này tạo ra một website, khi bạn click vào hình trái tim sẽ hiện ra lời chúc, tấm lòng,... của bạn</p>
-    <span class="price">Miễn Phí</span>
-    <a href="https://www.mediafire.com/folder/fqfqmrwt7bj1t/Tỏ+Tình+#1">Tải Về</a>
-  </div>
-</div>
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-   <div class="product">
-  <img src="taoqrv1.png" alt="MS#175910">
-  <div class="product-content">
-    <span class="category">HTML</span>
-    <h3>Tạo Mã QR Từ Link</h3>
-   <p>MS#175910</p>
-    <p>html này tạo ra một website, khi bạn nhập link vào sẽ tạo được qr dẫn đến web đó</p>
-    <span class="price">Miễn Phí</span>
-    <a href="https://www.mediafire.com/folder/lkvzgpenbvlrg/Tạo+QR">Tải Về</a>
-  </div>
-</div>
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-  
-  <div class="product">
-  <img src="galaxyv2.png" alt="MS#175909">
-  <div class="product-content">
-    <span class="category">HTML</span>
-    <h3>Galaxy V2</h3>
-   <p>MS#175909</p>
-    <p>html Galaxy V2, Mô phỏng một ngôi sao với viền chữ xung quanh,...</p>
-    <span class="price">Miễn Phí</span>
-    <a href="https://www.mediafire.com/folder/t1xg0ag0ob8tk/Galaxy+Hành+Tinh+V2">Tải Về</a>
-  </div>
-</div>
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-  
-   <div class="product">
-  <img src="checkscam.png" alt="MS#175908">
-  <div class="product-content">
-    <span class="category">HTML</span>
-    <h3>Web Check Scam</h3>
-   <p>MS#175908</p>
-    <p>html web check scam, tạo nên cộng đồng phòng chống lừa đảo không gian mạng</p>
-    <span class="price">Miễn Phí</span>
-    <a href="https://www.mediafire.com/folder/eo5002wshac1l/Check-Scammer">Tải Về</a>
-  </div>
-</div>
-
-
-
-
-
-
-
-
-  
-  
-  
-  
-   <div class="product">
-  <img src="ban1.png" alt="MS#175907">
-  <div class="product-content">
-    <span class="category">HTML</span>
-    <h3>Web Bán Hàng #1</h3>
-   <p>MS#175907</p>
-    <p>1 Web bán hàng online phong cách đẹp, dễ nhìn, và thay đổi được màu chủ đạo của web,...</p>
-    <span class="price">1.000 VND</span>
-    <a href="https://www.facebook.com/profile.php?id=61576009787673">Liên Hệ Mua</a>
-  </div>
-</div>
-
-  
-  
-  
-  
-  
-  
-  
-  
-  
-  
-  
-  
-  
-  
-  
-  
-  
-  
-  
-  
-  
-  
-  
-  
-  
-  
-  
-  
-   <div class="product">
-  <img src="denlong.png" alt="MS#175906">
-  <div class="product-content">
-    <span class="category">HTML</span>
-    <h3>Đèn Lồng Lời Chúc - Trung Thu</h3>
-   <p>MS#175906</p>
-    <p>Khi chạm vào đèn lồng sẽ có một dòng chúc ngẫu nhiên hiện ra,...</p>
-    <span class="price">1.000 VND</span>
-    <a href="https://www.facebook.com/profile.php?id=61576009787673">Liên Hệ Mua</a>
-  </div>
-</div>
-
-
-
-
-
-
-
-  
-  
-  
-  
-  
-  
-  
-  
-  
-  
-  
-  
-  
-  
-  
-  
-  
-  
-  
-  
-  
-   <div class="product">
-  <img src="hanhtinhtim.png" alt="MS#175905">
-  <div class="product-content">
-    <span class="category">HTML</span>
-    <h3>Galaxy V1</h3>
-   <p>MS#175905</p>
-    <p>Mô phỏng một ngôi sao màu tím,...</p>
-    <span class="price">Miễn phí</span>
-    <a href="https://www.mediafire.com/file/h4wwc5nmi51d4c7/thienhatim.html/file">Tải Về</a>
-  </div>
-</div>
-
-  
-  
-  
-  
-  
-  
-  
-  
-  
-  
-  
-  
-  
-  
-  
-  
-  
-  
-  
-  
-   <div class="product">
-  <img src="locketgoldv17.png" alt="MS#175904">
-  <div class="product-content">
-    <span class="category">Config Shadowrocket</span>
-    <h3>Config Shadow Locket Gold V17</h3>
-   <p>MS#175904</p>
-    <p>Config shadowrocket Locket Gold V17. Up locket lên gold 3s</p>
-    <span class="price">Miễn phí</span>
-    <a href="https://www.mediafire.com/file/xhfh48z98u68vtv/%25F0%259F%258C%259ALocketV17_TNghia1759.conf/file">Tải Về</a>
-  </div>
-</div>
-
-  
-  
-  
-  
-  
-  
-  
-  
-  
-  
-  
-  
-  
-  
-  
-  
-     <div class="product">
-  <img src="minecraft.png" alt="MS#175903">
-  <div class="product-content">
-    <span class="category">APK</span>
-    <h3>MINECRAFT 1.21.92</h3>
-   <p>MS#175903</p>
-    <p>Tải xuống Minecraft phiên bản 1.21.92 cho thiết bị điện thoại android một cách miễn phí</p>
-    <span class="price">Miễn phí</span>
-    <a href="https://www.mediafire.com/file/osyo4mdimnjcdie/Minecraft-1.21.92-TNghia1759.apk/file">Tải Về</a>
-  </div>
-</div>
-
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    <div class="product">
-  <img src="snv1.png" alt="MS#175902">
-  <div class="product-content">
-    <span class="category">HTML</span>
-    <h3>Happy Birthday-VanhLoveIT</h3>
-   <p>MS#175902</p>
-    <p>HTML chúc mừng sinh nhật Cre tiktok: Vanh Love IT</p>
-    <span class="price">Miễn phí</span>
-    <a href="https://www.mediafire.com/folder/ir2lz38kg9zg3/Web+SN+V1+-+VanhLoveIT">Tải Về</a>
-  </div>
-</div>
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-<div class="product">
-  <img src="mmo-dtn.png" alt="MS#175901">
-  <div class="product-content">
-    <span class="category">HTML</span>
-    <h3>Bio DTN-Up Liên Tục</h3>
-    <p>MS#175901</p>
-    <p>html web devbase, bio,... bạn đang sử dụng hiện tại.</p>
-    <span class="price">19.000 VND</span>
-    <a href="https://www.facebook.com/profile.php?id=61576009787673">Liên Hệ Mua</a>
-  </div>
-</div>
-
-
-  </section>
-
-  <footer>
-    <p>© <span id="year"></span> DevBase. Kho Tài Nguyên Đa Nền Tảng.</p>
-  </footer>
-
-  <script>
-    // Hiển thị năm hiện tại ở footer
-    document.getElementById('year').textContent = new Date().getFullYear();
-
-    // Bật/tắt menu nav trên di động
-    const menuToggle = document.getElementById('menuToggle');
-    const nav = document.getElementById('mainNav');
-    menuToggle.addEventListener('click', () => {
-      nav.classList.toggle('active');
-    });
-
-    // Thay đổi màu chủ đạo bằng color picker
-    const colorPicker = document.getElementById('colorPicker');
-    colorPicker.addEventListener('input', (e) => {
-      document.documentElement.style.setProperty('--primary', e.target.value);
-      document.documentElement.style.setProperty('--secondary', e.target.value);
-    });
-  </script>
+        <br>
+        
+        
+        <div class="product-card" data-price="0" data-link="profile.html">
+                  
+                    <div class="product-info">
+                        <h3>Liên Hệ AD</h3>
+            
+                    </div>
+                    <button class="buy-btn">Liên Hệ</button>
+                </div>
+    </div>
+
+    <script>
+        // --- PHẦN JAVASCRIPT ĐÃ CẬP NHẬT ---
+        document.addEventListener('DOMContentLoaded', () => {
+            const balanceElement = document.getElementById('balance');
+            const productCards = document.querySelectorAll('.product-card');
+            const redeemBtn = document.getElementById('redeem-btn');
+            const codeInput = document.getElementById('code-input');
+            const notification = document.getElementById('notification');
+
+            let currentBalance = 0;
+            // ✅ THÊM MỚI: Mảng để lưu trữ các mã đã sử dụng
+            let usedCodes = []; 
+
+            // Các mã code hợp lệ và số tiền tương ứng
+            const validCodes = {
+                "DTN-AD-1759-@TB": 1000073,
+                "PAYTOWIN53": 1,
+                "NHHL1511": 1,
+                "HTBN1078": 1,
+                "JSK5382": 1,
+                "GEI29": 1,
+                "AUT837": 1,
+                "ADU538": 1,
+                "HEI363": 1,
+                "HRK73N": 1,
+                "HR73NJ": 1,
+                "HE83N": 5,
+                "NE73J": 5,
+                "SHR8E": 5,
+                "BD73": 5,
+                "BW83ND5": 5,
+                "B372ND": 5,
+                "2HD73H": 5,
+                "7E3JD6": 5,
+                "HEB7EJ": 5,
+                "JE83N6": 5,
+                "EEZ73N": 10,
+                "YDN7EJ": 10,
+                "52GD83": 10,
+                "GE82V5": 10,
+                "GE82H6": 10,
+                "72JD9D": 10,
+                "72HD6D": 10,
+                "I2UDYT": 10,
+                "JOU8TT": 10,
+                "62HD6D": 10,
+                "HD7EN3": 20,
+                "KE8DN4": 20,
+                "HW8FN4": 20,
+                "HE8DN3": 20,
+                "JG6WB8": 20,
+                "GQ74NF": 20,
+                "DIBRUC": 20,
+                "UENFI8": 20,
+                "7EBEUD": 20,
+                "71KF9E": 20,
+                "0": 0 
+            };
+
+            // Hàm cập nhật hiển thị số dư
+            function updateBalanceDisplay() {
+                balanceElement.textContent = currentBalance.toLocaleString('vi-VN');
+            }
+
+            // Hàm lưu số dư vào localStorage
+            function saveBalance() {
+                localStorage.setItem('userBalance', currentBalance);
+            }
+            
+            // ✅ THÊM MỚI: Hàm lưu danh sách mã đã dùng vào localStorage
+            function saveUsedCodes() {
+                localStorage.setItem('usedCodes', JSON.stringify(usedCodes));
+            }
+
+            // ✅ CẬP NHẬT: Hàm tải dữ liệu từ localStorage khi trang được load
+            function loadData() {
+                // Tải số dư
+                const savedBalance = localStorage.getItem('userBalance');
+                if (savedBalance !== null) {
+                    currentBalance = parseInt(savedBalance, 10);
+                }
+                updateBalanceDisplay();
+
+                // Tải danh sách mã đã dùng
+                const savedCodes = localStorage.getItem('usedCodes');
+                if (savedCodes !== null) {
+                    usedCodes = JSON.parse(savedCodes);
+                }
+            }
+            
+            // Hàm hiển thị thông báo
+            function showNotification(message, type) {
+                notification.textContent = message;
+                notification.className = ''; // Xóa các lớp cũ
+                notification.classList.add(type, 'show');
+
+                // Tự động ẩn thông báo sau 3 giây
+                setTimeout(() => {
+                    notification.classList.remove('show');
+                    notification.classList.add('hidden');
+                }, 3000);
+            }
+
+            // Xử lý sự kiện khi nhấn nút Mua
+            productCards.forEach(card => {
+                const buyBtn = card.querySelector('.buy-btn');
+                const price = parseInt(card.getAttribute('data-price'), 10);
+                const link = card.getAttribute('data-link');
+
+                buyBtn.addEventListener('click', () => {
+                    if (currentBalance >= price) {
+                        currentBalance -= price;
+                        saveBalance();
+                        updateBalanceDisplay();
+                        showNotification('Thanh toán thành công! Đang chuyển hướng...', 'success');
+                        
+                        setTimeout(() => {
+                            window.location.href = link;
+                        }, 2000);
+
+                    } else {
+                        showNotification('Số dư của bạn không đủ để thực hiện giao dịch này!', 'error');
+                    }
+                });
+            });
+
+            // ✅ CẬP NHẬT: Xử lý sự kiện khi nhấn nút Nạp tiền
+            redeemBtn.addEventListener('click', () => {
+                const code = codeInput.value.trim().toUpperCase();
+                
+                // Bước 1: Kiểm tra mã có hợp lệ không
+                if (code in validCodes) {
+                    // Bước 2: Kiểm tra xem mã đã được sử dụng trên thiết bị này chưa
+                    if (usedCodes.includes(code)) {
+                        // Nếu đã có trong danh sách, báo lỗi
+                        showNotification('Mã này đã được sử dụng trên thiết bị này.', 'error');
+                    } else {
+                        // Nếu chưa được sử dụng -> Tiến hành nạp tiền
+                        const amount = validCodes[code];
+                        currentBalance += amount;
+                        saveBalance();
+                        updateBalanceDisplay();
+
+                        // Thêm mã vào danh sách đã dùng và lưu lại
+                        usedCodes.push(code);
+                        saveUsedCodes();
+                        
+                        showNotification(`Nạp thành công ${amount.toLocaleString('vi-VN')}$!`, 'success');
+                        codeInput.value = '';
+                    }
+                } else {
+                    // Nếu mã không tồn tại trong validCodes
+                    showNotification('Mã code không hợp lệ.', 'error');
+                }
+            });
+
+            // Tải số dư và danh sách mã đã dùng khi trang được mở
+            loadData();
+        });
+    </script>
 </body>
 </html>
