@@ -1,666 +1,642 @@
 <!DOCTYPE html>
 <html lang="vi">
 <head>
-  <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Đàm Trọng Nghĩa</title>
-  <link href="https://fonts.googleapis.com/css2?family=Fredoka:wght@500&display=swap" rel="stylesheet">
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>DevBase | Kho Tài Nguyên Đa Nền Tảng</title>
+  <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;500;600;700;800&display=swap" rel="stylesheet"/>
   <style>
-    * {
-      box-sizing: border-box;
-      margin: 0;
-      padding: 0;
-      font-family: 'Fredoka', sans-serif;
+    :root {
+      --primary: #2563eb;
+      --secondary: #1e40af;
+      --text: #1f2937;
+      --background: #f9fafb;
+      --card: #ffffff;
+      --border: #e5e7eb;
+      --muted: #6b7280;
     }
-
+    * { box-sizing: border-box; }
     body {
-      background: #000;
-      color: #fff;
-      text-align: center;
-      padding: 20px;
-      font-size: 13px;
+      margin: 0;
+      font-family: 'Poppins', sans-serif;
+      background-color: var(--background);
+      color: var(--text);
+      transition: all 0.3s ease;
     }
 
-    .avatar-wrapper {
-      position: relative;
-      display: inline-block;
-      margin-top: 30px;
-      width: 150px;
+    header {
+      background: var(--card);
+      border-bottom: 1px solid var(--border);
+      padding: 1rem 2rem;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      position: fixed;
+      top: 0; left: 0; right: 0;
+      z-index: 100;
+      flex-wrap: wrap;
+      gap: 1rem;
     }
 
-    .avatar-border {
-      width: 120px;
-      height: 120px;
-      position: absolute;
-      top: 15px;
-      left: 15px;
-      z-index: 0;
+    .logo {
+      display: flex;
+      flex-direction: column;
+      font-weight: 700;
+      color: var(--primary);
     }
 
-    .avatar {
-      width: 150px;
-      height: 150px;
-      object-fit: cover;
-      position: relative;
-      z-index: 1;
+    .slogan {
+      font-size: 0.8rem;
+      color: var(--muted);
+      font-weight: 500;
     }
 
-    h1 {
-      font-size: 18px;
-      margin-top: 20px;
-      color: #fff;
-    }
-
-    .desc {
-      color: #00f7ff;
-      margin-top: 10px;
-      line-height: 1.6;
-      font-size: 13px;
-    }
-
-    .divider {
-      border: none;
-      border-top: 1px solid rgba(255, 255, 255, 0.2);
-      width: 80%;
-      margin: 20px auto;
-      box-shadow: 0 0 4px rgba(255, 255, 255, 0.2);
-    }
-
-    .zalo-box {
-      margin: 15px 0;
-      font-weight: bold;
-      color: #000;
-      background: #00f7ff;
-      display: inline-block;
-      padding: 6px 12px;
-      border-radius: 10px;
-      font-size: 13px;
-    }
-
-    .button {
-  display: block;
-  margin: 8px auto;
-  width: 85%;
-  max-width: 240px;
-  background: #000;
-  color: white;
-  padding: 10px;
-  border-radius: 10px;
-  border: 2px solid hotpink;
-  font-size: 12px;
-  transition: 0.3s;
-  text-decoration: none;
-  box-shadow: 0 0 4px hotpink;
-  outline: none;
-  -webkit-tap-highlight-color: transparent; /* Chặn viền xanh khi tap trên thiết bị cảm ứng */
-}
-
-.button:hover {
-  background: #111; /* Giữ nền tối, không đổi màu */
-  color: hotpink;
-  box-shadow: 0 0 6px hotpink;
-}
-
-.button:focus {
-  outline: none;
-  background: #111; /* Không thay đổi màu khi focus */
-  color: hotpink;
-  box-shadow: 0 0 6px hotpink;
-}
-
-.button:active {
-  background: #111; /* Tránh nền bị sáng xanh khi nhấn giữ */
-  color: hotpink;
-  box-shadow: 0 0 8px hotpink;
-}
-
-.button:hover {
-  background: hotpink;
-  color: #000;
-}
-
-.button:hover {
-  background: hotpink;
-  color: #000;
-}
-    .button:hover {
-      background: cyan;
-      color: #000;
-    }
-
-  .glow-button {
-  position: relative;
-  padding: 10px 20px;
-  font-size: 12px;
-  border: none;
-  border-radius: 14px;
-  background-color: black; /* Nền đen */
-  color: white; /* Chữ trắng */
-  cursor: pointer;
-  z-index: 1;
-  box-shadow: 0 0 8px rgba(255, 255, 255, 0.3); /* Phát sáng nhẹ */
-  overflow: hidden;
-}
-
-.rainbow-wrapper {
-  position: relative;
-  display: block;
-  width: 85%;
-  max-width: 240px;
-  margin: 12px auto;
-  border-radius: 16px;
-  padding: 2px;
-  background: linear-gradient(270deg, red, orange, yellow, green, blue, indigo, violet, red);
-  background-size: 600% 600%;
-  animation: moveRainbow 5s linear infinite;
-  box-shadow: 0 0 12px rgba(255, 255, 255, 0.3);
-}
-
-@keyframes moveRainbow {
-  0% { background-position: 0% 50%; }
-  100% { background-position: 100% 50%; }
-}
-
-.rainbow-button-text {
-  display: block;
-  background-color: #000;
-  color: #fff;
-  text-align: center;
-  padding: 10px 0;
-  font-size: 13px;
-  border-radius: 14px;
-  text-decoration: none;
-  font-weight: bold;
-}
-@keyframes rainbow-border {
-  0% { background-position: 0% 50%; }
-  100% { background-position: 100% 50%; }
-}
-@keyframes rainbow-border {
-  0% { background-position: 0% 50%; }
-  100% { background-position: 100% 50%; }
-}
-
-    @keyframes glow {
-      0% { box-shadow: 0 0 5px #1e90ff; }
-      50% { box-shadow: 0 0 15px #1e90ff; }
-      100% { box-shadow: 0 0 5px #1e90ff; }
-    }
-
-    .qr-section img {
+    nav {
+      display: none;
       width: 100%;
-      max-width: 160px;
+      background: var(--card);
+      border-top: 1px solid var(--border);
     }
 
-    .qr-section h2 {
-      font-size: 16px;
+    nav.active {
+      display: block;
     }
 
-    /* Responsive mô tả, heading */
-    .desc, .zalo-box {
-      font-size: 13px;
+    nav ul {
+      list-style: none;
+      margin: 0;
+      padding: 0.5rem 0;
+      display: flex;
+      flex-direction: column;
+      gap: 0.5rem;
     }
 
-    @media (min-width: 600px) {
-      h1 {
-        font-size: 20px;
+    nav ul li a {
+      text-decoration: none;
+      color: var(--text);
+      padding: 0.5rem 1rem;
+      display: block;
+      font-weight: 600;
+      transition: background 0.3s;
+      border-radius: 6px;
+    }
+
+    nav ul li a:hover {
+      background: var(--primary);
+      color: #fff;
+    }
+
+    .menu-toggle {
+      background: var(--primary);
+      color: #fff;
+      border: none;
+      padding: 0.5rem 1rem;
+      border-radius: 8px;
+      cursor: pointer;
+      font-weight: 600;
+      transition: background 0.3s;
+      display: block;
+      z-index: 110;
+    }
+
+    .menu-toggle:hover {
+      background: var(--secondary);
+    }
+
+    .color-picker {
+      display: flex;
+      align-items: center;
+      gap: 0.5rem;
+      cursor: pointer;
+    }
+
+    .color-picker input {
+      border: none;
+      width: 28px;
+      height: 28px;
+      border-radius: 6px;
+      cursor: pointer;
+    }
+
+    .hero {
+      margin-top: 100px;
+      text-align: center;
+      padding: 4rem 1rem;
+      background: linear-gradient(135deg, var(--primary), var(--secondary));
+      color: #fff;
+      border-radius: 0 0 40px 40px;
+    }
+
+    .hero h1 {
+      font-size: clamp(1.8rem, 4vw, 3rem);
+      margin-bottom: 0.5rem;
+    }
+
+    .hero p {
+      font-size: clamp(1rem, 2vw, 1.2rem);
+      color: #e0e7ff;
+    }
+
+    .products {
+      max-width: 1200px;
+      margin: 2rem auto;
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+      gap: 1.5rem;
+      padding: 0 1rem;
+    }
+
+    .product {
+      background: var(--card);
+      border: 1px solid var(--border);
+      border-radius: 12px;
+      box-shadow: 0 2px 6px rgba(0, 0, 0, 0.05);
+      overflow: hidden;
+      display: flex;
+      flex-direction: column;
+      transition: transform 0.3s ease, box-shadow 0.3s ease;
+    }
+
+    .product:hover {
+      transform: translateY(-5px);
+      box-shadow: 0 8px 20px rgba(0, 0, 0, 0.1);
+    }
+
+    .product img {
+      width: 100%;
+      height: 180px;
+      object-fit: cover;
+    }
+
+    .product-content {
+      padding: 1rem;
+      display: flex;
+      flex-direction: column;
+      gap: 0.5rem;
+    }
+
+    .product h3 {
+      color: var(--primary);
+      margin: 0;
+      font-size: 1.1rem;
+    }
+
+    .product p {
+      color: var(--muted);
+      font-size: 0.9rem;
+      margin: 0;
+    }
+
+    .product .price {
+      font-weight: 700;
+      color: var(--secondary);
+    }
+
+    .product .category {
+      font-size: 0.85rem;
+      background: var(--primary);
+      color: #fff;
+      border-radius: 6px;
+      padding: 0.2rem 0.5rem;
+      width: fit-content;
+      margin-bottom: 0.5rem;
+    }
+
+    .product a {
+      text-align: center;
+      margin-top: auto;
+      background: var(--primary);
+      color: #fff;
+      text-decoration: none;
+      padding: 0.6rem;
+      border-radius: 8px;
+      font-weight: 600;
+      transition: background 0.3s;
+    }
+
+    .product a:hover {
+      background: var(--secondary);
+    }
+
+    footer {
+      text-align: center;
+      padding: 2rem;
+      color: var(--muted);
+      border-top: 1px solid var(--border);
+      margin-top: 2rem;
+    }
+
+    @media (min-width: 768px) {
+      nav {
+        display: flex !important;
+        width: auto;
+        border: none;
+      }
+
+      nav ul {
+        flex-direction: row;
+        gap: 1rem;
+      }
+
+      .menu-toggle {
+        display: none;
       }
     }
-    
-    .triple-color-btn-wrapper {
-  position: relative;
-  display: block;
-  width: 85%;
-  max-width: 240px;
-  margin: 12px auto;
-  border-radius: 14px;
-  padding: 2px;
-  background: linear-gradient(270deg, hotpink, limegreen, cyan, hotpink);
-  background-size: 400% 400%;
-  animation: tripleColorMove 5s linear infinite;
-  box-shadow: 0 0 12px rgba(255, 255, 255, 0.2);
-}
-
-@keyframes tripleColorMove {
-  0% { background-position: 0% 50%; }
-  100% { background-position: 100% 50%; }
-}
-
-.download-btn {
-  display: block;
-  margin: 8px auto;
-  width: 85%;
-  max-width: 240px;
-  background: #000;
-  color: white;
-  padding: 10px;
-  border-radius: 10px;
-  font-size: 12px;
-  text-decoration: none;
-  border: 3px solid;
-  border-image: linear-gradient(to right, hotpink, limegreen, deepskyblue) 1;
-  box-shadow: 0 0 12px hotpink, 0 0 12px limegreen, 0 0 12px deepskyblue;
-}
-
-
-
-#mascot-label {
-  position: fixed;
-  bottom: 0px;
-  right: 20px;
-  width: auto;
-  max-width: 160px;
-  padding: 6px 10px;
-  background-color: white !important;
-  color: black !important;
-  font-size: 10px;
-  font-weight: bold;
-  border-radius: 12px;
-  text-align: center;
-  box-shadow: 0 0 6px rgba(0, 0, 0, 0.15);
-  z-index: 998;
-  pointer-events: none;
-}
   </style>
 </head>
 <body>
-<!-- Menu điều hướng -->
-<button class="menu-toggle" onclick="document.querySelector('.side-menu').classList.toggle('open')">
-  ☰
-</button>
-<div class="side-menu">
-   
-      <a href="index.html">Trang Chủ</a>
-      <a href="banggia.html">Bảng Giá</a>
-      <a href="khodv.html">Kho Dịch Vụ Khách</a>
-      <a href="khoad.html">Kho Dịch Vụ Admin</a>
-      <a href="taoqr.html">Tạo QR từ link</a>
-      <a href="muachu.html">Mưa Chữ</a>
-       <a href="share.html">Nguồn Tài Nguyên Đa Nền Tảng</a>
-   
-</div>
+  <header>
+    <div class="logo">
+      DevBase
+      <span class="slogan">Kho Tài Nguyên Đa Nền Tảng</span>
+    </div>
+    <button class="menu-toggle" id="menuToggle">☰ Menu</button>
+    <nav id="mainNav">
+      <ul>
+        <li><a href="index.html">DevBase</a></li>
+        <li><a href="kho.html">Kho Dịch Vụ</a></li>
+        <li><a href="qr.html">Tạo QR Từ Link</a></li>
+        <li><a href="profile.html">Profile Về Tôi</a></li>
+        <li><a href="ad.html">Dành Riêng Cho AD</a></li>
+        <li><a href="banggia.html">Bảng Giá Dịch Vụ</a></li>
+        
+      </ul>
+    </nav>
+    <label class="color-picker">
+      <input type="color" id="colorPicker" value="#2563eb" />
+    </label>
+  </header>
 
-<style>
-.menu-toggle {
-  position: fixed;
-  top: 20px;
-  left: 20px;
-  z-index: 10001;
-  background: transparent;
-  border: none;
-  font-size: 26px;
-  color: #ff4dd2;
-  cursor: pointer;
-}
-.side-menu {
-  position: fixed;
-  top: 0;
-  left: -240px;
-  width: 240px;
-  height: 100%;
-  background: #1a001f;
-  padding: 60px 20px;
-  transition: left 0.3s ease;
-  box-shadow: 4px 0 20px rgba(0,0,0,0.5);
-  z-index: 10000;
-}
-.side-menu.open { left: 0; }
-.side-menu h2 {
-  color: #ff99dd;
-  margin-bottom: 20px;
-  font-size: 16px;
-  text-align: center;
-}
-.side-menu a {
-  display: block;
-  color: #fff;
-  text-decoration: none;
-  padding: 10px 0;
-  border-bottom: 1px solid #444;
-  transition: all 0.3s;
-  font-size: 13px;
-}
-.side-menu a:hover { color: #ff4dd2; transform: translateX(4px); }
-</style>
+  <section class="hero">
+    <h1>Kho Tài Nguyên DevBase</h1>
+    <p>Nơi chia sẻ & bán các tài nguyên đa nền tảng, đa chủ đề</p>
+  </section>
 
-<!-- Hiệu ứng hoa rơi -->
-<style>
-  .flower {
-    position: fixed;
-    top: -50px;
-    font-size: 20px;
-    animation: fall linear infinite;
-   
-  z-index: -1; /* Đặt giá trị âm để nó nằm dưới mọi thứ */
-
-
-    pointer-events: none;
-  }
-  @keyframes fall {
-    to {
-      transform: translateY(100vh) rotate(360deg);
-      opacity: 0;
-    }
-  }
-  .rainbow-button {
-  padding: 6px 14px;
-  font-size: 14px;
-  font-weight: bold;
-  border: none;
-  border-radius: 10px;
-  color: white;
-  cursor: pointer;
-  background: linear-gradient(270deg, red, orange, yellow, green, blue, indigo, violet, red);
-  background-size: 1400% 1400%;
-  animation: rainbowMove 6s linear infinite;
-  box-shadow: 0 0 18px rgba(255, 255, 255, 0.5); /* ánh sáng tĩnh */
-  transition: transform 0.2s;
-}
-
-.rainbow-button:hover {
-  transform: scale(1.05);
-}
-
-@keyframes rainbowMove {
-  0% { background-position: 0% 50%; }
-  100% { background-position: 100% 50%; }
-}
-
-@keyframes rainbowMove {
-  0% { background-position: 0% 50%; }
-  100% { background-position: 100% 50%; }
-}
-
-@keyframes glow {
-  0%, 100% {
-    box-shadow: 0 0 12px rgba(255,255,255,0.6), 0 0 24px rgba(255,255,255,0.4);
-  }
-  50% {
-    box-shadow: 0 0 20px rgba(255,255,255,1), 0 0 40px rgba(255,255,255,0.8);
-  }
-}
-
-@keyframes glow {
-  0%, 100% {
-    box-shadow: 0 0 10px rgba(255,255,255,0.6), 0 0 20px rgba(255,255,255,0.3);
-  }
-  50% {
-    box-shadow: 0 0 20px rgba(255,255,255,1), 0 0 30px rgba(255,255,255,0.8);
-  }
-}
-</style>
-<script>
-  function createFlower() {
-    const flower = document.createElement("div");
-    flower.classList.add("flower");
-    flower.style.left = Math.random() * 100 + "vw";
-    flower.style.animationDuration = 3 + Math.random() * 5 + "s";
-    flower.innerText = "🌚";
-    document.body.appendChild(flower);
-    setTimeout(() => flower.remove(), 8000);
-  }
-  setInterval(createFlower, 300);
-</script>
-
-<!-- Avatar -->
-<div class="avatar-wrapper">
-  <img src="avatar.png" class="avatar-border" alt="Viền PNG">
-  <img src="vien.png" class="avatar" alt="Avatar">
-</div>
-
-<!-- Tên + tick -->
-<h1>
-  👻• Đàm Trọng Nghĩa
-  <img src="tick.png" alt="tick xanh" style="width: 14px; height: 14px; vertical-align: middle; margin-left: 6px;">
-</h1>
-
-<!-- Mô tả -->
-<div class="desc">
-  Cung Cấp Dịch Vụ Mạng Xã Hội Giá Rẻ<br>
-  • Thiết Kế Website Theo Yêu Cầu •<br>
-  Lên Premium App (Locket, NGL,...)
-</div>
-
-<div class="rainbow-wrapper">
-  <a href="https://www.facebook.com/61576009787673/posts/122125229564866992/?mibextid=rS40aB7S9Ucbxw6v" target="_blank" class="rainbow-button-text">🥇 Check Uy Tín 🥇</a>
-</div>
-<hr class="divider" />
-
-<!-- Zalo Box -->
-<button class="rainbow-button">Liên hệ ngay</button>
-
-<!-- Nút liên kết mạng xã hội -->
-<a class="button" href="https://www.facebook.com/61576009787673/posts/122125229564866992/?app=fbl" target="_blank">🚀 Check Uy Tín 🚀</a>
-<a class="button" href="https://www.facebook.com/profile.php?id=61576009787673" target="_blank">Facebook</a>
-<a class="button" href="https://vm.tiktok.com/ZSS6vqAvM/" target="_blank">TikTok Chính</a>
-<a class="button" href="https://vm.tiktok.com/ZSSrwQnGQ/" target="_blank">TikTok Đú Theo Dân IT</a>
-<a class="button" href="https://vm.tiktok.com/ZSHWm17R6tnqm-bCzpR/" target="_blank">TikTok Buồn - Tâm Trạng</a>
-<a class="button" href="https://www.instagram.com/bo1759_n?igsh=YzljYTk1ODg3Zg==" target="_blank">Instagram</a>
-<a class="button" href="https://locket.cam/bebo1759" target="_blank">Locket</a>
-
-<hr class="divider" />
-
-<!-- QR + Website -->
-<div class="qr-section">
-  <h2>Website Của Tôi</h2>
+  <section class="products">
+    
   
-
-
-
-
-
-
-<div class="rainbow-wrapper">
- <a href="https://trongnghia1759.github.io/" target="_blank" class="rainbow-button-text">Bio</a>
-</div>
-
-<hr class="divider" />
-
-<!-- QR ủng hộ -->
-<div class="qr-section">
-  <h2>Chuyên Mục Ăng Xin</h2>
-  <br>
-  <img src="mb.png" alt="QR Ủng hộ">
-  <br>
-  <div class="desc">
-    MB Bank: Đàm Trọng Nghĩa<br>
-    STK: 0948877241
-  </div>
-  <br>
-  <div class="triple-color-btn-wrapper">
-  <a class="triple-color-btn" href="https://i.postimg.cc/C5fBjppM/IMG-20250729-135730.jpg" download="qr-ung-ho.png">Tải mã QR</a>
-</div>
-
-
-
-<body>
-  <!-- Bot và nhạc -->
-  <img src="bot.png" id="mascot-bot">
-<div id="mascot-label">Phát nhạc, click 👆</div>
-
-<audio id="mascot-audio" src="anhthuongemnhatma.mp3"></audio>
-
-<script>
-  const mascotBot = document.getElementById("mascot-bot");
-  const mascotAudio = document.getElementById("mascot-audio");
-
-  mascotBot.addEventListener("click", function () {
-    if (mascotAudio.paused) {
-      mascotAudio.play();
-    } else {
-      mascotAudio.pause();
-    }
-  });
-</script>
-
-<style>
-  #mascot-bot {
-    position: fixed;
-    bottom: 40px;
-    right: 20px;
-    width: 80px;
-    cursor: pointer;
-    z-index: 999;
-    animation: float 3s ease-in-out infinite;
-  }
-
-  @keyframes float {
-    0%, 100% { transform: translateY(0px); }
-    50% { transform: translateY(-8px); }
-  }
-
-  #mascot-label {
-    position: fixed;
-    bottom: 0px;
-    right: 15px;
-    width: 90px;
-    text-align: center;
-    font-size: 13px;
-    color: pink;
-    font-weight: bold;
-    text-shadow: 0 0 4px hotpink;
-    z-index: 998;
-    pointer-events: none;
-  }
-
-</style>
-
-
-
-
-
-
-<div class="customer-comments" id="customer-comments">
-  <div class="comments-header">
-    <h3>BÌNH LUẬN</h3>
-    <p class="subtitle">Đây là những phản hồi của khách góp ý được chúng tôi xin ý phép dán vào Website</p>
-    <div class="line"></div>
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+    <div class="product">
+  <img src="totinhv1.png" alt="MS#175911">
+  <div class="product-content">
+    <span class="category">HTML</span>
+    <h3>Tỏ Tình #1</h3>
+   <p>MS#175911</p>
+    <p>html này tạo ra một website, khi bạn click vào hình trái tim sẽ hiện ra lời chúc, tấm lòng,... của bạn</p>
+    <span class="price">Miễn Phí</span>
+    <a href="https://www.mediafire.com/folder/fqfqmrwt7bj1t/Tỏ+Tình+#1">Tải Về</a>
   </div>
 </div>
 
-<style>
-  .customer-comments {
-    max-width: 700px;
-    margin: 40px auto;
-    padding: 16px;
-    font-family: Arial, sans-serif;
-    background-color: #1a1a1a; /* nền tối */
-    border-radius: 10px;
-  }
 
-  /* Tiêu đề căn giữa */
-  .comments-header {
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-    margin-bottom: 16px;
-  }
 
-  .comments-header h3 {
-    font-size: 20px;
-    color: #fff;
-    margin-bottom: 4px;
-  }
 
-  /* Dòng chữ phụ */
-  .comments-header .subtitle {
-    font-size: 14px;
-    color: rgba(255, 255, 255, 0.7); /* trắng nhưng mờ hơn */
-    margin-bottom: 8px;
-  }
 
-  /* Dòng kẻ */
-  .comments-header .line {
-    width: 100%;
-    height: 2px;
-    background-color: #ccc;
-  }
 
-  /* Bình luận */
-  .comment-item {
-    border-bottom: 1px solid #333;
-    padding: 12px 0;
-    text-align: left;
-  }
 
-  /* Tên FB: xanh phát sáng */
-  .comment-meta {
-    font-size: 13px;
-    color: #00bfff;
-    text-shadow: 0 0 5px #00bfff;
-    margin-bottom: 6px;
-  }
 
-  /* Nội dung comment: trắng rõ */
-  .comment-text {
-    font-size: 15px;
-    line-height: 1.4;
-    color: #fff;
-  }
-</style>
 
-<script>
-  // Dữ liệu bình luận khách hàng thật
-  const customerComments = [
-    { name: "FB: Huỳnh Văn Thái", text: "Dv uy tín" },
-    { name: "FB: Nguyễn An", text: "Dịch vụ rất tốt, hỗ trợ nhanh" },
-    { name: "FB: Nguyễn Ngọc Bảo Nam", text: "rồi nha uy tín thật còn đồ ăn thì tôi chưa thử" },
-    { name: "FB: Chìn Chá", text: "Legitt nhó" },
-    { name: "FB: Khánh Vân", text: "Giỏi quá anh ơi" },
-    { name: "FB: Quốc Huy", text: "Uy tín lắm" },
-    { name: "FB: Trần Nguyễn Nam Vinh", text: "Uy tín lắm nha" },
-    { name: "FB: Thanh Tâm", text: "Sẽ ủng hộ dài dài" },
-    { name: "FB: Bảo Nam", text: "Đã rẻ lại còn uy tín" },
-    { name: "FB: Bích Hằng", text: "Dv oke nha" },
-    { name: "FB: Mai Tiến", text: "rẻ quá mà lên tương tác nhanh" },
-    { name: "FB: Thùy Linh", text: "mình thấy uki nho" },
-{ name: "FB: Bảo Ngọc", text: "dịch vụ oki lắm anh ạ" },
-{ name: "FB: Trần Thanh", text: "giá rẻ thật sự" },
-{ name: "FB: Quốc Cường", text: "10 điểm nha e" },
-{ name: "FB: Kim Liên", text: "m giỏi ghê á ủng hộ dài lâu" },
-{ name: "FB: Hải Đăng", text: "Đủ wow rồi" },
-{ name: "FB: Bùi Thái Hà", text: "Cũng đc" },
-{ name: "FB: Ngọc Trâm", text: "cái fl tik bên ông hơi chậm á cần nhanh hơn nha" },
-{ name: "FB: Kim Ngân", text: "chất lượng lắm ạ" },
-{ name: "FB: Quốc Anh", text: "cách rep tn khách dth lắm" },
-{ name: "FB: HTrang Nie", text: "oki lắm ạ" },
-{ name: "FB: Mai Linh", text: "thêm cái siêu nhiệt tình" },
-{ name: "FB: Ngọc Moon", text: "lên theo dõi hơi chậm nha bạn" },
-{ name: "FB: Ánh Ánh", text: "Cx ok" },
-{ name: "FB: Hà Thế Quân", text: "rẻ hơn nhiều nơi khác" },
-{ name: "FB: Nguyễn Quanh", text: "ok lắm bn" },
-{ name: "FB: Châu Mai", text: "hơi rườm rà nhưng đáng" },
-{ name: "FB: Lee Anh Tuấn", text: "khỏi phải bàn" },
-{ name: "FB: Hồng Ngọc", text: "cách rep đã ăn trọn điểm chx cần ns đến dv" },
-{ name: "FB: Mai Linh", text: "tui thấy dịch vụ bên bạn uy tín, giá hợp lí" },
-    { name: "FB: Nguyễn Mai", text: "Ê lên nhanh vậy ông" }
-  ];
 
-  function renderCustomerComments(containerId, comments) {
-    const container = document.getElementById(containerId);
 
-    comments.forEach(c => {
-      const item = document.createElement('div');
-      item.className = 'comment-item';
 
-      const meta = document.createElement('div');
-      meta.className = 'comment-meta';
-      meta.textContent = c.name;
 
-      const text = document.createElement('div');
-      text.className = 'comment-text';
-      text.textContent = c.text;
 
-      item.appendChild(meta);
-      item.appendChild(text);
-      container.appendChild(item);
+   <div class="product">
+  <img src="taoqrv1.png" alt="MS#175910">
+  <div class="product-content">
+    <span class="category">HTML</span>
+    <h3>Tạo Mã QR Từ Link</h3>
+   <p>MS#175910</p>
+    <p>html này tạo ra một website, khi bạn nhập link vào sẽ tạo được qr dẫn đến web đó</p>
+    <span class="price">Miễn Phí</span>
+    <a href="https://www.mediafire.com/folder/lkvzgpenbvlrg/Tạo+QR">Tải Về</a>
+  </div>
+</div>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+  
+  <div class="product">
+  <img src="galaxyv2.png" alt="MS#175909">
+  <div class="product-content">
+    <span class="category">HTML</span>
+    <h3>Galaxy V2</h3>
+   <p>MS#175909</p>
+    <p>html Galaxy V2, Mô phỏng một ngôi sao với viền chữ xung quanh,...</p>
+    <span class="price">Miễn Phí</span>
+    <a href="https://www.mediafire.com/folder/t1xg0ag0ob8tk/Galaxy+Hành+Tinh+V2">Tải Về</a>
+  </div>
+</div>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+  
+   <div class="product">
+  <img src="checkscam.png" alt="MS#175908">
+  <div class="product-content">
+    <span class="category">HTML</span>
+    <h3>Web Check Scam</h3>
+   <p>MS#175908</p>
+    <p>html web check scam, tạo nên cộng đồng phòng chống lừa đảo không gian mạng</p>
+    <span class="price">Miễn Phí</span>
+    <a href="https://www.mediafire.com/folder/eo5002wshac1l/Check-Scammer">Tải Về</a>
+  </div>
+</div>
+
+
+
+
+
+
+
+
+  
+  
+  
+  
+   <div class="product">
+  <img src="ban1.png" alt="MS#175907">
+  <div class="product-content">
+    <span class="category">HTML</span>
+    <h3>Web Bán Hàng #1</h3>
+   <p>MS#175907</p>
+    <p>1 Web bán hàng online phong cách đẹp, dễ nhìn, và thay đổi được màu chủ đạo của web,...</p>
+    <span class="price">1.000 VND</span>
+    <a href="https://www.facebook.com/profile.php?id=61576009787673">Liên Hệ Mua</a>
+  </div>
+</div>
+
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+   <div class="product">
+  <img src="denlong.png" alt="MS#175906">
+  <div class="product-content">
+    <span class="category">HTML</span>
+    <h3>Đèn Lồng Lời Chúc - Trung Thu</h3>
+   <p>MS#175906</p>
+    <p>Khi chạm vào đèn lồng sẽ có một dòng chúc ngẫu nhiên hiện ra,...</p>
+    <span class="price">1.000 VND</span>
+    <a href="https://www.facebook.com/profile.php?id=61576009787673">Liên Hệ Mua</a>
+  </div>
+</div>
+
+
+
+
+
+
+
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+   <div class="product">
+  <img src="hanhtinhtim.png" alt="MS#175905">
+  <div class="product-content">
+    <span class="category">HTML</span>
+    <h3>Galaxy V1</h3>
+   <p>MS#175905</p>
+    <p>Mô phỏng một ngôi sao màu tím,...</p>
+    <span class="price">Miễn phí</span>
+    <a href="https://www.mediafire.com/file/h4wwc5nmi51d4c7/thienhatim.html/file">Tải Về</a>
+  </div>
+</div>
+
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+   <div class="product">
+  <img src="locketgoldv17.png" alt="MS#175904">
+  <div class="product-content">
+    <span class="category">Config Shadowrocket</span>
+    <h3>Config Shadow Locket Gold V17</h3>
+   <p>MS#175904</p>
+    <p>Config shadowrocket Locket Gold V17. Up locket lên gold 3s</p>
+    <span class="price">Miễn phí</span>
+    <a href="https://www.mediafire.com/file/xhfh48z98u68vtv/%25F0%259F%258C%259ALocketV17_TNghia1759.conf/file">Tải Về</a>
+  </div>
+</div>
+
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+     <div class="product">
+  <img src="minecraft.png" alt="MS#175903">
+  <div class="product-content">
+    <span class="category">APK</span>
+    <h3>MINECRAFT 1.21.92</h3>
+   <p>MS#175903</p>
+    <p>Tải xuống Minecraft phiên bản 1.21.92 cho thiết bị điện thoại android một cách miễn phí</p>
+    <span class="price">Miễn phí</span>
+    <a href="https://www.mediafire.com/file/osyo4mdimnjcdie/Minecraft-1.21.92-TNghia1759.apk/file">Tải Về</a>
+  </div>
+</div>
+
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    <div class="product">
+  <img src="snv1.png" alt="MS#175902">
+  <div class="product-content">
+    <span class="category">HTML</span>
+    <h3>Happy Birthday-VanhLoveIT</h3>
+   <p>MS#175902</p>
+    <p>HTML chúc mừng sinh nhật Cre tiktok: Vanh Love IT</p>
+    <span class="price">Miễn phí</span>
+    <a href="https://www.mediafire.com/folder/ir2lz38kg9zg3/Web+SN+V1+-+VanhLoveIT">Tải Về</a>
+  </div>
+</div>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+<div class="product">
+  <img src="mmo-dtn.png" alt="MS#175901">
+  <div class="product-content">
+    <span class="category">HTML</span>
+    <h3>Bio DTN-Up Liên Tục</h3>
+    <p>MS#175901</p>
+    <p>html web devbase, bio,... bạn đang sử dụng hiện tại.</p>
+    <span class="price">19.000 VND</span>
+    <a href="https://www.facebook.com/profile.php?id=61576009787673">Liên Hệ Mua</a>
+  </div>
+</div>
+
+
+  </section>
+
+  <footer>
+    <p>© <span id="year"></span> DevBase. Kho Tài Nguyên Đa Nền Tảng.</p>
+  </footer>
+
+  <script>
+    // Hiển thị năm hiện tại ở footer
+    document.getElementById('year').textContent = new Date().getFullYear();
+
+    // Bật/tắt menu nav trên di động
+    const menuToggle = document.getElementById('menuToggle');
+    const nav = document.getElementById('mainNav');
+    menuToggle.addEventListener('click', () => {
+      nav.classList.toggle('active');
     });
-  }
 
-  renderCustomerComments("customer-comments", customerComments);
-</script>
-
-
-
+    // Thay đổi màu chủ đạo bằng color picker
+    const colorPicker = document.getElementById('colorPicker');
+    colorPicker.addEventListener('input', (e) => {
+      document.documentElement.style.setProperty('--primary', e.target.value);
+      document.documentElement.style.setProperty('--secondary', e.target.value);
+    });
+  </script>
 </body>
 </html>
