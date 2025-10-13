@@ -7,8 +7,8 @@
     <link href="https://fonts.googleapis.com/css2?family=Roboto:wght@300;400;700&display=swap" rel="stylesheet">
 
     <style>
-        /* --- PHẦN CSS (KHÔNG THAY ĐỔI) --- */
-               :root {
+        /* --- PHẦN CSS ĐÃ CẬP NHẬT --- */
+        :root {
             --primary-color: #E91E63; /* Màu hồng đậm */
             --secondary-color: #F06292; /* Màu hồng nhạt hơn */
             --background-color: #f0f2f5; /* Giữ nguyên nền xám nhạt */
@@ -17,6 +17,10 @@
             --shadow-color: rgba(0, 0, 0, 0.1);
         }
         
+        /* ✅ THÊM MỚI: Best practice để kiểm soát kích thước box dễ dàng hơn */
+        *, *::before, *::after {
+            box-sizing: border-box;
+        }
 
         body {
             font-family: 'Roboto', sans-serif;
@@ -170,6 +174,20 @@
             background-color: #218838;
         }
 
+        /* ✅ THÊM MỚI: CSS cho khu vực liên hệ mới */
+        .contact-section {
+            margin-top: 30px;
+            padding: 0 15px; /* Thêm padding để không bị dính vào cạnh màn hình nhỏ */
+        }
+        .contact-section .product-card {
+            max-width: 350px; /* Giới hạn chiều rộng của card */
+            margin: 0 auto; /* Tự động căn giữa card */
+            padding-top: 15px;
+        }
+        .contact-section .buy-btn {
+            width: 80%; /* Nút bấm rộng hơn một chút */
+        }
+
         #notification {
             position: fixed;
             bottom: 20px;
@@ -205,7 +223,7 @@
             background-color: #dc3545;
         }
 
-        /* --- PHẦN CSS CHO RESPONSIVE (KHÔNG THAY ĐỔI) --- */
+        /* --- PHẦN CSS CHO RESPONSIVE ĐÃ CẬP NHẬT --- */
         @media (max-width: 768px) {
             body {
                 padding: 10px;
@@ -235,11 +253,15 @@
             }
             .redeem-section {
                 padding: 20px;
+                /* ✅ CẬP NHẬT: Dùng flexbox để căn chỉnh tốt hơn */
+                display: flex;
+                flex-direction: column;
+                align-items: center;
             }
             #code-input {
                 width: 90%;
                 margin-right: 0;
-                margin-bottom: 10px;
+                margin-bottom: 15px; /* Tăng khoảng cách giữa input và button */
             }
         }
     </style>
@@ -257,7 +279,94 @@
         <main>
             <h2>Sản Phẩm</h2>
             <div class="product-grid">
-               <div class="product-card" data-price="0" data-link="https://www.mediafire.com/folder/fqfqmrwt7bj1t/Tỏ+Tình+#1">
+               
+               
+               
+               
+               
+               
+               
+               
+               
+               
+               
+               
+               
+               
+               
+               
+               
+               
+               
+               
+                <div class="product-card" data-price="0" data-link="https://www.mediafire.com/folder/qnoz7u41gasqj/LoginFB">                    <img src="banmanguontudongv1.png" alt="MS#175913">
+                    <div class="product-info">
+                        <h3>Trang Login FB</h3>
+                        <p>Loại: HTML<br>Mã: MS#175913</p>
+                        <p class="price">Giá: 0$</p>
+                    </div>
+                    <button class="buy-btn">Mua ngay</button>
+                </div>
+                
+                
+                
+                
+                
+               
+               
+               
+               
+               
+               
+               
+               
+               
+               
+               
+               
+               
+               
+               
+               
+               
+               
+               
+               
+               
+                <div class="product-card" data-price="5" data-link="https://www.mediafire.com/folder/nb8t6pugzhhqf/Website+Bán+Hàng+Tự+Động">                    <img src="banmanguontudongv1.png" alt="MS#175912">
+                    <div class="product-info">
+                        <h3>Web Bán Mã Nguồn Tự Động</h3>
+                        <p>Loại: HTML<br>Mã: MS#175912</p>
+                        <p class="price">Giá: 5$</p>
+                    </div>
+                    <button class="buy-btn">Mua ngay</button>
+                </div>
+               
+               
+               
+               
+               
+               
+               
+               
+               
+               
+               
+               
+               
+               
+               
+               
+               
+               
+               
+               
+               
+               
+               
+               
+               
+                <div class="product-card" data-price="0" data-link="https://www.mediafire.com/folder/fqfqmrwt7bj1t/Tỏ+Tình+#1">
                     <img src="totinhv1.png" alt="MS#175911">
                     <div class="product-info">
                         <h3>Tỏ Tình #1</h3>
@@ -287,7 +396,7 @@
                 <div class="product-card" data-price="2" data-link="https://www.mediafire.com/folder/eo5002wshac1l/Check-Scammer">
                     <img src="checkscam.png" alt="MS#175908">
                     <div class="product-info">
-                        <h3>Web Bio DTN</h3>
+                        <h3>Web CheckScam</h3>
                         <p>Loại: HTML<br>Mã: MS#175908</p>
                         <p class="price">Giá: 2$</p>
                     </div>
@@ -320,12 +429,12 @@
                     </div>
                     <button class="buy-btn">Mua ngay</button>
                 </div>
-                <div class="product-card" data-price="1" data-link="https://www.mediafire.com/file/xhfh48z98u68vtv/%25F0%259F%258C%259ALocketV17_TNghia1759.conf/file">
+                <div class="product-card" data-price="3" data-link="https://www.mediafire.com/file/xhfh48z98u68vtv/%25F0%259F%258C%259ALocketV17_TNghia1759.conf/file">
                     <img src="locketgoldv17.png" alt="MS#175904">
                     <div class="product-info">
                         <h3>locketgoldv17.png</h3>
                         <p>Loại: Config Shadowrocket<br>Mã: MS#175904</p>
-                        <p class="price">Giá: 1$</p>
+                        <p class="price">Giá: 3$</p>
                     </div>
                     <button class="buy-btn">Mua ngay</button>
                 </div>
@@ -347,12 +456,12 @@
                     </div>
                     <button class="buy-btn">Mua ngay</button>
                 </div>
-                <div class="product-card" data-price="10" data-link="https://www.mediafire.com/folder/ga0wd5ajiyzhp/MMO-DTN">
+                <div class="product-card" data-price="49" data-link="https://www.mediafire.com/folder/ga0wd5ajiyzhp/MMO-DTN">
                     <img src="mmo-dtn.png" alt="MS#175901">
                     <div class="product-info">
-                        <h3>Web Bio DTN</h3>
+                        <h3>Web Bio #1</h3>
                         <p>Loại: HTML<br>Mã: MS#175901</p>
-                        <p class="price">Giá: 10$</p>
+                        <p class="price">Giá: 5$</p>
                     </div>
                     <button class="buy-btn">Mua ngay</button>
                 </div>
@@ -367,21 +476,20 @@
 
         <div id="notification" class="hidden"></div>
         
-        <br>
-        
-        
-        <div class="product-card" data-price="0" data-link="profile.html">
-                  
-                    <div class="product-info">
-                        <h3>Liên Hệ AD</h3>
-            
-                    </div>
-                    <button class="buy-btn">Liên Hệ</button>
+        <div class="contact-section">
+            <div class="product-card" data-price="0" data-link="profile.html">
+                <div class="product-info">
+                    <h3>Liên Hệ Nạp Coin</h3>
+                    <p>1.000 VND = 1$</p>
                 </div>
+                <button class="buy-btn">Liên Hệ</button>
+            </div>
+        </div>
+
     </div>
 
     <script>
-        // --- PHẦN JAVASCRIPT ĐÃ CẬP NHẬT ---
+        // --- PHẦN JAVASCRIPT GIỮ NGUYÊN, KHÔNG CẦN THAY ĐỔI ---
         document.addEventListener('DOMContentLoaded', () => {
             const balanceElement = document.getElementById('balance');
             const productCards = document.querySelectorAll('.product-card');
@@ -390,101 +498,57 @@
             const notification = document.getElementById('notification');
 
             let currentBalance = 0;
-            // ✅ THÊM MỚI: Mảng để lưu trữ các mã đã sử dụng
             let usedCodes = []; 
 
-            // Các mã code hợp lệ và số tiền tương ứng
             const validCodes = {
-                "DTN-AD-1759-@TB": 1000073,
-                "FREE5K": 5,
-                "PAYTOWIN53": 1,
-                "NHHL1511": 1,
-                "HTBN1078": 1,
-                "JSK5382": 1,
-                "GEI29": 1,
-                "AUT837": 1,
-                "ADU538": 1,
-                "HEI363": 1,
-                "HRK73N": 1,
-                "HR73NJ": 1,
-                "HE83N": 5,
-                "NE73J": 5,
-                "SHR8E": 5,
-                "BD73": 5,
-                "BW83ND5": 5,
-                "B372ND": 5,
-                "2HD73H": 5,
-                "7E3JD6": 5,
-                "HEB7EJ": 5,
-                "JE83N6": 5,
-                "EEZ73N": 10,
-                "YDN7EJ": 10,
-                "52GD83": 10,
-                "GE82V5": 10,
-                "GE82H6": 10,
-                "72JD9D": 10,
-                "72HD6D": 10,
-                "I2UDYT": 10,
-                "JOU8TT": 10,
-                "62HD6D": 10,
-                "HD7EN3": 20,
-                "KE8DN4": 20,
-                "HW8FN4": 20,
-                "HE8DN3": 20,
-                "JG6WB8": 20,
-                "GQ74NF": 20,
-                "DIBRUC": 20,
-                "UENFI8": 20,
-                "7EBEUD": 20,
-                "71KF9E": 20,
-                "0": 0 
+                "DTNADMIN1759@TB": 1000000000,
+                "FREE5K": 5, "PAYTOWIN53": 1, "NHHL1511": 1, "HTBN1078": 1,
+                "JSK5382": 1, "GEI29": 1, "AUT837": 1, "ADU538": 1, "HEI363": 1,
+                "HRK73N": 1, "HR73NJ": 1, "HE83N": 5, "NE73J": 5, "SHR8E": 5,
+                "BD73": 5, "BW83ND5": 5, "B372ND": 5, "2HD73H": 5, "7E3JD6": 5,
+                "HEB7EJ": 5, "JE83N6": 5, "EEZ73N": 10, "YDN7EJ": 10, "52GD83": 10,
+                "GE82V5": 10, "GE82H6": 10, "72JD9D": 10, "72HD6D": 10, "I2UDYT": 10,
+                "JOU8TT": 10, "62HD6D": 10, "HD7EN3": 20, "KE8DN4": 20, "HW8FN4": 20,
+                "HE8DN3": 20, "JG6WB8": 20, "GQ74NF": 20, "DIBRUC": 20, "UENFI8": 20,
+                "7EBEUD": 20, "71KF9E": 20, "0": 0 
             };
 
-            // Hàm cập nhật hiển thị số dư
             function updateBalanceDisplay() {
                 balanceElement.textContent = currentBalance.toLocaleString('vi-VN');
             }
 
-            // Hàm lưu số dư vào localStorage
             function saveBalance() {
                 localStorage.setItem('userBalance', currentBalance);
             }
             
-            // ✅ THÊM MỚI: Hàm lưu danh sách mã đã dùng vào localStorage
             function saveUsedCodes() {
                 localStorage.setItem('usedCodes', JSON.stringify(usedCodes));
             }
 
-            // ✅ CẬP NHẬT: Hàm tải dữ liệu từ localStorage khi trang được load
             function loadData() {
-                // Tải số dư
                 const savedBalance = localStorage.getItem('userBalance');
                 if (savedBalance !== null) {
                     currentBalance = parseInt(savedBalance, 10);
                 }
                 updateBalanceDisplay();
 
-                // Tải danh sách mã đã dùng
                 const savedCodes = localStorage.getItem('usedCodes');
                 if (savedCodes !== null) {
                     usedCodes = JSON.parse(savedCodes);
                 }
             }
             
-            // Hàm hiển thị thông báo
             function showNotification(message, type) {
                 notification.textContent = message;
-                notification.className = ''; // Xóa các lớp cũ
+                notification.className = '';
                 notification.classList.add(type, 'show');
 
-                // Tự động ẩn thông báo sau 3 giây
                 setTimeout(() => {
                     notification.classList.remove('show');
                     notification.classList.add('hidden');
                 }, 3000);
             }
 
-            // Xử lý sự kiện khi nhấn nút Mua
             productCards.forEach(card => {
                 const buyBtn = card.querySelector('.buy-btn');
                 const price = parseInt(card.getAttribute('data-price'), 10);
@@ -507,39 +571,30 @@
                 });
             });
 
-            // ✅ CẬP NHẬT: Xử lý sự kiện khi nhấn nút Nạp tiền
             redeemBtn.addEventListener('click', () => {
                 const code = codeInput.value.trim().toUpperCase();
                 
-                // Bước 1: Kiểm tra mã có hợp lệ không
                 if (code in validCodes) {
-                    // Bước 2: Kiểm tra xem mã đã được sử dụng trên thiết bị này chưa
                     if (usedCodes.includes(code)) {
-                        // Nếu đã có trong danh sách, báo lỗi
                         showNotification('Mã này đã được sử dụng trên thiết bị này.', 'error');
                     } else {
-                        // Nếu chưa được sử dụng -> Tiến hành nạp tiền
                         const amount = validCodes[code];
                         currentBalance += amount;
                         saveBalance();
                         updateBalanceDisplay();
-
-                        // Thêm mã vào danh sách đã dùng và lưu lại
                         usedCodes.push(code);
                         saveUsedCodes();
-                        
                         showNotification(`Nạp thành công ${amount.toLocaleString('vi-VN')}$!`, 'success');
                         codeInput.value = '';
                     }
                 } else {
-                    // Nếu mã không tồn tại trong validCodes
                     showNotification('Mã code không hợp lệ.', 'error');
                 }
             });
 
-            // Tải số dư và danh sách mã đã dùng khi trang được mở
             loadData();
         });
     </script>
 </body>
 </html>
+
