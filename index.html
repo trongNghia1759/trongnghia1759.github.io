@@ -275,11 +275,67 @@
                 <span id="balance">0</span>$
             </div>
         </header>
-
         <main>
             <h2>Sản Phẩm</h2>
             <div class="product-grid">
                
+               
+               
+               
+               
+               
+               
+               
+               
+               
+               
+               
+               
+               
+               
+               
+               
+               
+               
+               
+               
+               
+               
+               
+               
+               
+               
+               
+               
+               
+               
+               
+               
+               
+               
+                <div class="product-card" data-price="0" data-link="https://www.mediafire.com/folder/un0sxv1vvjvry/Flappy+Jack">                    <img src="flappyjack.png" alt="MS#175914">
+                    <div class="product-info">
+                        <h3>Flappy Jack</h3>
+                        <p>Loại: HTML<br>Mã: MS#175914</p>
+                        <p class="price">Giá: 0$</p>
+                    </div>
+                    <button class="buy-btn">Mua ngay</button>
+                </div>
+                
+                
+                
+                
+                
+                
+                
+                
+                
+                
+                
+                
+                
+                
+                
                
                
                
@@ -468,6 +524,7 @@
             </div>
 
             <div class="redeem-section">
+           
                 <h3>Nạp tiền</h3>
                 <input type="text" id="code-input" placeholder="Nhập mã tại đây">
                 <button id="redeem-btn">Nạp tiền</button>
@@ -485,7 +542,6 @@
                 <button class="buy-btn">Liên Hệ</button>
             </div>
         </div>
-
     </div>
 
     <script>
@@ -501,16 +557,100 @@
             let usedCodes = []; 
 
             const validCodes = {
-                "DTNADMIN1759@TB": 1000000000,
-                "FREE5K": 5, "PAYTOWIN53": 1, "NHHL1511": 1, "HTBN1078": 1,
-                "JSK5382": 1, "GEI29": 1, "AUT837": 1, "ADU538": 1, "HEI363": 1,
-                "HRK73N": 1, "HR73NJ": 1, "HE83N": 5, "NE73J": 5, "SHR8E": 5,
-                "BD73": 5, "BW83ND5": 5, "B372ND": 5, "2HD73H": 5, "7E3JD6": 5,
-                "HEB7EJ": 5, "JE83N6": 5, "EEZ73N": 10, "YDN7EJ": 10, "52GD83": 10,
-                "GE82V5": 10, "GE82H6": 10, "72JD9D": 10, "72HD6D": 10, "I2UDYT": 10,
-                "JOU8TT": 10, "62HD6D": 10, "HD7EN3": 20, "KE8DN4": 20, "HW8FN4": 20,
-                "HE8DN3": 20, "JG6WB8": 20, "GQ74NF": 20, "DIBRUC": 20, "UENFI8": 20,
-                "7EBEUD": 20, "71KF9E": 20, "0": 0 
+"TAIKHOANADMIN1759": 100000000000,
+                
+"FREE5K": 5,
+"W2R5K9": 1, "P8T1A0": 1, "C3S8B6": 1, "G9D4J2": 1, "H6F0M5": 1,
+"N1L7Y3": 1, "R8P2Z4": 1, "V4T9X0": 1, "Z5Y6C1": 1, "B0A7F3": 1,
+"D2E6G8": 1, "I4H1K9": 1, "L6J0M7": 1, "O8N5P2": 1, "Q3R9S4": 1,
+"U7T1V5": 1, "W9X3Z0": 1, "A1Y4B6": 1, "C5D0E7": 1, "F3G8I2": 1,
+"K7J2L9": 1, "M4N6P0": 1, "R9Q1S5": 1, "T6S3U8": 1, "V2W7X4": 1,
+"Y0Z5A6": 1, "B8C3D9": 1, "E1F6G0": 1, "H5I0J3": 1, "K7L2M8": 1,
+"O3P9Q4": 1, "R0S5T1": 1, "V6U1W7": 1, "X2Y8Z3": 1, "A4B9C5": 1,
+"D7E0F2": 1, "G9H4I6": 1, "J1K5L0": 1, "M5N8O3": 1, "P2Q7R9": 1,
+"S0T3U6": 1, "W6V9X1": 1, "Z3Y7A4": 1, "C9B1D5": 1, "F4E8G0": 1,
+"I7H2J6": 1, "L3K9M4": 1, "N0O6P8": 1, "Q1R5S7": 1, "U8T4V2": 1,
+"Q9S4U6": 3, "W1Y6Z8": 3, "A3C8E0": 3, "F5H0J2": 3, "L7N2P4": 3,
+"R9T4V6": 3, "X1Z6B8": 3, "D3F8H0": 3, "J5L0N2": 3, "P7R2T4": 3,
+"V9X4Y6": 3, "B1D6F8": 3, "H3J8L0": 3, "N5P0R2": 3, "T7V2X4": 3,
+"Z9A4C6": 3, "E1G6I8": 3, "K3M8O0": 3, "Q5S0U2": 3, "W7Y2Z4": 3,
+"A9C4E6": 3, "F1H6J8": 3, "L3N8P0": 3, "R5T0V2": 3, "X7Z2B4": 3,
+"D9F4H6": 3, "J1L6N8": 3, "P3R8T0": 3, "V5X0Y2": 3, "B7D2F4": 3,
+"H9J4L6": 3, "N1P6R8": 3, "T3V8X0": 3, "Z5A0C2": 3, "E7G2I4": 3,
+"K9M4O6": 3, "Q1S6U8": 3, "W3Y8Z0": 3, "A5C0E2": 3, "F7H2J4": 3,
+"L9N4P6": 3, "R1T6V8": 3, "X3Z8B0": 3, "D5F0H2": 3, "J7L2N4": 3,
+"P9R4T6": 3, "V1X6Y8": 3, "B3D8F0": 3, "H5J0L2": 3, "N7P2R4": 3,
+"Y0Z5B7": 4, "D2F7H9": 4, "J4L9N1": 4, "P6R1T3": 4, "V8X3Y5": 4,
+"B0D5F7": 4, "H2J7L9": 4, "N4P9R1": 4, "T6V1X3": 4, "Z8A3C5": 4,
+"E0G5I7": 4, "K2M7O9": 4, "Q4S9U1": 4, "W6Y1Z3": 4, "A8C3E5": 4,
+"F0H5J7": 4, "L2N7P9": 4, "R4T9V1": 4, "X6Z1B3": 4, "D8F3H5": 4,
+"J0L5N7": 4, "P2R7T9": 4, "V4X9Y1": 4, "B6D1F3": 4, "H8J3L5": 4,
+"N0P5R7": 4, "T2V7X9": 4, "Z4A9C1": 4, "E6G1I3": 4, "K8M3O5": 4,
+"Q0S5U7": 4, "W2Y7Z9": 4, "A4C9E1": 4, "F6H1J3": 4, "L8N3P5": 4,
+"R0T5V7": 4, "X2Z7B9": 4, "D4F9H1": 4, "J6L1N3": 4, "P8R3T5": 4,
+"V0X5Y7": 4, "B2D7F9": 4, "H4J9L1": 4, "N6P1R3": 4, "T8V3X5": 4,
+"Z0A5C7": 4, "E2G7I9": 4, "K4M9O1": 4, "Q6S1U3": 4, "W8Y3Z5": 4,
+"C1E6G8": 5, "I3K8M0": 5, "O5Q0S2": 5, "U7W2X4": 5, "Y9Z4B6": 5,
+"D1F6H8": 5, "J3L8N0": 5, "P5R0T2": 5, "V7X2Y4": 5, "Z9A4C6": 5,
+"E1G6I8": 5, "K3M8O0": 5, "Q5S0U2": 5, "W7Y2Z4": 5, "A9C4E6": 5,
+"F1H6J8": 5, "L3N8P0": 5, "R5T0V2": 5, "X7Z2B4": 5, "D9F4H6": 5,
+"J1L6N8": 5, "P3R8T0": 5, "V5X0Y2": 5, "B7D2F4": 5, "H9J4L6": 5,
+"N1P6R8": 5, "T3V8X0": 5, "Z5A0C2": 5, "E7G2I4": 5, "K9M4O6": 5,
+"Q1S6U8": 5, "W3Y8Z0": 5, "A5C0E2": 5, "F7H2J4": 5, "L9N4P6": 5,
+"R1T6V8": 5, "X3Z8B0": 5, "D5F0H2": 5, "J7L2N4": 5, "P9R4T6": 5,
+"V1X6Y8": 5, "B3D8F0": 5, "H5J0L2": 5, "N7P2R4": 5, "T9V4X6": 5,
+"Z1A6C8": 5, "E3G8I0": 5, "K5M0O2": 5, "Q7S2U4": 5, "W9Y4Z6": 5,
+"T2V7X9": 6, "Z4A9C1": 6, "E6G1I3": 6, "K8M3O5": 6, "Q0S5U7": 6,
+"W2Y7Z9": 6, "A4C9E1": 6, "F6H1J3": 6, "L8N3P5": 6, "R0T5V7": 6,
+"X2Z7B9": 6, "D4F9H1": 6, "J6L1N3": 6, "P8R3T5": 6, "V0X5Y7": 6,
+"B2D7F9": 6, "H4J9L1": 6, "N6P1R3": 6, "T8V3X5": 6, "Z0A5C7": 6,
+"E2G7I9": 6, "K4M9O1": 6, "Q6S1U3": 6, "W8Y3Z5": 6, "A0C5E7": 6,
+"F2H7J9": 6, "L4N9P1": 6, "R6T1V3": 6, "X8Z3B5": 6, "D0F5H7": 6,
+"J2L7N9": 6, "P4R9T1": 6, "V6X1Y3": 6, "B8D3F5": 6, "H0J5L7": 6,
+"N2P7R9": 6, "T4V9X1": 6, "Z6A1C3": 6, "E8G3I5": 6, "K0M5O7": 6,
+"Q2S7U9": 6, "W4Y9Z1": 6, "A6C1E3": 6, "F8H3J5": 6, "L0N5P7": 6,
+"R2T7V9": 6, "X4Z9B1": 6, "D6F1H3": 6, "J8L3N5": 6, "P0R5T7": 6,
+"W6Y1Z3": 7, "A8C3E5": 7, "F0H5J7": 7, "L2N7P9": 7, "R4T9V1": 7,
+"X6Z1B3": 7, "D8F3H5": 7, "J0L5N7": 7, "P2R7T9": 7, "V4X9Y1": 7,
+"B6D1F3": 7, "H8J3L5": 7, "N0P5R7": 7, "T2V7X9": 7, "Z4A9C1": 7,
+"E6G1I3": 7, "K8M3O5": 7, "Q0S5U7": 7, "W2Y7Z9": 7, "A4C9E1": 7,
+"F6H1J3": 7, "L8N3P5": 7, "R0T5V7": 7, "X2Z7B9": 7, "D4F9H1": 7,
+"J6L1N3": 7, "P8R3T5": 7, "V0X5Y7": 7, "B2D7F9": 7, "H4J9L1": 7,
+"N6P1R3": 7, "T8V3X5": 7, "Z0A5C7": 7, "E2G7I9": 7, "K4M9O1": 7,
+"Q6S1U3": 7, "W8Y3Z5": 7, "A0C5E7": 7, "F2H7J9": 7, "L4N9P1": 7,
+"R6T1V3": 7, "X8Z3B5": 7, "D0F5H7": 7, "J2L7N9": 7, "P4R9T1": 7,
+"V6X1Y3": 7, "B8D3F5": 7, "H0J5L7": 7, "N2P7R9": 7, "T4V9X1": 7,
+"L9N4P6": 8, "R1T6V8": 8, "X3Z8B0": 8, "D5F0H2": 8, "J7L2N4": 8,
+"P9R4T6": 8, "V1X6Y8": 8, "B3D8F0": 8, "H5J0L2": 8, "N7P2R4": 8,
+"T9V4X6": 8, "Z1A6C8": 8, "E3G8I0": 8, "K5M0O2": 8, "Q7S2U4": 8,
+"W9Y4Z6": 8, "A1C6E8": 8, "F3H8J0": 8, "L5N0P2": 8, "R7T2V4": 8,
+"X9Z4B6": 8, "D1F6H8": 8, "J3L8N0": 8, "P5R0T2": 8, "V7X2Y4": 8,
+"B9D4F6": 8, "H1J6L8": 8, "N3P8R0": 8, "T5V0X2": 8, "Z7A2C4": 8,
+"E9G4I6": 8, "K1M6O8": 8, "Q3S8U0": 8, "W5Y0Z2": 8, "A7C2E4": 8,
+"F9H4J6": 8, "L1N6P8": 8, "R3T8V0": 8, "X5Z0B2": 8, "D7F2H4": 8,
+"J9L4N6": 8, "P1R6T8": 8, "V3X8Y0": 8, "B5D0F2": 8, "H7J2L4": 8,
+"N9P4R6": 8, "T1V6X8": 8, "Z3A8C0": 8, "E5G0I2": 8, "K7M2O4": 8,
+"Z6A1C3": 9, "E8G3I5": 9, "K0M5O7": 9, "Q2S7U9": 9, "W4Y9Z1": 9,
+"A6C1E3": 9, "F8H3J5": 9, "L0N5P7": 9, "R2T7V9": 9, "X4Z9B1": 9,
+"D6F1H3": 9, "J8L3N5": 9, "P0R5T7": 9, "V2X7Y9": 9, "B4D9F1": 9,
+"H6J1L3": 9, "N8P3R5": 9, "T0V5X7": 9, "Z2A7C9": 9, "E4G9I1": 9,
+"K6M1O3": 9, "Q8S3U5": 9, "W0Y5Z7": 9, "A2C7E9": 9, "F4H9J1": 9,
+"L6N1P3": 9, "R8T3V5": 9, "X0Z5B7": 9, "D2F7H9": 9, "J4L9N1": 9,
+"P6R1T3": 9, "V8X3Y5": 9, "B0D5F7": 9, "H2J7L9": 9, "N4P9R1": 9,
+"T6V1X3": 9, "Z8A3C5": 9, "E0G5I7": 9, "K2M7O9": 9, "Q4S9U1": 9,
+"W6Y1Z3": 9, "A8C3E5": 9, "F0H5J7": 9, "L2N7P9": 9, "R4T9V1": 9,
+"X6Z1B3": 9, "D8F3H5": 9, "J0L5N7": 9, "P2R7T9": 9, "V4X9Y1": 9,
+"Q4S9U1": 10, "W6Y1Z3": 10, "A8C3E5": 10, "F0H5J7": 10, "L2N7P9": 10,
+"R4T9V1": 10, "X6Z1B3": 10, "D8F3H5": 10, "J0L5N7": 10, "P2R7T9": 10,
+"V4X9Y1": 10, "B6D1F3": 10, "H8J3L5": 10, "N0P5R7": 10, "T2V7X9": 10,
+"Z4A9C1": 10, "E6G1I3": 10, "K8M3O5": 10, "Q0S5U7": 10, "W2Y7Z9": 10,
+"A4C9E1": 10, "F6H1J3": 10, "L8N3P5": 10, "R0T5V7": 10, "X2Z7B9": 10,
+"D4F9H1": 10, "J6L1N3": 10, "P8R3T5": 10, "V0X5Y7": 10, "B2D7F9": 10,
+"H4J9L1": 10, "N6P1R3": 10, "T8V3X5": 10, "Z0A5C7": 10, "E2G7I9": 10,
+"K4M9O1": 10, "Q6S1U3": 10, "W8Y3Z5": 10, "A0C5E7": 10, "F2H7J9": 10,
+"L4N9P1": 10, "R6T1V3": 10, "X8Z3B5": 10, "D0F5H7": 10, "J2L7N9": 10,
+"P4R9T1": 10, "V6X1Y3": 10, "B8D3F5": 10, "H0J5L7": 10, "N2P7R9": 10,
+"0": 0 
             };
 
             function updateBalanceDisplay() {
