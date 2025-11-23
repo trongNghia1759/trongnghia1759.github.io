@@ -36,32 +36,21 @@
 @import url("https://fonts.googleapis.com/css2?family=Nunito+Sans:wght@300&display=swap");
 
 :root {
-  --background: linear-gradient(145.44deg, #F2F4FA 0%, #FAFBFC 100%);
-  --color: #5E6E80;
-  --preloader: #fff;
-  --header__left: #EBF0F2;
-  --header__photo: #fff;
-  --header__social: #5E6E80;
-  --box__color: #fff;
-  --box__border: #EBF0F2;
-  --case__item: #EBF0F2;
-  --overhead: rgba(94, 110, 128, 0.8); 
-  --text__color: #3B4B5E;
-}
-
-[data-theme="dark"] {
+  /* Các biến màu đã được thay đổi thành giá trị của chế độ tối (dark mode) */
   --background: #1d1e24;
   --color: #aeb0b8;
   --preloader: #1d1e24;
   --header__left: #33363d;
   --header__photo: #23262b;
-  --header__social:#93959c;
+  --header__social: #93959c;
   --box__color: #23262b;
-  --box__boder: #33363d; 
+  --box__boder: #33363d;
   --case__item: #33363d;
   --overhead: #aeb0b8;
   --text__color: #fcfcfc;
 }
+
+/* Khối [data-theme="dark"] đã được loại bỏ */
 
 /* -----------------------------------------------------------------
     - General Styles
@@ -69,9 +58,7 @@
 *,
 ::before,
 ::after {
-  background-repeat: no-repeat;
-  box-sizing: border-box;
-}
+  /* ... phần còn lại của file ... */
 
 html {
   font-size: 1rem;
@@ -3078,4 +3065,5 @@ i.fas.fa-check {
   align-items: center !important;
 
   /* ... các style khác của bạn ... */
+}
 }
