@@ -1,0 +1,367 @@
+/* --- THIẾT LẬP CHUNG & RESPONSIVE --- */
+* {
+    box-sizing: border-box;
+    margin: 0;
+    padding: 0;
+}
+
+body { 
+    font-family: 'Segoe UI', Roboto, sans-serif;
+    text-align: center; 
+    background: #0f1012; 
+    color: #e0e0e0;
+    padding: 20px;
+    display: flex;
+    flex-direction: column; /* THÊM DÒNG NÀY để các card xếp hàng dọc */
+    align-items: center;    /* Căn giữa các card theo chiều ngang */
+    gap: 20px;              /* TẠO KHOẢNG CÁCH giữa 2 card để không bị dính */
+    min-height: 100vh;
+    overflow-x: hidden;
+}
+
+
+/* --- CARD PHONG CÁCH PROFILE (AVATAR ĐÈ BANNER) --- */
+.card { 
+    background: rgba(28, 30, 32, 0.9); 
+    width: 100%;
+    max-width: 420px; 
+    padding: 0 0 30px 0; 
+    border-radius: 20px; 
+    border: 1px solid rgba(255, 255, 255, 0.05);
+    box-shadow: 0 25px 50px rgba(0,0,0,0.5); /* Đổ bóng tĩnh, không chớp nháy */
+    backdrop-filter: blur(10px);
+    overflow: hidden;
+    position: relative;
+    transition: transform 0.3s ease;
+}
+
+/* Ảnh bìa giống Zalo */
+.banner { 
+    width: 100%; 
+    height: 150px; 
+    object-fit: cover;
+    display: block;
+}
+
+/* Avatar đè 1/2 lên ảnh bìa */
+.avatar { 
+    width: 110px; 
+    height: 110px; 
+    border-radius: 50%; 
+    object-fit: cover; 
+    border: 4px solid #1c1e20; /* Tạo viền nổi bật */
+    background: #1c1e20;
+    margin-top: -55px; /* Kỹ thuật đè lên banner */
+    position: relative;
+    z-index: 10;
+    box-shadow: 0 4px 10px rgba(0,0,0,0.3);
+}
+
+/* --- NỘI DUNG --- */
+h1 {
+    font-size: 1.8rem;
+    color: #fff;
+    margin: 15px 0 5px 0;
+}
+
+p { 
+    color: #888; 
+    font-size: 0.9rem; 
+    margin: 10px 20px; 
+}
+
+hr {
+    border: 0;
+    height: 1px;
+    background: linear-gradient(to right, transparent, #333, transparent);
+    margin: 20px;
+}
+
+/* --- HỆ THỐNG NÚT BẤM --- */
+.btn { 
+    display: block; 
+    margin: 12px 25px; 
+    padding: 12px; 
+    background: #1a1c1e; 
+    color: #bbb; 
+    text-decoration: none; 
+    border-radius: 10px; 
+    border: 1px solid #333;
+    font-size: 14px;
+    font-weight: 500;
+    transition: all 0.3s ease;
+}
+
+.btn:hover { 
+    background: #25282c;
+    color: #fff;
+    border-color: #007bff;
+    transform: translateY(-2px);
+}
+
+/* --- TRÌNH PHÁT NHẠC --- */
+#myAudio {
+    position: fixed;
+    bottom: 20px;
+    left: 50%;
+    transform: translateX(-50%);
+    width: 250px;
+    height: 30px;
+    opacity: 0.2;
+    transition: opacity 0.3s;
+}
+
+#myAudio:hover { 
+    opacity: 1; 
+}
+
+
+
+
+
+
+
+
+
+
+/* From Uiverse.io by nima-mollazadeh - Modified for smaller size */
+.button {
+  position: relative;
+  text-decoration: none;
+  color: #fff;
+  background: linear-gradient(45deg, #0ce39a, #69007f, #fc0987);
+  /* Giảm padding từ 14px 25px xuống 8px 16px */
+  padding: 8px 16px; 
+  /* Giảm bo góc từ 10px xuống 6px cho cân đối */
+  border-radius: 6px; 
+  /* Giảm font-size từ 1.25em xuống 0.9em hoặc 1em */
+  font-size: 0.95em;
+  cursor: pointer;
+  border: none; /* Thêm để đảm bảo không bị viền mặc định */
+  display: inline-block;
+}
+
+.button span {
+  position: relative;
+  z-index: 1;
+}
+
+.button::before {
+  content: "";
+  position: absolute;
+  inset: 1px;
+  background: #272727;
+  /* Phải khớp với border-radius của nút chính hoặc nhỏ hơn 1 chút */
+  border-radius: 5px; 
+  transition: 0.5s;
+}
+
+.button:hover::before {
+  opacity: 0.7;
+}
+
+.button::after {
+  content: "";
+  position: absolute;
+  inset: 0px;
+  background: linear-gradient(45deg, #0ce39a, #69007f, #fc0987);
+  border-radius: 6px;
+  transition: 0.5s;
+  opacity: 0;
+  filter: blur(15px); /* Giảm độ nhòe một chút cho khớp size nhỏ */
+}
+
+.button:hover:after {
+  opacity: 1;
+}
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+/* From Uiverse.io by iconicchandu */ 
+.card2 {
+  /* Xóa hoặc sửa các dòng này nếu đang có */
+  position: relative; /* Giữ cái này cũng được nhưng không để absolute/fixed */
+  /* margin-top: ... (xóa các margin âm nếu có) */
+  
+  /* Đảm bảo có dòng này để card không chiếm hết chiều ngang */
+  display: flex; 
+  align-self: center; /* Căn giữa chính nó trong flexbox cha */
+}
+
+
+  padding: 1rem;
+  width: 19rem;
+  background-color: hsla(240, 15%, 9%, 1);
+  background-image: radial-gradient(
+      at 88% 40%,
+      hsla(240, 15%, 9%, 1) 0px,
+      transparent 85%
+    ),
+    radial-gradient(at 49% 30%, hsla(240, 15%, 9%, 1) 0px, transparent 85%),
+    radial-gradient(at 14% 26%, hsla(240, 15%, 9%, 1) 0px, transparent 85%),
+    radial-gradient(at 0% 64%, hsl(189, 99%, 26%) 0px, transparent 85%),
+    radial-gradient(at 41% 94%, hsl(189, 97%, 36%) 0px, transparent 85%),
+    radial-gradient(at 100% 99%, hsl(188, 94%, 13%) 0px, transparent 85%);
+
+  border-radius: 1rem;
+  box-shadow: 0px -16px 24px 0px rgba(255, 255, 255, 0.25) inset;
+}
+
+.card2 .card__border::before {
+  content: "";
+  pointer-events: none;
+  
+  position: absolute;
+  /* THAY fixed THÀNH absolute */
+  z-index: 200;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  /* Các phần còn lại giữ nguyên... */
+}
+  transform: translate(-50%, -50%);
+
+  width: calc(100% + 2px);
+  height: calc(100% + 2px);
+  background-image: linear-gradient(
+    0deg,
+    hsl(0, 0%, 100%) -50%,
+    hsl(0, 0%, 40%) 100%
+  );
+
+  border-radius: 1rem;
+}
+
+.card2 .card__border::before {
+  content: "";
+  pointer-events: none;
+
+  position: fixed;
+  z-index: 200;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%), rotate(0deg);
+  transform-origin: left;
+
+  width: 200%;
+  height: 10rem;
+  background-image: linear-gradient(
+    0deg,
+    hsla(0, 0%, 100%, 0) 0%,
+    hsl(189, 100%, 50%) 40%,
+    hsl(189, 100%, 50%) 60%,
+    hsla(0, 0%, 40%, 0) 100%
+  );
+
+  animation: rotate 8s linear infinite;
+}
+
+@keyframes rotate {
+  to {
+    transform: rotate(360deg);
+  }
+}
+
+.card2 .card_title__container .card_title {
+  font-size: 1rem;
+  color: var(--white);
+}
+
+.card2 .card_title__container .card_paragraph {
+  margin-top: 0.25rem;
+  width: 65%;
+
+  font-size: 0.5rem;
+  color: var(--paragraph);
+}
+
+.card2 .line {
+  width: 100%;
+  height: 0.1rem;
+  background-color: var(--line);
+
+  border: none;
+}
+
+.card2 .card__list {
+  display: flex;
+  flex-direction: column;
+  gap: 0.5rem;
+}
+
+.card2 .card__list .card__list_item {
+  display: flex;
+  align-items: center;
+  gap: 0.5rem;
+}
+
+.card2 .card__list .card__list_item .check {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+
+  width: 1rem;
+  height: 1rem;
+  background-color: var(--primary);
+
+  border-radius: 50%;
+}
+
+.card2 .card__list .card__list_item .check .check_svg {
+  width: 0.75rem;
+  height: 0.75rem;
+
+  fill: var(--black);
+}
+
+.card2 .card__list .card__list_item .list_text {
+  font-size: 0.75rem;
+  color: var(--white);
+}
+
+.card2 .button {
+  cursor: pointer;
+
+  padding: 0.5rem;
+  width: 100%;
+  background-image: linear-gradient(
+    0deg,
+    hsl(189, 92%, 58%),
+    hsl(189, 99%, 26%) 100%
+  );
+
+  font-size: 0.75rem;
+  color: var(--white);
+
+  border: 0;
+  border-radius: 9999px;
+  box-shadow: inset 0 -2px 25px -4px var(--white);
+}
+
+
+
+
+
+
