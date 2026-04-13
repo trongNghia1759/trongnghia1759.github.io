@@ -3,68 +3,555 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Trang Cá Nhân</title>
-    
-    <link rel="icon" href="https://i.imgur.com/BpOldJP.jpeg">
-    <meta name="description" content="Đây là trang thông tin của Trọng Nghĩa 2009, là 1 coder và developer tự học và mày mò.">
-    <meta name="keywords" content="damtrongnghia1759">
-    
-    <link rel="stylesheet" href="trongnghia1759.github.io/profile/css/css/style.css">
+    <title>Futuristic Gallery - Bo & Mỡ</title>
+    <style>
+        :root {
+            --bg-color: #ffffff;
+            --text-color: #000000;
+            --border-width: 1.5px;
+        }
+
+        body {
+            background-color: var(--bg-color);
+            color: var(--text-color);
+            font-family: 'Courier New', Courier, monospace;
+            margin: 0;
+            padding: 20px;
+            text-transform: uppercase;
+            height: auto; 
+            min-height: 100vh;
+        }
+
+        header {
+            border: var(--border-width) solid var(--text-color);
+            padding: 20px;
+            margin-bottom: 30px;
+            position: relative;
+            clip-path: polygon(0 0, 95% 0, 100% 30%, 100% 100%, 0 100%);
+        }
+
+        header h1 {
+            margin: 0;
+            font-size: 1.5rem;
+            letter-spacing: 5px;
+        }
+
+        .status-bar {
+            font-size: 0.7rem;
+            margin-top: 10px;
+            border-top: 1px dashed var(--text-color);
+            padding-top: 5px;
+        }
+
+        .gallery-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+            gap: 25px;
+            height: auto;
+        }
+
+        .card {
+            border: var(--border-width) solid var(--text-color);
+            position: relative;
+            padding: 10px;
+            background: white;
+            height: fit-content;
+        }
+
+        .card::before {
+            content: "";
+            position: absolute;
+            top: -5px;
+            right: -5px;
+            width: 15px;
+            height: 15px;
+            background: white;
+            border-left: var(--border-width) solid black;
+            border-bottom: var(--border-width) solid black;
+            transform: rotate(45deg);
+            z-index: 1;
+        }
+
+        .image-placeholder {
+            width: 100%;
+            height: auto;
+            border: 1px solid var(--text-color);
+            overflow: hidden;
+        }
+
+        .image-placeholder img {
+            width: 100%;
+            height: auto;
+            display: block;
+            
+        }
+
+        .card-info {
+            margin-top: 15px;
+            font-size: 0.8rem;
+        }
+
+        .card-tag {
+            display: inline-block;
+            background: var(--text-color);
+            color: var(--bg-color);
+            padding: 2px 8px;
+            margin-bottom: 5px;
+        }
+
+        @media print {
+            body { padding: 0; }
+            .card { break-inside: avoid; margin-bottom: 20px; }
+        }
+    </style>
 </head>
 <body>
 
-    <div class="card">
-        <img src="trongnghia1759.github.io/profile/css/img/anhbia.png" alt="Banner" class="banner">
-        <img src="trongnghia1759.github.io/profile/css/img/avt.png" alt="Avatar" class="avatar">
-        
-        <h1>Trọng Nghĩa</h1>
-        <p><i>DV MXH - Website - Sỉ Lẻ Quần Áo</i></p>
+    <header>
+        <h1>Trần Thị Kim Phúc<br>Đàm Trọng Nghĩa <br>💞 <br>17/02/2025</h1>
+        <div class="status-bar">
+            MỘT ĐỜI YÊU EM. MỘT ĐỜI THƯƠNG EM
+        </div>
+    </header>
 
-        <hr>
-        
-        
-        
-<a href="trongnghia1759.github.io/sell/sell.html" style="text-decoration: none;">
-  <button class="button">
-    <span>Trang MMO</span>
-  </button>
-</a>
+    <div class="gallery-grid">
+        <div class="card">
+            <div class="card-tag">In-Love: 17/2/2025</div>
+            <div class="image-placeholder">
+                <img src="img/1.jpeg" alt="Sample">
+            </div>
+            <div class="card-info">
+                <strong>Bo And Mỡ</strong> <br>
+                <strong>In Love:</strong> 17/02/2025
+            </div>
+        </div>
+
+        <div class="card">
+            <div class="card-tag">In-Love: 17/2/2025</div>
+            <div class="image-placeholder">
+                <img src="img/2.jpeg" alt="Sample">
+            </div>
+            <div class="card-info">
+                <strong>Bo And Mỡ</strong> <br>
+                <strong>In Love:</strong> 17/02/2025
+            </div>
+        </div>
 
 
 
-        <a href="https://www.facebook.com/share/1AUpBhfGZs/?mibextid=wwXIfr" class="btn">Facebook</a>
-        
-     
-        
-        <a href="https://www.instagram.com/bo1759_n?igsh=cjNnbDBtMGZuMTl4&utm_source=qr" class="btn">Instagram</a>
-        
-        <a href="https://locket.cam/bebo1759" class="btn">Locket</a>
-        
-        <a href="https://www.tiktok.com/@dtn172130?_r=1&_t=ZS-93MzyxkzORI" class="btn">TikTok</a>
-        
+
 
         
-        
-        
-        
-        
-        <hr>
-        <p>Hotline: 0793.579.118</p>
-        <p>Email: <a href="mailto:nghiatrongdam1759@gmail.com">nghiatrongdam1759@gmail.com</a></p>
+
+
+
+
+        <div class="card">
+            <div class="card-tag">In-Love: 17/2/2025</div>
+            <div class="image-placeholder">
+                <img src="img/15.jpeg" alt="Sample">
+            </div>
+            <div class="card-info">
+                <strong>Bo And Mỡ</strong> <br>
+                <strong>In Love:</strong> 17/02/2025
+            </div>
+        </div>
+
+        <div class="card">
+            <div class="card-tag">In-Love: 17/2/2025</div>
+            <div class="image-placeholder">
+                <img src="img/16.jpeg" alt="Sample">
+            </div>
+            <div class="card-info">
+                <strong>Bo And Mỡ</strong> <br>
+                <strong>In Love:</strong> 17/02/2025
+            </div>
+        </div>
+        <div class="card">
+            <div class="card-tag">In-Love: 17/2/2025</div>
+            <div class="image-placeholder">
+                <img src="img/q.jpeg" alt="Sample">
+            </div>
+            <div class="card-info">
+                <strong>Bo And Mỡ</strong> <br>
+                <strong>In Love:</strong> 17/02/2025
+            </div>
+        </div>
+
+        <div class="card">
+            <div class="card-tag">In-Love: 17/2/2025</div>
+            <div class="image-placeholder">
+                <img src="img/w.jpeg" alt="Sample">
+            </div>
+            <div class="card-info">
+                <strong>Bo And Mỡ</strong> <br>
+                <strong>In Love:</strong> 17/02/2025
+            </div>
+        </div>
+
+        <div class="card">
+            <div class="card-tag">In-Love: 17/2/2025</div>
+            <div class="image-placeholder">
+                <img src="img/e.jpeg" alt="Sample">
+            </div>
+            <div class="card-info">
+                <strong>Bo And Mỡ</strong> <br>
+                <strong>In Love:</strong> 17/02/2025
+            </div>
+        </div>
+
+        <div class="card">
+            <div class="card-tag">In-Love: 17/2/2025</div>
+            <div class="image-placeholder">
+                <img src="img/r.jpeg" alt="Sample">
+            </div>
+            <div class="card-info">
+                <strong>Bo And Mỡ</strong> <br>
+                <strong>In Love:</strong> 17/02/2025
+            </div>
+        </div>
+
+        <div class="card">
+            <div class="card-tag">In-Love: 17/2/2025</div>
+            <div class="image-placeholder">
+                <img src="img/t.jpeg" alt="Sample">
+            </div>
+            <div class="card-info">
+                <strong>Bo And Mỡ</strong> <br>
+                <strong>In Love:</strong> 17/02/2025
+            </div>
+        </div>
+
+        <div class="card">
+            <div class="card-tag">In-Love: 17/2/2025</div>
+            <div class="image-placeholder">
+                <img src="img/y.jpeg" alt="Sample">
+            </div>
+            <div class="card-info">
+                <strong>Bo And Mỡ</strong> <br>
+                <strong>In Love:</strong> 17/02/2025
+            </div>
+        </div>
+
+        <div class="card">
+            <div class="card-tag">In-Love: 17/2/2025</div>
+            <div class="image-placeholder">
+                <img src="img/u.jpeg" alt="Sample">
+            </div>
+            <div class="card-info">
+                <strong>Bo And Mỡ</strong> <br>
+                <strong>In Love:</strong> 17/02/2025
+            </div>
+        </div>
+
+        <div class="card">
+            <div class="card-tag">In-Love: 17/2/2025</div>
+            <div class="image-placeholder">
+                <img src="img/i.jpeg" alt="Sample">
+            </div>
+            <div class="card-info">
+                <strong>Bo And Mỡ</strong> <br>
+                <strong>In Love:</strong> 17/02/2025
+            </div>
+        </div>
+
+        <div class="card">
+            <div class="card-tag">In-Love: 17/2/2025</div>
+            <div class="image-placeholder">
+                <img src="img/o.jpeg" alt="Sample">
+            </div>
+            <div class="card-info">
+                <strong>Bo And Mỡ</strong> <br>
+                <strong>In Love:</strong> 17/02/2025
+            </div>
+        </div>
+
+        <div class="card">
+            <div class="card-tag">In-Love: 17/2/2025</div>
+            <div class="image-placeholder">
+                <img src="img/p.jpeg" alt="Sample">
+            </div>
+            <div class="card-info">
+                <strong>Bo And Mỡ</strong> <br>
+                <strong>In Love:</strong> 17/02/2025
+            </div>
+        </div>
+
+        <div class="card">
+            <div class="card-tag">In-Love: 17/2/2025</div>
+            <div class="image-placeholder">
+                <img src="img/a.jpeg" alt="Sample">
+            </div>
+            <div class="card-info">
+                <strong>Bo And Mỡ</strong> <br>
+                <strong>In Love:</strong> 17/02/2025
+            </div>
+        </div>
+
+        <div class="card">
+            <div class="card-tag">In-Love: 17/2/2025</div>
+            <div class="image-placeholder">
+                <img src="img/s.jpeg" alt="Sample">
+            </div>
+            <div class="card-info">
+                <strong>Bo And Mỡ</strong> <br>
+                <strong>In Love:</strong> 17/02/2025
+            </div>
+        </div>
+
+        <div class="card">
+            <div class="card-tag">In-Love: 17/2/2025</div>
+            <div class="image-placeholder">
+                <img src="img/d.jpeg" alt="Sample">
+            </div>
+            <div class="card-info">
+                <strong>Bo And Mỡ</strong> <br>
+                <strong>In Love:</strong> 17/02/2025
+            </div>
+        </div>
+
+        <div class="card">
+            <div class="card-tag">In-Love: 17/2/2025</div>
+            <div class="image-placeholder">
+                <img src="img/f.jpeg" alt="Sample">
+            </div>
+            <div class="card-info">
+                <strong>Bo And Mỡ</strong> <br>
+                <strong>In Love:</strong> 17/02/2025
+            </div>
+        </div>
+
+        <div class="card">
+            <div class="card-tag">In-Love: 17/2/2025</div>
+            <div class="image-placeholder">
+                <img src="img/17.jpeg" alt="Sample">
+            </div>
+            <div class="card-info">
+                <strong>Bo And Mỡ</strong> <br>
+                <strong>In Love:</strong> 17/02/2025
+            </div>
+        </div>
+
+        <div class="card">
+            <div class="card-tag">In-Love: 17/2/2025</div>
+            <div class="image-placeholder">
+                <img src="img/18.jpeg" alt="Sample">
+            </div>
+            <div class="card-info">
+                <strong>Bo And Mỡ</strong> <br>
+                <strong>In Love:</strong> 17/02/2025
+            </div>
+        </div>
+
+        <div class="card">
+            <div class="card-tag">In-Love: 17/2/2025</div>
+            <div class="image-placeholder">
+                <img src="img/19.jpeg" alt="Sample">
+            </div>
+            <div class="card-info">
+                <strong>Bo And Mỡ</strong> <br>
+                <strong>In Love:</strong> 17/02/2025
+            </div>
+        </div>
+
+        <div class="card">
+            <div class="card-tag">In-Love: 17/2/2025</div>
+            <div class="image-placeholder">
+                <img src="img/20.jpeg" alt="Sample">
+            </div>
+            <div class="card-info">
+                <strong>Bo And Mỡ</strong> <br>
+                <strong>In Love:</strong> 17/02/2025
+            </div>
+        </div>
+
+        <div class="card">
+            <div class="card-tag">In-Love: 17/2/2025</div>
+            <div class="image-placeholder">
+                <img src="img/21.jpeg" alt="Sample">
+            </div>
+            <div class="card-info">
+                <strong>Bo And Mỡ</strong> <br>
+                <strong>In Love:</strong> 17/02/2025
+            </div>
+        </div>
+
+        <div class="card">
+            <div class="card-tag">In-Love: 17/2/2025</div>
+            <div class="image-placeholder">
+                <img src="img/22.jpeg" alt="Sample">
+            </div>
+            <div class="card-info">
+                <strong>Bo And Mỡ</strong> <br>
+                <strong>In Love:</strong> 17/02/2025
+            </div>
+        </div>
+
+        <div class="card">
+            <div class="card-tag">In-Love: 17/2/2025</div>
+            <div class="image-placeholder">
+                <img src="img/23.jpeg" alt="Sample">
+            </div>
+            <div class="card-info">
+                <strong>Bo And Mỡ</strong> <br>
+                <strong>In Love:</strong> 17/02/2025
+            </div>
+        </div>
+
+        <div class="card">
+            <div class="card-tag">In-Love: 17/2/2025</div>
+            <div class="image-placeholder">
+                <img src="img/24.jpeg" alt="Sample">
+            </div>
+            <div class="card-info">
+                <strong>Bo And Mỡ</strong> <br>
+                <strong>In Love:</strong> 17/02/2025
+            </div>
+        </div>
+
+        <div class="card">
+            <div class="card-tag">In-Love: 17/2/2025</div>
+            <div class="image-placeholder">
+                <img src="img/25.jpeg" alt="Sample">
+            </div>
+            <div class="card-info">
+                <strong>Bo And Mỡ</strong> <br>
+                <strong>In Love:</strong> 17/02/2025
+            </div>
+        </div>
+
+        <div class="card">
+            <div class="card-tag">In-Love: 17/2/2025</div>
+            <div class="image-placeholder">
+                <img src="img/26.jpeg" alt="Sample">
+            </div>
+            <div class="card-info">
+                <strong>Bo And Mỡ</strong> <br>
+                <strong>In Love:</strong> 17/02/2025
+            </div>
+        </div>
+
+        <div class="card">
+            <div class="card-tag">In-Love: 17/2/2025</div>
+            <div class="image-placeholder">
+                <img src="img/27.jpeg" alt="Sample">
+            </div>
+            <div class="card-info">
+                <strong>Bo And Mỡ</strong> <br>
+                <strong>In Love:</strong> 17/02/2025
+            </div>
+        </div>
+
+        <div class="card">
+            <div class="card-tag">In-Love: 17/2/2025</div>
+            <div class="image-placeholder">
+                <img src="img/28.jpeg" alt="Sample">
+            </div>
+            <div class="card-info">
+                <strong>Bo And Mỡ</strong> <br>
+                <strong>In Love:</strong> 17/02/2025
+            </div>
+        </div>
+
+        <div class="card">
+            <div class="card-tag">In-Love: 17/2/2025</div>
+            <div class="image-placeholder">
+                <img src="img/29.jpeg" alt="Sample">
+            </div>
+            <div class="card-info">
+                <strong>Bo And Mỡ</strong> <br>
+                <strong>In Love:</strong> 17/02/2025
+            </div>
+        </div>
+
+        <div class="card">
+            <div class="card-tag">In-Love: 17/2/2025</div>
+            <div class="image-placeholder">
+                <img src="img/30.jpeg" alt="Sample">
+            </div>
+            <div class="card-info">
+                <strong>Bo And Mỡ</strong> <br>
+                <strong>In Love:</strong> 17/02/2025
+            </div>
+        </div>
+
+        <div class="card">
+            <div class="card-tag">In-Love: 17/2/2025</div>
+            <div class="image-placeholder">
+                <img src="img/31.jpeg" alt="Sample">
+            </div>
+            <div class="card-info">
+                <strong>Bo And Mỡ</strong> <br>
+                <strong>In Love:</strong> 17/02/2025
+            </div>
+        </div>
+
+        <div class="card">
+            <div class="card-tag">In-Love: 17/2/2025</div>
+            <div class="image-placeholder">
+                <img src="img/32.jpeg" alt="Sample">
+            </div>
+            <div class="card-info">
+                <strong>Bo And Mỡ</strong> <br>
+                <strong>In Love:</strong> 17/02/2025
+            </div>
+        </div>
+
+        <div class="card">
+            <div class="card-tag">In-Love: 17/2/2025</div>
+            <div class="image-placeholder">
+                <img src="img/33.jpeg" alt="Sample">
+            </div>
+            <div class="card-info">
+                <strong>Bo And Mỡ</strong> <br>
+                <strong>In Love:</strong> 17/02/2025
+            </div>
+        </div>
+
+        <div class="card">
+            <div class="card-tag">In-Love: 17/2/2025</div>
+            <div class="image-placeholder">
+                <img src="img/34.jpeg" alt="Sample">
+            </div>
+            <div class="card-info">
+                <strong>Bo And Mỡ</strong> <br>
+                <strong>In Love:</strong> 17/02/2025
+            </div>
+        </div>
+
+        <div class="card">
+            <div class="card-tag">In-Love: 17/2/2025</div>
+            <div class="image-placeholder">
+                <img src="img/35.jpeg" alt="Sample">
+            </div>
+            <div class="card-info">
+                <strong>Bo And Mỡ</strong> <br>
+                <strong>In Love:</strong> 17/02/2025
+            </div>
+        </div>
+
+        <div class="card">
+            <div class="card-tag">In-Love: 17/2/2025</div>
+            <div class="image-placeholder">
+                <img src="img/36.jpeg" alt="Sample">
+            </div>
+            <div class="card-info">
+                <strong>Bo And Mỡ</strong> <br>
+                <strong>In Love:</strong> 17/02/2025
+            </div>
+        </div>
+
+        <div class="card">
+            <div class="card-tag">In-Love: 17/2/2025</div>
+            <div class="image-placeholder">
+                <img src="img/37.jpeg" alt="Sample">
+            </div>
+            <div class="card-info">
+                <strong>Bo And Mỡ</strong> <br>
+                <strong>In Love:</strong> 17/02/2025
+            </div>
+        </div>
     </div>
-    
-    
-    
-    
-    
-    
-<div>
-    <audio id="myAudio" src="trongnghia1759.github.io/profile/css/music/nguoidautien.mp3" autoplay muted controls style="margin-top: 20px;"></audio>
-</div>
-    <script src="trongnghia1759.github.io/profile/css/css/script.js"></script>
-    
-    
-    
-   
+
 </body>
 </html>
